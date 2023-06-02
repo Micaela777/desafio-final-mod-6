@@ -1,0 +1,8 @@
+.parcel-cache
+dist
+node_modules
+.env
+key.json
+dev.ts
+db.js
+index.js
