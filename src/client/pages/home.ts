@@ -14,7 +14,7 @@ class Home extends HTMLElement{
     render(){
         this.innerHTML = `
             <div class="home-section">
-                <div>Soy la home</div>
+                <div>Soy la home!</div>
 
                 <button class="authentication-button">Comenzar</button>
                 
