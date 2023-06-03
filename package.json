@@ -21,7 +21,7 @@
     "dev:front": "parcel serve ./src/client/index.html",
     "build:front": "parcel build ./src/client/index.html",
     "dev:back": "nodemon --watch ./src/server/index.ts --exec ts-node ./src/server/dev.ts",
-    "build:back": "tsc ./src/server/index.ts",
+    "build:back": "tsc",
     "build": "yarn build:front && yarn build:back",
     "start": "node ./src/server/index.js"
   }
