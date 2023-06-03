@@ -5,3 +5,4 @@ node_modules
 key.json
 dev.ts
 db.js
+index.js
