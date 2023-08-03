@@ -13,25 +13,24 @@ export function initCatRockComponent() {
             const div = document.createElement('div');
             div.className = "rock";
             div.innerHTML = `
-              <img class="rock-img" src="${rockImg}">
+                <img class="rock-img" src="${rockImg}">
             `;
 
             const style = document.createElement('style');
 
             style.innerHTML = `
-
-            .rock-img{
-                height: 145px;
-                width: 61px;
-                
-            }
-            @media (min-width: 769px){
                 .rock-img{
-                    height: 373px;
-                    width: 140px;
+                    height: 145px;
+                    width: 61px;
+                    
                 }
-              }
-          `;
+                @media (min-width: 769px){
+                    .rock-img{
+                        height: 373px;
+                        width: 140px;
+                    }
+                }
+            `;
 
             shadow.appendChild(div);
             shadow.appendChild(style);

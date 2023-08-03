@@ -1,8 +1,8 @@
-export function initCatPaperComponent() {
+export function initLineImgComponent() {
 
-    const paperImg = require("url:../img/cat-paper.png");
+    const lineImg = require("url:../img/line-img.png");
 
-    class Paper extends HTMLElement {
+    class Line extends HTMLElement {
         constructor() {
             super();
             this.render()
@@ -11,23 +11,26 @@ export function initCatPaperComponent() {
             var shadow = this.attachShadow({ mode: 'open' });
 
             const div = document.createElement('div');
-            div.className = "paper";
+            div.className = "line";
             div.innerHTML = `
-                <img class="paper-img" src="${paperImg}">
+                <img class="line-img" src="${lineImg}">
             `;
 
             const style = document.createElement('style');
 
             style.innerHTML = `
-                .paper-img{
-                    height: 145px;
-                    width: 61px;
-                    
+                .line{
+                    width: 100%;
+                }
+
+                .line-img{
+                    width: 80vw;
+                    max-width: 320px;
                 }
                 @media (min-width: 769px){
-                    .paper-img{
-                        height: 386px;
-                        width: 167px;
+                    .line-img{
+                        height: 8px;
+                        max-width: 480px;
                     }
                 }
             `;
@@ -36,5 +39,5 @@ export function initCatPaperComponent() {
             shadow.appendChild(style);
         };
     };
-    customElements.define('custom-cat-paper', Paper);
+    customElements.define('custom-line-img', Line);
 };

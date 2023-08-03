@@ -5,5 +5,7 @@
         "resolveJsonModule": true,
         "strictNullChecks": false,
         "module": "CommonJS"
-    }
+    },
+
+    
 }

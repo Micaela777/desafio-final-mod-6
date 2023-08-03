@@ -12,47 +12,64 @@ app.use(express.json());
 app.use(cors());
 
 const userCollection = firestore.collection("users");
+const roomsCollection = firestore.collection("rooms");
 
-
-
-app.get("/users", function(req, res) {
-    userCollection.get().then((snapshot) => {
-        const usersData = snapshot.docs
-        for(const users of usersData){
-            const usersJson = users.data()
-            console.log(usersJson)
-        }
+app.post("/signup", (req, res) => {
+  const name = req.body.name
+  const email = req.body.email;
+  userCollection.where("email", "==", email).get().then((searchResponse)=>{
+    if (searchResponse.empty){
+      userCollection.add({
+        name,
+        email
+      }).then((newUserRef) => {
         res.json({
-            message: "He aquí todos users"
+          id: newUserRef.id,
+          new: "new user created",
+          message: "user created"
         })
-    })
+      })
+    } else {
+      res.status(400).json({
+        message: "this user already exists"
+      })
+    }
+  })
 })
 
-app.post("/newUser", (req, res) => {
-    const name = req.body.name
-    userCollection.where("name", "==", name).get().then((searchResponse)=>{
-      if (searchResponse.empty){
-        userCollection.add({
-          name,
-        }).then((newUserRef) => {
-          res.json({
-            id: newUserRef.id,
-            message: "Usuario creado"
+
+  app.post("/rooms", (req, res) => {
+    const userId = req.body.userId
+    userCollection.doc(userId.toString()).get().then((doc) => {
+      if(doc.exists){
+        const roomRef = rtdb.ref("rooms/" + nanoid())
+        roomRef.set({
+          messages: [],
+          owner: userId
+        }).then(() => {
+          const roomLongId = roomRef.key
+          const roomId = 1000 + Math.floor(Math.random() * 999)
+          roomsCollection.doc(roomId.toString()).set({
+            rtdbRoomId: roomLongId
+          }).then(() => {
+            res.json({
+              id: roomId.toString()
+            })
           })
         })
       } else {
-        res.status(400).json({
-          message: "Este usuario ya existe"
+        res.status(401).json({
+          message: "no existís"
         })
       }
     })
   })
 
-app.use(express.static("dist"));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../../dist/index.html"))
-})
+  app.use(express.static("dist"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../../dist/index.html"))
+  })
 
-app.listen(port, () => {
+  app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
   })

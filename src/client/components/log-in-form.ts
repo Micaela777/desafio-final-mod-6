@@ -1,9 +1,9 @@
 import { Router } from "@vaadin/router";
 import { state } from "../state";
 
-export function initEnterTheRoomFormComponent() {
+export function initLogInFormComponent() {
 
-    class EnterTheRoomForm extends HTMLElement {
+    class LogInForm extends HTMLElement {
 
         shadow = this.attachShadow({ mode: 'open' });
         
@@ -11,38 +11,51 @@ export function initEnterTheRoomFormComponent() {
             super();
             this.render()
         
-            const form = this.shadow.querySelector('.enter-the-room-form');
+            const form = this.shadow.querySelector('.log-in-form');
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const target = e.target as any;
-                const targetId = target.id.value;
+                const targetName = target.name.value;
 
-                console.log(targetId)
+                state.setName(targetName);
 
-                    Router.go("./play")
+                const newUser = {
+                    name: targetName,
+                }
+                
+                state.newUser(newUser).then((res) => {
+                    console.log(res)
+                    const respuesta = res.message
+
+                    if(respuesta == "Este usuario ya existee"){
+                        console.log("ya existe broh")
+                    } else if (respuesta == "Usuario creado") {
+                        Router.go("./pre-game")
+                    }
+                })
                 
                 })
             }
         
         render() {
             this.shadow.innerHTML = `
-                <form class="enter-the-room-form">
-                    <div class="fieldset-id">
-                        <input class="id-input" type="text" name="id" placeholder="Ej.1234" required>
+                <form class="log-in-form">
+                    <div class="fieldset-name">
+                        <input class="name-input" type="text" name="name" id="name" placeholder="E-mail" required>
                     </div>
-                    <button class="enter-the-room-button">Siguiente</button>
-                </form>   
+                    <button class="log-in-button">Siguiente</button>
+                </form>    
              `
 
             const style = document.createElement('style');
 
             style.innerHTML = `
-                .fieldset-id{
+                .fieldset-name{
                     display: flex;
                     flex-direction: column;
                 }
 
-                .id-input{
+                .name-input{
                     border: none;
                     border-radius: 20px;
                     padding: 15px 20px;
@@ -50,13 +63,13 @@ export function initEnterTheRoomFormComponent() {
                     font-family: 'Roboto', sans-serif;
                 }
 
-                .enter-the-room-form{
+                .log-in-form{
                     display: flex;
                     flex-direction: column;
                     gap: 35px;
                 }
 
-                .enter-the-room-button{
+                .log-in-button{
                     padding: 13px 0px;
                     border: 3px solid #ffffff;
                     border-radius: 20px;
@@ -68,7 +81,7 @@ export function initEnterTheRoomFormComponent() {
                     transition: 0.1s;
                 }
                 @media (min-width: 860px){
-                    .enter-the-room-button:hover{
+                    .log-in-button:hover{
                         cursor: pointer;
                         text-shadow: 0 0 1px #ffffff;
                         box-shadow: inset 0 0 2px #ffffff, 0 0 2px #ffffff;
@@ -79,10 +92,11 @@ export function initEnterTheRoomFormComponent() {
                 }
                 
             `
-            
+
             this.shadow.appendChild(style);
 
+            
             };
         };
-    customElements.define('custom-enter-the-room-form', EnterTheRoomForm);
+    customElements.define('custom-log-in-form', LogInForm);
 };

@@ -1,36 +1,36 @@
 import { Router } from '@vaadin/router';
 
-class PreGameOptions extends HTMLElement{
+class FormOptions extends HTMLElement{
   connectedCallback(){
         this.render();
 
-        const newGameButton = this.querySelector('.new-game-button')
-        newGameButton.addEventListener('click', (e) => {
+        const registrationButton = this.querySelector('.registration-button')
+        registrationButton.addEventListener('click', (e) => {
             e.preventDefault();
-            Router.go('./authentication');
+            Router.go('./registration');
         });
 
-        const enterTheRoomButton = this.querySelector('.enter-the-room-button')
-        enterTheRoomButton.addEventListener('click', (e) => {
+        const logInButton = this.querySelector('.log-in-button')
+        logInButton.addEventListener('click', (e) => {
             e.preventDefault();
-            Router.go('/enter-the-room');
+            Router.go('./log-in');
         });
     };
 
     render(){
         this.innerHTML = `
-            <div class="pregame-section">
-                <div class="pre-game-section-container">
-                    <custom-choose-option-button class="new-game-button">Nuevo Juego</custom-choose-option-button>
+            <div class="form-options-section">
+                <div class="form-options-section-container">
+                    <custom-choose-option-button class="registration-button">Registrarse</custom-choose-option-button>
                     <h3 class="aux-letter">- O -</h3>
-                    <custom-choose-option-button class="enter-the-room-button">Ingresar a una Sala</custom-choose-option-button>
+                    <custom-choose-option-button class="log-in-button">Iniciar Sesión</custom-choose-option-button>
                 </div>
             </div>
         `
 
         const style = document.createElement("style");
         style.innerHTML = `
-            .pregame-section{
+            .form-options-section{
                 height: 100vh;
                 padding: 0px 7px;
                 display: flex;
@@ -40,15 +40,15 @@ class PreGameOptions extends HTMLElement{
                 background: linear-gradient( to left, #0e123b, #0a325c, #206985 );
             }
 
-            .pre-game-section-container{
+            .form-options-section-container{
                 width: 100%;
                 max-width: 320px;
             }
             @media (min-width: 730px){
-                .pre-game-section-container{
+                .form-options-section-container{
                     max-width: 370px;
                 }
-            }
+              }
   
             .aux-letter{
                 padding: 7px 0px;
@@ -57,9 +57,10 @@ class PreGameOptions extends HTMLElement{
                 color: rgba(255,255,255,0.8);
                 font-family: 'Roboto', sans-serif;
             }
+            
         `;
 
         this.appendChild(style)
     };
 };
-customElements.define('pregame-options-page', PreGameOptions);
+customElements.define('form-options-page', FormOptions);

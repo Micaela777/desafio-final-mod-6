@@ -1,23 +1,16 @@
 import { Router } from '@vaadin/router';
 
-class EnterTheRoom extends HTMLElement{
+class Registration extends HTMLElement{
   connectedCallback(){
         this.render();
-
-        /*const button = this.querySelector('.choose-cat-button')
-        button.addEventListener('click', (e) => {
-            e.preventDefault()
-            Router.go('./play-page')
-        }) */
     };
 
     render(){
         this.innerHTML = `
-            <div class="enter-the-room-section">
+            <div class="registration-section">
                 <custom-cat-silhouette></custom-cat-silhouette>
-                <h3 class="enter-name-text">Por favor, ingresa el ID de la sala:</h3>
-                <div class="enter-the-room-form-container">
-                    <custom-enter-the-room-form></custom-enter-the-room-form>
+                <div class="registration-form-container">
+                    <custom-registration-form></custom-registration-form>
                 </div>
                 <custom-line-img class="bottom-line-img"></custom-line-img>
             </div>
@@ -25,7 +18,7 @@ class EnterTheRoom extends HTMLElement{
 
         const style = document.createElement("style");
         style.innerHTML = `
-            .enter-the-room-section{
+            .registration-section{
                 height: 100vh;
                 padding: 0px 7px;
                 display: flex;
@@ -37,22 +30,12 @@ class EnterTheRoom extends HTMLElement{
                 background: linear-gradient(to left, #0e123b, #0a325c, #206985);
             }
             @media (min-width: 769px){
-                .enter-the-room-section{
+                .registration-section{
                     padding-bottom: 20px;
                 }
             }
 
-            .enter-name-text{
-                margin: 0px;
-                text-align: center;
-                font-weight: 400;
-                font-size: 22px;
-                padding-top: 25px;
-                color: #ffffff;
-                font-family: 'Roboto', sans-serif;
-            }
-
-            .enter-the-room-form-container{
+            .registration-form-container{
                 width: 100%;
                 max-width: 340px;
             }
@@ -65,4 +48,4 @@ class EnterTheRoom extends HTMLElement{
         this.appendChild(style)
     };
 };
-customElements.define('enter-the-room-page', EnterTheRoom);
+customElements.define('registration-page', Registration);

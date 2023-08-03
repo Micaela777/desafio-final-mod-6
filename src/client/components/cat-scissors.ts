@@ -13,25 +13,24 @@ export function initCatScissorsComponent() {
             const div = document.createElement('div');
             div.className = "scissors";
             div.innerHTML = `
-              <img class="scissors-img" src="${scissorsImg}">
+                <img class="scissors-img" src="${scissorsImg}">
             `;
 
             const style = document.createElement('style');
 
             style.innerHTML = `
-
-            .scissors-img{
-                height: 145px;
-                width: 61px;
-                
-            }
-            @media (min-width: 769px){
                 .scissors-img{
-                    height: 386px;
-                    width: 136px;
+                    height: 145px;
+                    width: 61px;
+                    
                 }
-              }
-          `;
+                @media (min-width: 769px){
+                    .scissors-img{
+                        height: 386px;
+                        width: 136px;
+                    }
+                }
+            `;
 
             shadow.appendChild(div);
             shadow.appendChild(style);
