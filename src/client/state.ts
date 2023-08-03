@@ -63,7 +63,7 @@ const state = {
             return res.json()
         }).then((data) => {
             cs.userId = data.id
-            //console.log(data)
+            console.log(data)
             this.setState(cs)
             return data
         });

@@ -39,12 +39,12 @@ app.post("/auth", (req, res) => {
     userCollection.where("email", "==", email).get().then((searchResponse) => {
         if (searchResponse.empty) {
             res.status(404).json({
-                message: "Usuario no encontrado"
+                message: "user not found"
             });
         }
         else {
             res.json({
-                message: "Usuario encontrado",
+                message: "user found",
                 id: searchResponse.docs[0].id
             });
         }

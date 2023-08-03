@@ -18,6 +18,17 @@ export function initLogInFormComponent() {
                 const targetEmail = target.email.value;
 
                 console.log(targetEmail)
+
+                const userEmail = {
+                    email: targetEmail,
+                }
+
+                state.signIn(userEmail).then((res) => {
+
+                    const response = res.message
+
+                    if(response){}
+                })
             })
         }
         
