@@ -38,6 +38,24 @@ app.post("/signup", (req, res) => {
 })
 
 
+
+app.post("/auth", (req, res) => {
+  const email = req.body.email
+  userCollection.where("email", "==", email).get().then((searchResponse)=>{
+    if (searchResponse.empty){
+      res.status(404).json({
+        message: "Usuario no encontrado"
+      })
+    } else {
+      res.json({
+        message: "Usuario encontrado",
+        id: searchResponse.docs[0].id
+      })
+    }
+  })
+})
+
+
   app.post("/rooms", (req, res) => {
     const userId = req.body.userId
     userCollection.doc(userId.toString()).get().then((doc) => {
