@@ -25,8 +25,8 @@ const state = {
         
         this.setState(cs)
 
-        console.log(cs.name)
-        console.log(cs.email)
+        //console.log(cs.name)
+        //console.log(cs.email)
     },
 
     signUp(newUser){
@@ -43,7 +43,7 @@ const state = {
             return res.json()
         }).then((data) => {
             cs.userId = data.id
-            console.log(data)
+            //console.log(data)
             this.setState(cs)
             return data
         });
@@ -63,7 +63,7 @@ const state = {
             return res.json()
         }).then((data) => {
             cs.userId = data.id
-            console.log(data)
+            //console.log(data)
             this.setState(cs)
             return data
         });

@@ -1,6 +1,6 @@
-export function initRegistrationErrorTextComponent() {
+export function initErrorTextComponent() {
 
-    class RegistrationErrorText extends HTMLElement {
+    class ErrorText extends HTMLElement {
         constructor() {
             super();
             this.render();
@@ -9,13 +9,13 @@ export function initRegistrationErrorTextComponent() {
             var shadow = this.attachShadow({ mode: 'open' });
 
             const div = document.createElement('div');
-            div.className = "registration-error-text";
+            div.className = "error-text";
             div.textContent = this.textContent; 
 
             const style = document.createElement('style');
 
             style.innerHTML = `
-                .registration-error-text{
+                .error-text{
                     max-width: 370px;
                     margin: 0px;
                     text-align: center;
@@ -25,7 +25,7 @@ export function initRegistrationErrorTextComponent() {
                     color: #eb7575; 
                 }
                 @media (min-width: 950px){
-                  .registration-error-text{
+                  .-error-text{
                       max-width: 400px;
                     }
                 }
@@ -35,5 +35,6 @@ export function initRegistrationErrorTextComponent() {
             shadow.appendChild(style);
         };
     };
-    customElements.define('custom-registration-error-text', RegistrationErrorText); 
+    
+    customElements.define('custom-error-text', ErrorText); 
 }

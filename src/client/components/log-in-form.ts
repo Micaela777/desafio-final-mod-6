@@ -17,8 +17,6 @@ export function initLogInFormComponent() {
                 const target = e.target as any;
                 const targetEmail = target.email.value;
 
-                console.log(targetEmail)
-
                 const userEmail = {
                     email: targetEmail,
                 }
@@ -27,7 +25,23 @@ export function initLogInFormComponent() {
 
                     const response = res.message
 
-                    if(response){}
+                    if (response == "user found"){
+
+                        Router.go("./pre-game")
+
+                    } else if (response == "user not found"){
+
+                        const errorText = this.shadow.querySelector(".error-text") as HTMLInputElement;
+                        errorText.style.display = "inherit";
+
+                        const loginForm = this.shadow.querySelector(".log-in-form") as HTMLInputElement;
+                        loginForm.style.gap = "21px";
+
+                        setTimeout(() => {
+                            errorText.style.display = 'none';
+                            loginForm.style.gap = "35px";
+                        }, 4000);
+                    }
                 })
             })
         }
@@ -38,6 +52,7 @@ export function initLogInFormComponent() {
                     <div class="fieldset-name">
                         <input class="email-input" type="text" name="email" placeholder="E-mail" required>
                     </div>
+                    <custom-error-text class="error-text">✘ Este usuario no existe</custom-error-text>
                     <button class="log-in-button">Siguiente</button>
                 </form>    
              `
@@ -62,6 +77,10 @@ export function initLogInFormComponent() {
                     display: flex;
                     flex-direction: column;
                     gap: 35px;
+                }
+
+                .error-text{
+                    display: none;
                 }
 
                 .log-in-button{

@@ -49,13 +49,9 @@ export function initRegistrationFormComponent() {
                             errorText.style.display = 'none';
                             registrationForm.style.gap = "35px";
                         }, 4000);
-
-                        console.log("ya existe este bro, anda a iniciar sesion")
                     }
                 })
-                
             })
-            
         }
         
         render() {
@@ -65,7 +61,7 @@ export function initRegistrationFormComponent() {
                         <input class="name-input" type="text" name="name" id="name" placeholder="Nombre" required>
                         <input class="email-input" type="text" name="email" id="email" placeholder="E-mail" required>
                     </div>
-                    <custom-registration-error-text class="error-text">✘ Este usuario ya existe</custom-registration-error-text>
+                    <custom-error-text class="error-text">✘ Este usuario ya existe</custom-error-text>
                     <button class="registration-button">Siguiente</button>
                 </form>    
              `

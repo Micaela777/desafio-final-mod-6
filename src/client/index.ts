@@ -17,7 +17,7 @@ import { initRegistrationFormComponent } from "./components/registration-form";
 import { initLogInFormComponent } from "./components/log-in-form";
 import { initCatSilhouetteComponent } from "./components/cat-silhouette";
 import { initLineImgComponent } from "./components/custom-line-img";
-import { initRegistrationErrorTextComponent } from "./components/registration-error-text";
+import { initErrorTextComponent } from "./components/error-text";
 import { initEnterTheRoomFormComponent } from "./components/enter-the-room-form";
 import { initCatPaperComponent } from "./components/cat-paper";
 import { initCatRockComponent } from "./components/cat-rock";
@@ -35,7 +35,7 @@ import { initCatScissorsComponent } from "./components/cat-scissors";
     initEnterTheRoomFormComponent();
     initCatSilhouetteComponent()
     initLineImgComponent();
-    initRegistrationErrorTextComponent();
+    initErrorTextComponent();
     initCatPaperComponent();
     initCatRockComponent();
     initCatScissorsComponent();
