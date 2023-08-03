@@ -6,7 +6,6 @@ router.setRoutes([
   { path: '/form-options', component: 'form-options-page' },
   { path: '/registration', component: 'registration-page' },
   { path: '/log-in', component: 'log-in-page' },
-  { path: '/authentication', component: 'authentication-page' },
   { path: '/pre-game', component: 'pregame-options-page'},
   { path: '/enter-the-room', component: 'enter-the-room-page' },
   { path: '/play', component: 'play-page' },

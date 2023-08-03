@@ -3,12 +3,6 @@ import { Router } from '@vaadin/router';
 class LogIn extends HTMLElement{
   connectedCallback(){
         this.render();
-
-        const enterTheRoomButton = this.querySelector('.start-button')
-        enterTheRoomButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            Router.go('./pre-game');
-        });
     };
 
     render(){

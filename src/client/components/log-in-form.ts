@@ -15,33 +15,17 @@ export function initLogInFormComponent() {
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const target = e.target as any;
-                const targetName = target.name.value;
+                const targetEmail = target.email.value;
 
-                state.setName(targetName);
-
-                const newUser = {
-                    name: targetName,
-                }
-                
-                state.newUser(newUser).then((res) => {
-                    console.log(res)
-                    const respuesta = res.message
-
-                    if(respuesta == "Este usuario ya existee"){
-                        console.log("ya existe broh")
-                    } else if (respuesta == "Usuario creado") {
-                        Router.go("./pre-game")
-                    }
-                })
-                
-                })
-            }
+                console.log(targetEmail)
+            })
+        }
         
         render() {
             this.shadow.innerHTML = `
                 <form class="log-in-form">
                     <div class="fieldset-name">
-                        <input class="name-input" type="text" name="name" id="name" placeholder="E-mail" required>
+                        <input class="email-input" type="text" name="email" placeholder="E-mail" required>
                     </div>
                     <button class="log-in-button">Siguiente</button>
                 </form>    
@@ -55,7 +39,7 @@ export function initLogInFormComponent() {
                     flex-direction: column;
                 }
 
-                .name-input{
+                .email-input{
                     border: none;
                     border-radius: 20px;
                     padding: 15px 20px;
@@ -95,8 +79,8 @@ export function initLogInFormComponent() {
 
             this.shadow.appendChild(style);
 
-            
             };
         };
+
     customElements.define('custom-log-in-form', LogInForm);
 };

@@ -11,7 +11,7 @@ export function initEnterTheRoomFormComponent() {
             super();
             this.render()
         
-            const form = this.shadow.querySelector('.enter-the-room-form');
+           /* const form = this.shadow.querySelector('.enter-the-room-form');
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const target = e.target as any;
@@ -21,7 +21,7 @@ export function initEnterTheRoomFormComponent() {
 
                     Router.go("./play")
                 
-                })
+                })*/
             }
         
         render() {
