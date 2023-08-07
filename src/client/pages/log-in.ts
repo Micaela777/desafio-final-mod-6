@@ -9,7 +9,7 @@ class LogIn extends HTMLElement{
         this.innerHTML = `
             <div class="log-in-section">
                 <custom-cat-silhouette></custom-cat-silhouette>
-                <h3 class="enter-name-text">Por favor, ingresa tu correo electrónico:</h3>
+                <h3 class="enter-email-text">Por favor, ingresa tu correo electrónico:</h3>
                 <div class="log-in-form-container">
                     <custom-log-in-form></custom-log-in-form>
                 </div>
@@ -36,7 +36,7 @@ class LogIn extends HTMLElement{
                 }
             }
 
-            .enter-name-text{
+            .enter-email-text{
                 margin: 0px;
                 text-align: center;
                 font-weight: 400;
