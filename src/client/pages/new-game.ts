@@ -21,6 +21,9 @@ class NewChatroom extends HTMLElement{
                         <h1 class="id">6544</h1>
                     </div>
                     <h2 class="share-room-id">Compartilo con tu contrincante</h2>
+                    <div class="continue-button-container">
+                        <button class="continue-button">Siguiente</button>
+                    </div>
                 </div>
                 <custom-line-img class="bottom-line-img"></custom-line-img>
             </div>
@@ -36,7 +39,7 @@ class NewChatroom extends HTMLElement{
                 align-items: center;
                 justify-content: center;
                 overflow: auto;
-                gap: 35px;
+                gap: 30px;
                 background: linear-gradient( to left, #0e123b, #0a325c, #206985 );
             }
             @media (min-width: 769px){
@@ -49,13 +52,13 @@ class NewChatroom extends HTMLElement{
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 35px;
+                gap: 27px;
             }
 
             .room-id-reference{
                 margin: 0px;
-                padding-top: 17px;
-                font-size: 27px;
+                padding-top: 3px;
+                font-size: 23px;
                 font-weight: 400;
                 font-family: 'Roboto', sans-serif;
                 color: #ffffff;
@@ -63,7 +66,7 @@ class NewChatroom extends HTMLElement{
 
             .share-room-id{
                 margin: 0px;
-                font-size: 27px;
+                font-size: 23px;
                 font-weight: 400;
                 text-align: center;
                 font-family: 'Roboto', sans-serif;
@@ -81,15 +84,43 @@ class NewChatroom extends HTMLElement{
             .id{
                 margin: 0px;
                 padding: 20px 35px;
-                font-size: 45px;
+                font-size: 35px;
                 font-family: 'Roboto', sans-serif;
                 background: linear-gradient( to left, #0a325c, #1a4f75);
                 -webkit-text-fill-color: transparent;
                 -webkit-background-clip: text;
             }
 
+            .continue-button-container{
+                width: 100%;
+                max-width: 340px;
+            }
+
+            .continue-button{
+                width: 100%;
+                padding: 13px 0px;
+                border: 3px solid #ffffff;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 23px;
+                color: #ffffff;
+                font-family: 'Roboto', sans-serif;
+                background-color: transparent;
+                transition: 0.1s;
+            }
+            @media (min-width: 860px){
+                .continue-button:hover{
+                    cursor: pointer;
+                    text-shadow: 0 0 1px #ffffff;
+                    box-shadow: inset 0 0 2px #ffffff, 0 0 2px #ffffff;
+                    transition: 0.1s;
+                    color: #ffffff;
+                    background-color: rgba(227,225,225,0.1);
+                }
+            }
+
             .bottom-line-img{
-                padding-top: 32px;
+                padding-top: 28px;
             }
         `;
 
