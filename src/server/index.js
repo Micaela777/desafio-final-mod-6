@@ -56,7 +56,6 @@ app.post("/rooms", (req, res) => {
         if (doc.exists) {
             const roomRef = db_1.rtdb.ref("rooms/" + nanoid());
             roomRef.set({
-                messages: [],
                 owner: userId
             }).then(() => {
                 const roomLongId = roomRef.key;
@@ -65,7 +64,8 @@ app.post("/rooms", (req, res) => {
                     rtdbRoomId: roomLongId
                 }).then(() => {
                     res.json({
-                        id: roomId.toString()
+                        id: roomId.toString(),
+                        roomLongId
                     });
                 });
             });

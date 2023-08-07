@@ -63,10 +63,30 @@ const state = {
             return res.json()
         }).then((data) => {
             cs.userId = data.id
-            //console.log(data)
+            console.log(data)
             this.setState(cs)
             return data
         });
+    },
+
+    askNewRoom(){
+        const cs = this.getState();
+
+            return fetch(API_BASE_URL + "/rooms", {
+                method: "post",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify({userId: cs.userId}),
+            }).then((res) => {
+                return res.json()
+            }).then((data) => {
+                cs.roomId = data.id
+                console.log(data)
+                this.setState(cs)
+                console.log(cs.roomId)
+                return data
+            });
     },
 
     setState(newState) {

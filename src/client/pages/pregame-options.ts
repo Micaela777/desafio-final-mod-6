@@ -1,4 +1,5 @@
 import { Router } from '@vaadin/router';
+import { state } from '../state';
 
 class PreGameOptions extends HTMLElement{
   connectedCallback(){
@@ -7,7 +8,16 @@ class PreGameOptions extends HTMLElement{
         const newGameButton = this.querySelector('.new-game-button')
         newGameButton.addEventListener('click', (e) => {
             e.preventDefault();
-            Router.go('./new-game');
+
+            state.askNewRoom().then((res) => {
+
+                const cs = state.getState()
+                cs.rtdbRoomId = res.roomLongId
+
+                console.log(cs.userId)
+
+                Router.go('./new-game');
+            })
         });
 
         const enterTheRoomButton = this.querySelector('.enter-the-room-button')
