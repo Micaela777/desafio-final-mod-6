@@ -14,7 +14,7 @@ class NewChatroom extends HTMLElement{
     render(){
         this.innerHTML = `
             <div class="new-chatroom-section">
-                
+                hola
             </div>
         `
 
