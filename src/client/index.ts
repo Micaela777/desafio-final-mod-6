@@ -4,6 +4,7 @@ import "./pages/form-options";
 import "./pages/registration";
 import "./pages/log-in";
 import "./pages/pregame-options";
+import "./pages/new-game";
 import "./pages/enter-the-room";
 import "./pages/play-page";
 import { state } from "./state";
