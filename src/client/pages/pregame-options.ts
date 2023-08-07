@@ -7,7 +7,7 @@ class PreGameOptions extends HTMLElement{
         const newGameButton = this.querySelector('.new-game-button')
         newGameButton.addEventListener('click', (e) => {
             e.preventDefault();
-            Router.go('./authentication');
+            Router.go('./new-game');
         });
 
         const enterTheRoomButton = this.querySelector('.enter-the-room-button')
