@@ -21,15 +21,27 @@ export function initEnterTheRoomFormComponent() {
                 
                 state.accessToRoom(targetRoomId).then((res) => {
                     if (res.rtdbRoomId){
-                        const cs = state.getState()
-                        cs.rtdbRoomId = res.rtdbRoomId
-                        state.setState(cs)
+                        const cs = state.getState();
+                        cs.rtdbRoomId = res.rtdbRoomId;
+                        state.setState(cs);
+
+                        Router.go("./play");
+
+                    } else {
+                        const errorText = this.shadow.querySelector(".error-text") as HTMLInputElement;
+                        errorText.style.display = "inherit";
+
+                        const enterTheRoomForm = this.shadow.querySelector(".enter-the-room-form") as HTMLInputElement;
+                        enterTheRoomForm.style.gap = "21px";
+
+                        setTimeout(() => {
+                            errorText.style.display = 'none';
+                            enterTheRoomForm.style.gap = "35px";
+                        }, 4000);
                     }
-                })
-                
-                
-                })
-            }
+                })  
+            })
+        }
         
         render() {
             this.shadow.innerHTML = `
@@ -37,6 +49,7 @@ export function initEnterTheRoomFormComponent() {
                     <div class="fieldset-id">
                         <input class="id-input" type="text" name="roomid" placeholder="Ej.1234" required>
                     </div>
+                    <custom-error-text class="error-text">✘ Esta sala no existe</custom-error-text>
                     <button class="enter-the-room-button">Siguiente</button>
                 </form>   
              `
@@ -44,6 +57,12 @@ export function initEnterTheRoomFormComponent() {
             const style = document.createElement('style');
 
             style.innerHTML = `
+                .enter-the-room-form{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 35px;
+                }
+
                 .fieldset-id{
                     display: flex;
                     flex-direction: column;
@@ -57,10 +76,8 @@ export function initEnterTheRoomFormComponent() {
                     font-family: 'Roboto', sans-serif;
                 }
 
-                .enter-the-room-form{
-                    display: flex;
-                    flex-direction: column;
-                    gap: 35px;
+                .error-text{
+                    display: none;
                 }
 
                 .enter-the-room-button{
