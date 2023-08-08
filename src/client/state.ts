@@ -88,6 +88,27 @@ const state = {
             });
     },
 
+    accessToRoom(roomId){
+        const cs = this.getState()
+        
+        return fetch(API_BASE_URL + "/rooms/" + roomId + "?userId=" + cs.userId)
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            cs.rtdbRoomId = data.rtdbRoomId;
+            console.log(data);
+            this.setState(cs);
+            return data;
+        });
+    },
+
+    existingRoom(roomId){
+        const cs = this.getState();
+        cs.roomId = roomId;
+        this.setState(cs);
+        console.log(cs.roomId)
+    },
+
     setState(newState) {
         this.data = newState;
         for (const cb of this.listeners) {

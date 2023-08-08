@@ -11,24 +11,31 @@ export function initEnterTheRoomFormComponent() {
             super();
             this.render()
         
-           /* const form = this.shadow.querySelector('.enter-the-room-form');
+            const form = this.shadow.querySelector('.enter-the-room-form');
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const target = e.target as any;
-                const targetId = target.id.value;
+                const targetRoomId = target.roomid.value;
 
-                console.log(targetId)
-
-                    Router.go("./play")
+                state.existingRoom(targetRoomId);
                 
-                })*/
+                state.accessToRoom(targetRoomId).then((res) => {
+                    if (res.rtdbRoomId){
+                        const cs = state.getState()
+                        cs.rtdbRoomId = res.rtdbRoomId
+                        state.setState(cs)
+                    }
+                })
+                
+                
+                })
             }
         
         render() {
             this.shadow.innerHTML = `
                 <form class="enter-the-room-form">
                     <div class="fieldset-id">
-                        <input class="id-input" type="text" name="id" placeholder="Ej.1234" required>
+                        <input class="id-input" type="text" name="roomid" placeholder="Ej.1234" required>
                     </div>
                     <button class="enter-the-room-button">Siguiente</button>
                 </form>   
