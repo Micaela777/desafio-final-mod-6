@@ -59,7 +59,7 @@ app.post("/rooms", (req, res) => {
                 owner: userId
             }).then(() => {
                 const roomLongId = roomRef.key;
-                const roomId = 1000 + Math.floor(Math.random() * 999);
+                const roomId = 10000 + Math.floor(Math.random() * 9999);
                 roomsCollection.doc(roomId.toString()).set({
                     rtdbRoomId: roomLongId
                 }).then(() => {

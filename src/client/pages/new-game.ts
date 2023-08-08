@@ -1,8 +1,17 @@
 import { Router } from '@vaadin/router';
+import { state } from '../state';
 
 class NewChatroom extends HTMLElement{
   connectedCallback(){
         this.render();
+
+        const currentState = state.getState();
+        const roomId = currentState.roomId;
+
+        console.log(roomId)
+
+        const idRoomReference = this.querySelector(".id")
+        idRoomReference.textContent = `${roomId}`;
 
         /*const enterTheRoomButton = this.querySelector('.start-button')
         enterTheRoomButton.addEventListener('click', (e) => {
@@ -18,7 +27,7 @@ class NewChatroom extends HTMLElement{
                 <div class="new-chatroom-section-items-container">
                     <h2 class="room-id-reference">ID de la sala:</h2>
                     <div class="id-container">
-                        <h1 class="id">6544</h1>
+                        <h1 class="id"></h1>
                     </div>
                     <h2 class="share-room-id">Compartilo con tu contrincante</h2>
                     <div class="continue-button-container">
