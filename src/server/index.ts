@@ -37,8 +37,6 @@ app.post("/signup", (req, res) => {
   })
 })
 
-
-
 app.post("/auth", (req, res) => {
   const email = req.body.email
   userCollection.where("email", "==", email).get().then((searchResponse)=>{
@@ -55,33 +53,55 @@ app.post("/auth", (req, res) => {
   })
 })
 
-
-  app.post("/rooms", (req, res) => {
-    const userId = req.body.userId
-    userCollection.doc(userId.toString()).get().then((doc) => {
-      if(doc.exists){
-        const roomRef = rtdb.ref("rooms/" + nanoid())
-        roomRef.set({
-          owner: userId
+app.post("/rooms", (req, res) => {
+  const userId = req.body.userId
+  userCollection.doc(userId.toString()).get().then((doc) => {
+    if(doc.exists){
+      const roomRef = rtdb.ref("rooms/" + nanoid())
+      roomRef.set({
+        owner: userId
+      }).then(() => {
+        const roomLongId = roomRef.key
+        const roomId = 10000 + Math.floor(Math.random() * 9999)
+        roomsCollection.doc(roomId.toString()).set({
+          rtdbRoomId: roomLongId
         }).then(() => {
-          const roomLongId = roomRef.key
-          const roomId = 10000 + Math.floor(Math.random() * 9999)
-          roomsCollection.doc(roomId.toString()).set({
-            rtdbRoomId: roomLongId
-          }).then(() => {
-            res.json({
-              id: roomId.toString(),
-               roomLongId
-            })
+          res.json({
+            id: roomId.toString(),
+             roomLongId
           })
         })
-      } else {
-        res.status(401).json({
-          message: "no existís"
-        })
-      }
-    })
+      })
+    } else {
+      res.status(401).json({
+        message: "no existís"
+      })
+    }
   })
+})
+
+app.get("/rooms/:roomId", (req, res) => {
+  const userId = req.query.userId
+  const roomId = req.params.roomId
+  userCollection.doc(userId.toString()).get().then((doc) => {
+    if(doc.exists){
+      roomsCollection.doc(roomId).get().then((snap) => {
+        if(snap.exists){
+          const data = snap.data()
+          res.json(data)
+        }else{
+          res.status(401).json({
+            message: "el room no existe"
+          })
+        }
+      })
+    } else {
+      res.status(401).json({
+        message: "no existis"
+      })
+    }
+  })
+})
 
   app.use(express.static("dist"));
   app.get("*", (req, res) => {

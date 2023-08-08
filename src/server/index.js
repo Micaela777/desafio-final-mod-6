@@ -77,6 +77,30 @@ app.post("/rooms", (req, res) => {
         }
     });
 });
+app.get("/rooms/:roomId", (req, res) => {
+    const userId = req.query.userId;
+    const roomId = req.params.roomId;
+    userCollection.doc(userId.toString()).get().then((doc) => {
+        if (doc.exists) {
+            roomsCollection.doc(roomId).get().then((snap) => {
+                if (snap.exists) {
+                    const data = snap.data();
+                    res.json(data);
+                }
+                else {
+                    res.status(401).json({
+                        message: "el room no existe"
+                    });
+                }
+            });
+        }
+        else {
+            res.status(401).json({
+                message: "no existis"
+            });
+        }
+    });
+});
 app.use(express.static("dist"));
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../../dist/index.html"));
