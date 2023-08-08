@@ -9,7 +9,6 @@ const state = {
         userId: "",
         roomId: "",
         rtdbRoomId: "",
-        messages: []
     },
     listeners: [],
 
