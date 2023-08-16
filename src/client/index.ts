@@ -14,8 +14,6 @@ import { initAuthFormComponent } from "./components/auth-form";
 import { initHomeStartButtonComponent } from "./components/home-start-button";
 import { initHomeCatImageComponent } from "./components/home-space-cat";
 import { initChooseOptionButtonComponent } from "./components/choose-option-button";
-import { initRegistrationFormComponent } from "./components/registration-form";
-import { initLogInFormComponent } from "./components/log-in-form";
 import { initCatSilhouetteComponent } from "./components/cat-silhouette";
 import { initLineImgComponent } from "./components/custom-line-img";
 import { initErrorTextComponent } from "./components/error-text";
@@ -32,8 +30,6 @@ import { initCatScissorsComponent } from "./components/cat-scissors";
     initHomeStartButtonComponent();
     initHomeCatImageComponent();
     initChooseOptionButtonComponent();
-    initRegistrationFormComponent();
-    initLogInFormComponent();
     initEnterTheRoomFormComponent();
     initCatSilhouetteComponent()
     initLineImgComponent();
