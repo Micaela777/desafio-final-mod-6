@@ -13,11 +13,11 @@ class NewChatroom extends HTMLElement{
         const idRoomReference = this.querySelector(".id")
         idRoomReference.textContent = `${roomId}`;
 
-        /*const enterTheRoomButton = this.querySelector('.start-button')
+        const enterTheRoomButton = this.querySelector('.continue-button')
         enterTheRoomButton.addEventListener('click', (e) => {
             e.preventDefault();
-            Router.go('./form-options');
-        });*/
+            Router.go('./instructions');
+        });
     };
 
     render(){
@@ -53,7 +53,7 @@ class NewChatroom extends HTMLElement{
             }
             @media (min-width: 769px){
                 .new-chatroom-section{
-                    padding-bottom: 21px;
+                    padding-bottom: 20px;
                 }
             }
 
@@ -61,12 +61,12 @@ class NewChatroom extends HTMLElement{
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                padding: 4px 0px;
                 gap: 27px;
             }
 
             .room-id-reference{
                 margin: 0px;
-                padding-top: 3px;
                 font-size: 23px;
                 font-weight: 400;
                 font-family: 'Roboto', sans-serif;
@@ -95,9 +95,7 @@ class NewChatroom extends HTMLElement{
                 padding: 20px 35px;
                 font-size: 35px;
                 font-family: 'Roboto', sans-serif;
-                background: linear-gradient( to left, #0a325c, #1a4f75);
-                -webkit-text-fill-color: transparent;
-                -webkit-background-clip: text;
+                color: #be5abf;
             }
 
             .continue-button-container{
@@ -129,7 +127,7 @@ class NewChatroom extends HTMLElement{
             }
 
             .bottom-line-img{
-                padding-top: 28px;
+                padding-top: 26px;
             }
         `;
 

@@ -25,7 +25,7 @@ export function initEnterTheRoomFormComponent() {
                         cs.rtdbRoomId = res.rtdbRoomId;
                         state.setState(cs);
 
-                        Router.go("./play");
+                        Router.go("./instructions");
 
                     } else {
                         const errorText = this.shadow.querySelector(".error-text") as HTMLInputElement;

@@ -1,16 +1,16 @@
 import "./router"
 import "./pages/home";
-import "./pages/form-options";
-import "./pages/registration";
-import "./pages/log-in";
+import "./pages/auth";
 import "./pages/pregame-options";
 import "./pages/new-game";
 import "./pages/enter-the-room";
+import "./pages/instructions";
 import "./pages/play-page";
 import { state } from "./state";
 
 import { initMainTitleComponent } from "./components/main-title";
 import { initHomeSmallTextComponent } from "./components/home-small-text";
+import { initAuthFormComponent } from "./components/auth-form";
 import { initHomeStartButtonComponent } from "./components/home-start-button";
 import { initHomeCatImageComponent } from "./components/home-space-cat";
 import { initChooseOptionButtonComponent } from "./components/choose-option-button";
@@ -28,6 +28,7 @@ import { initCatScissorsComponent } from "./components/cat-scissors";
 
     initMainTitleComponent();
     initHomeSmallTextComponent();
+    initAuthFormComponent();
     initHomeStartButtonComponent();
     initHomeCatImageComponent();
     initChooseOptionButtonComponent();

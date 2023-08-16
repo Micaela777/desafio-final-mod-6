@@ -1,24 +1,17 @@
-import { Router } from '@vaadin/router';
 
-class EnterTheRoom extends HTMLElement{
+class Auth extends HTMLElement{
   connectedCallback(){
         this.render();
-
-        /*const button = this.querySelector('.choose-cat-button')
-        button.addEventListener('click', (e) => {
-            e.preventDefault()
-            Router.go('./play-page')
-        }) */
     };
 
     render(){
         this.innerHTML = `
-            <div class="enter-the-room-section">
+            <div class="auth-section">
                 <custom-cat-silhouette></custom-cat-silhouette>
-                <div class="enter-the-room-items-container">
-                    <h3 class="enter-name-text">Por favor, ingresa el ID de la sala:</h3>
-                    <div class="enter-the-room-form-container">
-                        <custom-enter-the-room-form></custom-enter-the-room-form>
+                <div class="auth-items-container">
+                    <h3 class="enter-your-name-text">Por favor, ingresa tu nombre:</h3>
+                    <div class="auth-form-container">
+                        <custom-auth-form></custom-auth-form>
                     </div>
                 </div>
                 <custom-line-img class="bottom-line-img"></custom-line-img>
@@ -27,7 +20,7 @@ class EnterTheRoom extends HTMLElement{
 
         const style = document.createElement("style");
         style.innerHTML = `
-            .enter-the-room-section{
+            .auth-section{
                 height: 100vh;
                 padding: 0px 7px;
                 display: flex;
@@ -35,24 +28,24 @@ class EnterTheRoom extends HTMLElement{
                 align-items: center;
                 justify-content: center;
                 overflow: auto;
-                gap: 35px;
+                gap: 45px;
                 background: linear-gradient(to left, #0e123b, #0a325c, #206985);
             }
             @media (min-width: 769px){
-                .enter-the-room-section{
+                .auth-section{
                     padding-bottom: 20px;
                 }
             }
 
-            .enter-the-room-items-container{
+            .auth-items-container{
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                padding: 20px;
+                padding: 19px 0px;
                 gap: 45px;
             }
 
-            .enter-name-text{
+            .enter-your-name-text{
                 margin: 0px;
                 text-align: center;
                 font-weight: 400;
@@ -61,17 +54,17 @@ class EnterTheRoom extends HTMLElement{
                 font-family: 'Roboto', sans-serif;
             }
 
-            .enter-the-room-form-container{
+            .auth-form-container{
                 width: 100%;
                 max-width: 340px;
             }
 
             .bottom-line-img{
-                padding-top: 38px;
+                padding-top: 20px;
             }
         `;
 
         this.appendChild(style)
     };
 };
-customElements.define('enter-the-room-page', EnterTheRoom);
+customElements.define('auth-page', Auth);

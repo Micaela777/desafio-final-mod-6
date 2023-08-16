@@ -1,25 +1,24 @@
 import { Router } from '@vaadin/router';
 
-class EnterTheRoom extends HTMLElement{
+class Instructions extends HTMLElement{
   connectedCallback(){
         this.render();
 
-        /*const button = this.querySelector('.choose-cat-button')
+        const button = this.querySelector('.play-button')
         button.addEventListener('click', (e) => {
             e.preventDefault()
-            Router.go('./play-page')
-        }) */
+
+            Router.go('./play')
+        })
     };
 
     render(){
         this.innerHTML = `
-            <div class="enter-the-room-section">
+            <div class="instructions-section">
                 <custom-cat-silhouette></custom-cat-silhouette>
-                <div class="enter-the-room-items-container">
-                    <h3 class="enter-name-text">Por favor, ingresa el ID de la sala:</h3>
-                    <div class="enter-the-room-form-container">
-                        <custom-enter-the-room-form></custom-enter-the-room-form>
-                    </div>
+                <div class="instructions-items-container">
+                    <h3 class="instructions-text">Presioná jugar y elegí: <span class="text-color">Piedra, Papel o Tijera</span> antes de que pasen los 5 segundos.</h3>
+                    <custom-choose-option-button class="play-button">¡Jugar!</custom-choose-option-button>
                 </div>
                 <custom-line-img class="bottom-line-img"></custom-line-img>
             </div>
@@ -27,7 +26,7 @@ class EnterTheRoom extends HTMLElement{
 
         const style = document.createElement("style");
         style.innerHTML = `
-            .enter-the-room-section{
+            .instructions-section{
                 height: 100vh;
                 padding: 0px 7px;
                 display: flex;
@@ -35,43 +34,45 @@ class EnterTheRoom extends HTMLElement{
                 align-items: center;
                 justify-content: center;
                 overflow: auto;
-                gap: 35px;
+                gap: 45px;
                 background: linear-gradient(to left, #0e123b, #0a325c, #206985);
             }
             @media (min-width: 769px){
-                .enter-the-room-section{
+                .instructions-section{
                     padding-bottom: 20px;
                 }
             }
 
-            .enter-the-room-items-container{
+            .instructions-items-container{
+                width: 100%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                padding: 20px;
+                padding: 25px 0px;
                 gap: 45px;
             }
 
-            .enter-name-text{
+            .instructions-text{
+                max-width: 293px;
                 margin: 0px;
-                text-align: center;
                 font-weight: 400;
-                font-size: 22px;
-                color: #ffffff;
+                font-size: 26px;
+                text-align: center;
                 font-family: 'Roboto', sans-serif;
+                color: #ffffff;
             }
 
-            .enter-the-room-form-container{
+            .text-color{
+                color: #da70db;
+            }
+
+            .play-button{
                 width: 100%;
                 max-width: 340px;
-            }
-
-            .bottom-line-img{
-                padding-top: 38px;
             }
         `;
 
         this.appendChild(style)
     };
 };
-customElements.define('enter-the-room-page', EnterTheRoom);
+customElements.define('instructions-page', Instructions);

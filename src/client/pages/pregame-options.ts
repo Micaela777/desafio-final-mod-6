@@ -29,47 +29,77 @@ class PreGameOptions extends HTMLElement{
 
     render(){
         this.innerHTML = `
-            <div class="pregame-section">
-                <div class="pre-game-section-container">
-                    <custom-choose-option-button class="new-game-button">Nuevo Juego</custom-choose-option-button>
-                    <h3 class="aux-letter">- O -</h3>
-                    <custom-choose-option-button class="enter-the-room-button">Ingresar a una Sala</custom-choose-option-button>
+            <div class="pre-game-section">
+                <custom-cat-silhouette></custom-cat-silhouette>
+                <div class="pre-game-items-container">
+                    <h3 class="hi-text">¡Hola <span class="user-name">${state.data.name}</span>! Elige una de las siguentes opciones:</h3>
+                    <div class="pre-game-buttons-container">
+                        <custom-choose-option-button class="new-game-button">Nuevo Juego</custom-choose-option-button>
+                        <custom-choose-option-button class="enter-the-room-button">Ingresar a una Sala</custom-choose-option-button>
+                    </div>
                 </div>
+                <custom-line-img class="bottom-line-img"></custom-line-img>
             </div>
         `
 
         const style = document.createElement("style");
         style.innerHTML = `
-            .pregame-section{
+            .pre-game-section{
                 height: 100vh;
                 padding: 0px 7px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
+                gap: 45px;
                 background: linear-gradient( to left, #0e123b, #0a325c, #206985 );
             }
+            @media (min-width: 769px){
+                .pre-game-section{
+                    padding-bottom: 20px;
+                }
+            }
 
-            .pre-game-section-container{
+            .pre-game-buttons-container{
                 width: 100%;
                 max-width: 320px;
+                display: flex;
+                flex-direction: column;
+                gap: 35px;
             }
             @media (min-width: 730px){
-                .pre-game-section-container{
+                .pre-game-buttons-container{
                     max-width: 370px;
                 }
             }
+
+            .pre-game-items-container{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 18px 0px;
+                gap: 45px;
+            }
   
-            .aux-letter{
-                padding: 7px 0px;
-                font-weight: 400;
+            .hi-text{
+                margin: 0px;
                 text-align: center;
-                color: rgba(255,255,255,0.8);
+                font-weight: 400;
+                font-size: 22px;
+                color: #ffffff;
                 font-family: 'Roboto', sans-serif;
+            }
+
+            .user-name{
+                color: #fd7aff;
+            }
+
+            .bottom-line-img{
+                padding-top: 20px;
             }
         `;
 
         this.appendChild(style)
     };
 };
-customElements.define('pregame-options-page', PreGameOptions);
+customElements.define('pre-game-options-page', PreGameOptions);

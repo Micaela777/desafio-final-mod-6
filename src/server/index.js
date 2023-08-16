@@ -11,41 +11,23 @@ app.use(express.json());
 app.use(cors());
 const userCollection = db_1.firestore.collection("users");
 const roomsCollection = db_1.firestore.collection("rooms");
-app.post("/signup", (req, res) => {
+app.post("/auth", (req, res) => {
     const name = req.body.name;
-    const email = req.body.email;
-    userCollection.where("email", "==", email).get().then((searchResponse) => {
+    userCollection.where("name", "==", name).get().then((searchResponse) => {
         if (searchResponse.empty) {
             userCollection.add({
                 name,
-                email
             }).then((newUserRef) => {
                 res.json({
                     id: newUserRef.id,
-                    new: "new user created",
                     message: "user created"
                 });
             });
         }
         else {
-            res.status(400).json({
-                message: "this user already exists"
-            });
-        }
-    });
-});
-app.post("/auth", (req, res) => {
-    const email = req.body.email;
-    userCollection.where("email", "==", email).get().then((searchResponse) => {
-        if (searchResponse.empty) {
-            res.status(404).json({
-                message: "user not found"
-            });
-        }
-        else {
             res.json({
-                message: "user found",
-                id: searchResponse.docs[0].id
+                message: "this user already exists",
+                id: searchResponse.docs[0].id,
             });
         }
     });

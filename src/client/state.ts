@@ -5,7 +5,6 @@ const state = {
 
     data: {
         name:"",
-        email:"",
         userId: "",
         roomId: "",
         rtdbRoomId: "",
@@ -16,28 +15,26 @@ const state = {
         return this.data;
     },
 
-    setEmailAndName(name: string, email:string,){
-        const cs = this.getState();
+    setName(name: string){
 
+        const cs = this.getState();
         cs.name = name;
-        cs.email = email;
-        
         this.setState(cs)
 
-        //console.log(cs.name)
-        //console.log(cs.email)
+        console.log(cs.name)
+        
     },
 
-    signUp(newUser){
+    auth(userName){
 
         const cs = this.getState()
         
-        return fetch(API_BASE_URL + "/signup", {
+        return fetch(API_BASE_URL + "/auth", {
             method: "post",
             headers: {
                 "content-type": "application/json",
             },
-            body: JSON.stringify(newUser),
+            body: JSON.stringify(userName),
         }).then((res) => {
             return res.json()
         }).then((data) => {

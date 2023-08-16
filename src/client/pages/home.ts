@@ -7,7 +7,7 @@ class Home extends HTMLElement{
         const enterTheRoomButton = this.querySelector('.start-button')
         enterTheRoomButton.addEventListener('click', (e) => {
             e.preventDefault();
-            Router.go('./form-options');
+            Router.go('./auth');
         });
     };
 

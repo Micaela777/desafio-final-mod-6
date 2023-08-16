@@ -21,11 +21,11 @@ export function initChooseOptionButtonComponent() {
             style.innerHTML = `
                 .choose-option-button{
                     width: 100%;
-                    padding: 17px 0px;
+                    padding: 13px 0px;
                     border: 3px solid #ffffff;
-                    border-radius: 50px;
+                    border-radius: 20px;
                     cursor: pointer;
-                    font-size: 26px;
+                    font-size: 23px;
                     color: #ffffff;
                     font-family: 'Roboto', sans-serif;
                     background-color: transparent;
