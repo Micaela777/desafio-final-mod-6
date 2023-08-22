@@ -22,7 +22,7 @@ export function initCatPaperComponent() {
                 .paper-img{
                     height: 145px;
                     width: 61px;
-                    
+                    object-position: 0px 60px;
                 }
                 @media (min-width: 769px){
                     .paper-img{
