@@ -19,14 +19,17 @@ export function initCatScissorsComponent() {
             const style = document.createElement('style');
 
             style.innerHTML = `
+                .scissors{
+                    display: flex;
+                }
                 .scissors-img{
-                    height: 145px;
-                    width: 61px;
+                    height: 320px;
+                    width: 107px;
                     object-position: 0px 60px;
                 }
                 @media (min-width: 769px){
                     .scissors-img{
-                        height: 386px;
+                        height: 396px;
                         width: 136px;
                     }
                 }

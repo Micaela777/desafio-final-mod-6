@@ -19,15 +19,19 @@ export function initCatRockComponent() {
             const style = document.createElement('style');
 
             style.innerHTML = `
+                .rock{
+                    display: flex;
+                }
+
                 .rock-img{
-                    height: 145px;
-                    width: 61px;
+                    height: 315px;
+                    width: 110px;
                     object-position: 0px 60px;
                     
                 }
                 @media (min-width: 769px){
                     .rock-img{
-                        height: 373px;
+                        height: 383px;
                         width: 140px;
                     }
                 }

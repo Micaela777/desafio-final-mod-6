@@ -12,10 +12,10 @@ class Play extends HTMLElement{
                     <h3 class="opponent-name">Maguis: 0</h3>
                     <h3 class="my-name">Mica: 0</h3>
                 </div>
-                <div class="cat-hands-container">
-                    <custom-cat-paper></custom-cat-paper>
-                    <custom-cat-rock></custom-cat-rock>
-                    <custom-cat-scissors></custom-cat-scissors>
+                <div class="my-cat-hands-container">
+                    <custom-cat-paper class="my-cat-paper"></custom-cat-paper>
+                    <custom-cat-rock class="my-cat-rock"></custom-cat-rock>
+                    <custom-cat-scissors class="my-cat-scissors"></custom-cat-scissors>
                 </div>
                 <div class="room-id-container">
                     <h3 class="room-text">Sala:</h3>
@@ -28,19 +28,57 @@ class Play extends HTMLElement{
         style.innerHTML = `
             .play-section{
                 height: 100vh;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-evenly;
+                display: grid;
+                grid-gap: 30px;
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                grid-template-areas:
+                "n1 n1 n3 n3"
+                "n2 n2 n2 n2";
+                overflow: auto;
                 padding: 0px 15px;
                 background: linear-gradient(to left, #0e123b, #0a325c, #206985);
             }
 
-            .names-container,
-            .room-id-container{
+            .names-container{
+                grid-area: n1;
                 display: flex;
                 flex-direction: column;
+                align-items: center;
                 padding-top: 30px;
                 gap: 12px;
+            }
+            @media (min-width: 769px){
+                .names-container{
+                    padding-right: 170px;
+                }
+            }
+
+            .my-cat-hands-container{
+                grid-area: n2;
+                display: flex;
+                align-items: end;
+                justify-content: space-evenly;
+            }
+            @media (min-width: 769px){
+                .my-cat-hands-container{
+                    padding: 0px 300px;
+                    gap: 40px;
+                }
+            }
+
+            .room-id-container{
+                grid-area: n3;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 30px;
+                gap: 12px;
+            }
+            @media (min-width: 769px){
+                .room-id-container{
+                    padding-left: 170px;
+                }
             }
 
             .opponent-name,
@@ -68,10 +106,22 @@ class Play extends HTMLElement{
                 color: #da70db;
             }
 
-            .cat-hands-container{
-                display: flex;
-                align-items: end;
-                gap: 50px;
+            .my-cat-paper:hover{
+                cursor: pointer;
+                transform: translateY(-1px);
+                transition: all 0.1s;
+            }
+
+            .my-cat-rock:hover{
+                cursor: pointer;
+                transform: translateY(-1px);
+                transition: all 0.1s;
+            }
+
+            .my-cat-scissors:hover{
+                cursor: pointer;
+                transform: translateY(-1px);
+                transition: all 0.1s;
             }
         `;
 

@@ -19,14 +19,17 @@ export function initCatPaperComponent() {
             const style = document.createElement('style');
 
             style.innerHTML = `
+                .paper{
+                    display: flex;
+                }
                 .paper-img{
-                    height: 145px;
-                    width: 61px;
+                    height: 320px;
+                    width: 127px;
                     object-position: 0px 60px;
                 }
                 @media (min-width: 769px){
                     .paper-img{
-                        height: 386px;
+                        height: 396px;
                         width: 167px;
                     }
                 }
