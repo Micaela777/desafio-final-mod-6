@@ -17,7 +17,7 @@ class Instructions extends HTMLElement{
             <div class="instructions-section">
                 <custom-cat-silhouette></custom-cat-silhouette>
                 <div class="instructions-items-container">
-                    <h3 class="instructions-text">Presioná jugar y elegí: <span class="text-color">Piedra, Papel o Tijera</span> antes de que pasen los 5 segundos.</h3>
+                    <h3 class="instructions-text">A continuación, presioná jugar y elegí: <span class="text-color">Piedra, Papel o Tijera</span> antes de que pasen los 5 segundos.</h3>
                     <custom-choose-option-button class="play-button">¡Jugar!</custom-choose-option-button>
                 </div>
                 <custom-line-img class="bottom-line-img"></custom-line-img>
@@ -48,12 +48,12 @@ class Instructions extends HTMLElement{
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                padding: 25px 0px;
+                padding: 9px 0px;
                 gap: 45px;
             }
 
             .instructions-text{
-                max-width: 293px;
+                max-width: 300px;
                 margin: 0px;
                 font-weight: 400;
                 font-size: 26px;
