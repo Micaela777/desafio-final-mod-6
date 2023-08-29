@@ -12,7 +12,7 @@ export function initCountdownComponent() {
         <div class="countdown">
             <div class="countdown-number"></div>
             <svg class="svg">
-                <circle class="svg-circle" r="90" cx="140" cy="140"></circle>
+                <circle class="svg-circle" r="75" cx="140" cy="140"></circle>
             </svg>
         </div>
       `
@@ -58,7 +58,7 @@ export function initCountdownComponent() {
           stroke-dasharray: 570px;
           stroke-dashoffset: 0px;
           stroke-linecap: round;
-          stroke-width: 19px;
+          stroke-width: 16px;
           stroke: #da70db;
           fill: none;
           animation: countdown 5s linear infinite forwards;

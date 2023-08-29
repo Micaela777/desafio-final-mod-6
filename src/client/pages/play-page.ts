@@ -59,8 +59,10 @@ class Play extends HTMLElement{
 
             .countdown-container{
                 grid-area: n4;
+                height: 280px;
                 display: flex;
                 justify-content: center;
+                align-items: flex-end;
             }
 
             .my-cat-hands-container{
