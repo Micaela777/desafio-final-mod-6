@@ -12,6 +12,7 @@ class Play extends HTMLElement{
                     <h3 class="opponent-name">Maguis: 0</h3>
                     <h3 class="my-name">Mica: 0</h3>
                 </div>
+                <custom-countdown class="countdown"></custom-countdown>
                 <div class="my-cat-hands-container">
                     <custom-cat-paper class="my-cat-paper"></custom-cat-paper>
                     <custom-cat-rock class="my-cat-rock"></custom-cat-rock>
@@ -31,9 +32,10 @@ class Play extends HTMLElement{
                 display: grid;
                 grid-gap: 30px;
                 grid-template-columns: repeat(4, 1fr);
-                grid-template-rows: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 1fr);
                 grid-template-areas:
                 "n1 n1 n3 n3"
+                "n4 n4 n4 n4"
                 "n2 n2 n2 n2";
                 overflow: auto;
                 padding: 0px 15px;
@@ -52,6 +54,10 @@ class Play extends HTMLElement{
                 .names-container{
                     padding-right: 170px;
                 }
+            }
+
+            .countdown{
+
             }
 
             .my-cat-hands-container{
