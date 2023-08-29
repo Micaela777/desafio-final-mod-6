@@ -35,8 +35,8 @@ class Play extends HTMLElement{
                 grid-template-columns: repeat(4, 1fr);
                 grid-template-rows: repeat(3, 1fr);
                 grid-template-areas:
-                "n1 n1 n3 n3"
-                "n4 n4 n4 n4"
+                "n1 n4 n4 n3"
+                "n1 n4 n4 n3"
                 "n2 n2 n2 n2";
                 overflow: auto;
                 padding: 0px 15px;
@@ -53,16 +53,14 @@ class Play extends HTMLElement{
             }
             @media (min-width: 769px){
                 .names-container{
-                    padding-right: 170px;
+                    padding-left: 100px;
                 }
             }
 
             .countdown-container{
                 grid-area: n4;
-                height: 280px;
                 display: flex;
                 justify-content: center;
-                align-items: flex-end;
             }
 
             .my-cat-hands-container{
@@ -88,7 +86,7 @@ class Play extends HTMLElement{
             }
             @media (min-width: 769px){
                 .room-id-container{
-                    padding-left: 170px;
+                    padding-right: 100px;
                 }
             }
 

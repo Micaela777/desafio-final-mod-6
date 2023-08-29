@@ -26,13 +26,13 @@ export function initCatRockComponent() {
                 .rock-img{
                     height: 315px;
                     width: 110px;
-                    object-position: 0px 100px;
+                    object-position: 0px 140px;
                     
                 }
                 @media (min-width: 769px){
                     .rock-img{
-                        height: 383px;
-                        width: 140px;
+                        height: 363px;
+                        width: 120px;
                     }
                 }
             `;

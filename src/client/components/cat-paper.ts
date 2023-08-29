@@ -25,12 +25,12 @@ export function initCatPaperComponent() {
                 .paper-img{
                     height: 320px;
                     width: 127px;
-                    object-position: 0px 100px;
+                    object-position: 0px 140px;
                 }
                 @media (min-width: 769px){
                     .paper-img{
-                        height: 396px;
-                        width: 167px;
+                        height: 376px;
+                        width: 147px;
                     }
                 }
             `;

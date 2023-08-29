@@ -25,12 +25,12 @@ export function initCatScissorsComponent() {
                 .scissors-img{
                     height: 320px;
                     width: 107px;
-                    object-position: 0px 100px;
+                    object-position: 0px 140px;
                 }
                 @media (min-width: 769px){
                     .scissors-img{
-                        height: 396px;
-                        width: 136px;
+                        height: 376px;
+                        width: 120px;
                     }
                 }
             `;

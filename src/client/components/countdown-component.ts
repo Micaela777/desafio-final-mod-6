@@ -41,10 +41,10 @@ export function initCountdownComponent() {
         .countdown-number {
           position: relative;
           top: 169px;
-          font-weight: 400;
-          font-size: 72px;
+          font-weight: 600;
+          font-size: 60px;
           text-align: center;
-          font-family: 'Faster One', cursive;
+          font-family: 'Roboto', cursive;
           color: #da70db;
         }
         
@@ -55,9 +55,8 @@ export function initCountdownComponent() {
         }
         
         .svg-circle {
-          stroke-dasharray: 570px;
+          stroke-dasharray: 480px;
           stroke-dashoffset: 0px;
-          stroke-linecap: round;
           stroke-width: 16px;
           stroke: #da70db;
           fill: none;
@@ -69,7 +68,7 @@ export function initCountdownComponent() {
             stroke-dashoffset: 0px;
           }
           to {
-            stroke-dashoffset: 580px;
+            stroke-dashoffset: 480px;
           }
         }
       `;
