@@ -24,15 +24,15 @@ export function initCatRockComponent() {
                 }
 
                 .rock-img{
-                    height: 315px;
-                    width: 110px;
-                    object-position: 0px 140px;
+                    height: 280px;
+                    width: 90px;
+                    object-position: 0px 90px;
                     
                 }
                 @media (min-width: 769px){
                     .rock-img{
-                        height: 363px;
-                        width: 120px;
+                        height: 285px;
+                        width: 100px;
                     }
                 }
             `;

@@ -23,14 +23,14 @@ export function initCatPaperComponent() {
                     display: flex;
                 }
                 .paper-img{
-                    height: 320px;
-                    width: 127px;
-                    object-position: 0px 140px;
+                    height: 290px;
+                    width: 107px;
+                    object-position: 0px 90px;
                 }
                 @media (min-width: 769px){
                     .paper-img{
-                        height: 376px;
-                        width: 147px;
+                        height: 296px;
+                        width: 120px;
                     }
                 }
             `;

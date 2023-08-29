@@ -47,20 +47,27 @@ class Play extends HTMLElement{
                 grid-area: n1;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
+                padding-left: 8px;
                 padding-top: 30px;
                 gap: 12px;
             }
-            @media (min-width: 769px){
+            @media (min-width: 460px){
                 .names-container{
-                    padding-left: 100px;
+                    align-items: center;
+                    padding-left: 0px;
                 }
             }
 
             .countdown-container{
                 grid-area: n4;
                 display: flex;
+                align-items: end;
                 justify-content: center;
+            }
+            @media (min-width: 769px){
+                .countdown-container{
+                    
+                }
             }
 
             .my-cat-hands-container{
@@ -71,8 +78,8 @@ class Play extends HTMLElement{
             }
             @media (min-width: 769px){
                 .my-cat-hands-container{
-                    padding: 0px 300px;
-                    gap: 40px;
+                    justify-content: center;
+                    gap: 70px;
                 }
             }
 
@@ -83,11 +90,6 @@ class Play extends HTMLElement{
                 align-items: center;
                 padding-top: 30px;
                 gap: 12px;
-            }
-            @media (min-width: 769px){
-                .room-id-container{
-                    padding-right: 100px;
-                }
             }
 
             .opponent-name,

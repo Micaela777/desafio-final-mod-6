@@ -23,14 +23,14 @@ export function initCatScissorsComponent() {
                     display: flex;
                 }
                 .scissors-img{
-                    height: 320px;
-                    width: 107px;
-                    object-position: 0px 140px;
+                    height: 290px;
+                    width: 90px;
+                    object-position: 0px 90px;
                 }
                 @media (min-width: 769px){
                     .scissors-img{
-                        height: 376px;
-                        width: 120px;
+                        height: 296px;
+                        width: 95px;
                     }
                 }
             `;
