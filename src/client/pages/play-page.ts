@@ -12,7 +12,9 @@ class Play extends HTMLElement{
                     <h3 class="opponent-name">Maguis: 0</h3>
                     <h3 class="my-name">Mica: 0</h3>
                 </div>
-                <custom-countdown class="countdown"></custom-countdown>
+                <div class="countdown-container">
+                    <custom-countdown class="countdown"></custom-countdown>
+                </div>
                 <div class="my-cat-hands-container">
                     <custom-cat-paper class="my-cat-paper"></custom-cat-paper>
                     <custom-cat-rock class="my-cat-rock"></custom-cat-rock>
@@ -30,7 +32,6 @@ class Play extends HTMLElement{
             .play-section{
                 height: 100vh;
                 display: grid;
-                grid-gap: 30px;
                 grid-template-columns: repeat(4, 1fr);
                 grid-template-rows: repeat(3, 1fr);
                 grid-template-areas:
@@ -56,8 +57,10 @@ class Play extends HTMLElement{
                 }
             }
 
-            .countdown{
-
+            .countdown-container{
+                grid-area: n4;
+                display: flex;
+                justify-content: center;
             }
 
             .my-cat-hands-container{

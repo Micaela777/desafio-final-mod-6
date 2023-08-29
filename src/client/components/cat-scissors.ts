@@ -25,7 +25,7 @@ export function initCatScissorsComponent() {
                 .scissors-img{
                     height: 320px;
                     width: 107px;
-                    object-position: 0px 60px;
+                    object-position: 0px 100px;
                 }
                 @media (min-width: 769px){
                     .scissors-img{

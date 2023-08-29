@@ -26,7 +26,7 @@ export function initCatRockComponent() {
                 .rock-img{
                     height: 315px;
                     width: 110px;
-                    object-position: 0px 60px;
+                    object-position: 0px 100px;
                     
                 }
                 @media (min-width: 769px){
