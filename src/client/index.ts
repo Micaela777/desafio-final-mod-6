@@ -6,6 +6,7 @@ import "./pages/new-game";
 import "./pages/enter-the-room";
 import "./pages/instructions";
 import "./pages/play-page";
+import "./pages/results-page";
 import { state } from "./state";
 
 import { initMainTitleComponent } from "./components/main-title";
