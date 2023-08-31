@@ -24,6 +24,8 @@ import { initCatPaperComponent } from "./components/cat-paper";
 import { initCatRockComponent } from "./components/cat-rock";
 import { initCatScissorsComponent } from "./components/cat-scissors";
 import { initWinImageComponent } from "./components/win-image";
+import { initTieImageComponent } from "./components/tie-img";
+import { initLoseImageComponent } from "./components/lose-img";
 
 (function () {
 
@@ -42,5 +44,7 @@ import { initWinImageComponent } from "./components/win-image";
     initCatRockComponent();
     initCatScissorsComponent();
     initWinImageComponent();
-    
+    initTieImageComponent();
+    initLoseImageComponent()
+
 })();
