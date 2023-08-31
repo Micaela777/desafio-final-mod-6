@@ -23,6 +23,7 @@ import { initCountdownComponent } from "./components/countdown-component";
 import { initCatPaperComponent } from "./components/cat-paper";
 import { initCatRockComponent } from "./components/cat-rock";
 import { initCatScissorsComponent } from "./components/cat-scissors";
+import { initWinImageComponent } from "./components/win-image";
 
 (function () {
 
@@ -40,5 +41,6 @@ import { initCatScissorsComponent } from "./components/cat-scissors";
     initCatPaperComponent();
     initCatRockComponent();
     initCatScissorsComponent();
-
+    initWinImageComponent();
+    
 })();
