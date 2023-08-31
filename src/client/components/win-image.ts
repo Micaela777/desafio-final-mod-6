@@ -19,20 +19,16 @@ export function initWinImageComponent() {
             const style = document.createElement('style');
 
             style.innerHTML = `
-                .win{
-                    display: flex;
-                }
 
                 .win-img{
                     height: 280px;
                     width: 90px;
-                    object-position: 0px 90px;
                     
                 }
                 @media (min-width: 769px){
                     .win-img{
-                        height: 285px;
-                        width: 100px;
+                        height: 200px;
+                        width: 240px;
                     }
                 }
             `;
