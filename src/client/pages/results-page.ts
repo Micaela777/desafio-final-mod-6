@@ -45,7 +45,7 @@ class Results extends HTMLElement{
                 align-items: center;
                 gap: 35px;
                 padding-bottom: 10px;
-                background: linear-gradient( #070708, 92%, #5cc4bb );
+                background: linear-gradient( #0a1226, 92%, #5cc4bb );
             }
 
             .score-container{
