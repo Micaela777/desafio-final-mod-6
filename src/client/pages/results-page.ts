@@ -10,8 +10,6 @@ class Results extends HTMLElement{
               <div class="results-section">
                   <div class="results-section-container">
                       <custom-win-img></custom-win-img>
-                      <custom-tie-img></custom-tie-img>
-                      <custom-lose-img></custom-lose-img>
                   </div>
               </div>
           `
