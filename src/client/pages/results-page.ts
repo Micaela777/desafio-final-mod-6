@@ -31,7 +31,8 @@ class Results extends HTMLElement{
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                gap: 20px;
+                gap: 35px;
+                padding-bottom: 18px;
                 background: linear-gradient( #070708, 92%, #5cc4bb );
             }
 
@@ -67,20 +68,12 @@ class Results extends HTMLElement{
                 color: #be5abf;
             }
 
-            .play-again-button{
+            .buttons-conatiner{
                 width: 100%;
                 max-width: 320px;
                 display: flex;
                 flex-direction: column;
-                gap: 35px;
-            }
-
-            .leave-button{
-                width: 100%;
-                max-width: 250px;
-                display: flex;
-                flex-direction: column;
-                gap: 35px;
+                gap: 20px;
             }
 
           `;
