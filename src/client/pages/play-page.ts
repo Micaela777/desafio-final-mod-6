@@ -64,12 +64,7 @@ class Play extends HTMLElement{
                 align-items: end;
                 justify-content: center;
             }
-            @media (min-width: 769px){
-                .countdown-container{
-                    
-                }
-            }
-
+           
             .my-cat-hands-container{
                 grid-area: n2;
                 display: flex;
