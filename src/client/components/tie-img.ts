@@ -21,15 +21,8 @@ export function initTieImageComponent() {
             style.innerHTML = `
 
                 .tie-img{
-                    height: 280px;
-                    width: 90px;
-                    
-                }
-                @media (min-width: 769px){
-                    .tie-img{
-                        height: 200px;
-                        width: 240px;
-                    }
+                    height: 200px;
+                    width: 240px;
                 }
             `;
 

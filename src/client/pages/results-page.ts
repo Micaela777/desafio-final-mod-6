@@ -1,25 +1,37 @@
 import { state } from "../state";
+import { Router } from "@vaadin/router";
 
 class Results extends HTMLElement{
     connectedCallback(){
           this.render();
+
+          const playAgainButton = this.querySelector('.play-again-button')
+          playAgainButton.addEventListener('click', (e) => {
+              e.preventDefault();
+              Router.go('/play');
+          });
+
+          const leaveButton = this.querySelector('.leave-button')
+          leaveButton.addEventListener('click', (e) => {
+              e.preventDefault();
+              Router.go('/');
+          });
+
       };
   
       render(){
           this.innerHTML = `
               <div class="results-section">
-                  
-                      <custom-win-img></custom-win-img>
-                      <div class="score-container">
-                          <h2 class="score-title">Puntaje</h2>
-                          <h4 class="opponent-score">Maguis: 0</h4>
-                          <h4 class="my-score"><span class="my-name">Mica:</span> 0</h4>
-                      </div>
-                      <div class="buttons-conatiner">
-                          <custom-choose-option-button class="play-again-button">Volver a jugar</custom-choose-option-button>
-                          <custom-choose-option-button class="leave-button">Salir</custom-choose-option-button>
-                      </div>
-                  
+                  <custom-win-img></custom-win-img>
+                  <div class="score-container">
+                      <h2 class="score-title">Puntaje</h2>
+                      <h4 class="opponent-score">Maguis: 0</h4>
+                      <h4 class="my-score"><span class="my-name">Mica:</span> 0</h4>
+                  </div>
+                  <div class="buttons-conatiner">
+                      <custom-choose-option-button class="play-again-button">Volver a jugar</custom-choose-option-button>
+                      <custom-choose-option-button class="leave-button">Salir</custom-choose-option-button>
+                  </div>
               </div>
           `
   
@@ -32,7 +44,7 @@ class Results extends HTMLElement{
                 justify-content: center;
                 align-items: center;
                 gap: 35px;
-                padding-bottom: 18px;
+                padding-bottom: 10px;
                 background: linear-gradient( #070708, 92%, #5cc4bb );
             }
 

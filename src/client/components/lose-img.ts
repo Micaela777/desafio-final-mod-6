@@ -21,15 +21,8 @@ export function initLoseImageComponent() {
             style.innerHTML = `
 
                 .lose-img{
-                    height: 280px;
-                    width: 90px;
-                    
-                }
-                @media (min-width: 769px){
-                    .lose-img{
-                        height: 200px;
-                        width: 240px;
-                    }
+                    height: 200px;
+                    width: 240px;
                 }
             `;
 

@@ -21,15 +21,8 @@ export function initWinImageComponent() {
             style.innerHTML = `
 
                 .win-img{
-                    height: 280px;
-                    width: 90px;
-                    
-                }
-                @media (min-width: 769px){
-                    .win-img{
-                        height: 200px;
-                        width: 240px;
-                    }
+                    height: 200px;
+                    width: 240px;
                 }
             `;
 
