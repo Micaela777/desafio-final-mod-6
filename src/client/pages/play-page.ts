@@ -13,7 +13,7 @@ class Play extends HTMLElement{
                     <h3 class="my-name">Mica: 0</h3>
                 </div>
                 <div class="countdown-and-text-container">
-                    
+                    <h2 class="waiting-for-text">Esperando a que Maguis presione ¡Jugar!...</h2>
                     <custom-countdown class="countdown"></custom-countdown>
                 </div>
                 <div class="my-cat-hands-container">
@@ -64,6 +64,15 @@ class Play extends HTMLElement{
                 display: flex;
                 align-items: end;
                 justify-content: center;
+            }
+
+            .waiting-for-text{
+                max-width: 250px;
+                text-align: center;
+                font-size: 28px;
+                font-weight: 400;
+                font-family: 'Roboto', sans-serif;
+                color: #ffffff;
             }
 
             .countdown{
