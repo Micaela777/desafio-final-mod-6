@@ -1,4 +1,5 @@
 import { Router } from '@vaadin/router';
+import { state } from '../state';
 
 class Play extends HTMLElement{
   connectedCallback(){
@@ -10,7 +11,7 @@ class Play extends HTMLElement{
             <div class="play-section">
                 <div class="names-container">
                     <h3 class="opponent-name">Maguis: 0</h3>
-                    <h3 class="my-name">Mica: 0</h3>
+                    <h3 class="my-name">${state.data.name}: 0</h3>
                 </div>
                 <div class="countdown-and-text-container">
                     <h2 class="waiting-for-text">Esperando a que Maguis presione ¡Jugar!...</h2>
