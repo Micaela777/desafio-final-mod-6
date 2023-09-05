@@ -12,7 +12,8 @@ class Play extends HTMLElement{
                     <h3 class="opponent-name">Maguis: 0</h3>
                     <h3 class="my-name">Mica: 0</h3>
                 </div>
-                <div class="countdown-container">
+                <div class="countdown-and-text-container">
+                    
                     <custom-countdown class="countdown"></custom-countdown>
                 </div>
                 <div class="my-cat-hands-container">
@@ -58,11 +59,15 @@ class Play extends HTMLElement{
                 }
             }
 
-            .countdown-container{
+            .countdown-and-text-container{
                 grid-area: n4;
                 display: flex;
                 align-items: end;
                 justify-content: center;
+            }
+
+            .countdown{
+                display: none;
             }
            
             .my-cat-hands-container{
