@@ -13,7 +13,7 @@ const state = {
     listeners: [],
 
     listenDatabase() {
-        // Connection with RTDB
+        
         const rtdbRef = rtdb.ref(`/rooms/${this.data.roomId}`);
     
         rtdbRef.on("value", (snapshot) => {
