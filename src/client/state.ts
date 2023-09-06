@@ -1,3 +1,4 @@
+import { rtdb } from "./rtdb";
 
 const API_BASE_URL = "http://localhost:3000"
 
@@ -10,6 +11,18 @@ const state = {
         rtdbRoomId: "",
     },
     listeners: [],
+
+    listenDatabase() {
+        // Connection with RTDB
+        const rtdbRef = rtdb.ref(`/rooms/${this.data.roomId}`);
+    
+        rtdbRef.on("value", (snapshot) => {
+          const currentState = this.getState();
+          const value = snapshot.val();
+          currentState.rtdbRoomId = value.currentGame;
+          this.setState(currentState);
+        });
+      },
 
     getState() {
         return this.data;
