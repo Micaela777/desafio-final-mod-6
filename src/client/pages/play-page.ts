@@ -24,7 +24,7 @@ class Play extends HTMLElement{
                 </div>
                 <div class="room-id-container">
                     <h3 class="room-text">Sala:</h3>
-                    <h2 class="room-id">65439</h2>
+                    <h2 class="room-id">${state.data.roomId}</h2>
                 </div>
             </div>
         `
