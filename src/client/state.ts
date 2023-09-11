@@ -59,26 +59,6 @@ const state = {
         });
     },
 
-    signIn(userEmail){
-
-        const cs = this.getState()
-
-        return fetch(API_BASE_URL + "/auth", {
-            method: "post",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(userEmail),
-        }).then((res) => {
-            return res.json()
-        }).then((data) => {
-            cs.userId = data.id
-            console.log(data)
-            this.setState(cs)
-            return data
-        });
-    },
-
     askNewRoom(){
         const cs = this.getState();
 
