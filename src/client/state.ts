@@ -6,6 +6,7 @@ const state = {
 
     data: {
         name:"",
+        opponentName:"",
         userId: "",
         roomId: "",
         rtdbRoomId: "",
