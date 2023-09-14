@@ -13,18 +13,6 @@ const state = {
     },
     listeners: [],
 
-    listenDatabase() {
-        
-        const rtdbRef = rtdb.ref(`/rooms/${this.data.roomId}`);
-    
-        rtdbRef.on("value", (snapshot) => {
-          const currentState = this.getState();
-          const value = snapshot.val();
-          currentState.rtdbRoomId = value.currentGame;
-          this.setState(currentState);
-        });
-      },
-
     getState() {
         return this.data;
     },
@@ -98,6 +86,18 @@ const state = {
         cs.roomId = roomId;
         this.setState(cs);
         console.log(cs.roomId)
+    },
+
+    listenDatabase() {
+        
+        const rtdbRef = rtdb.ref(`/rooms/${this.data.roomId}`);
+    
+        rtdbRef.on("value", (snapshot) => {
+          const currentState = this.getState();
+          const value = snapshot.val();
+          currentState.rtdbRoomId = value.currentGame;
+          this.setState(currentState);
+        });
     },
 
     setState(newState) {
