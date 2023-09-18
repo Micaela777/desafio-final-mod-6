@@ -90,9 +90,9 @@ const state = {
 
     listenDatabase() {
         
-        const rtdbRe = rtdb.ref(`/rooms/${this.data.roomId}`);
+        const rtdbRef = rtdb.ref(`/rooms/${this.data.roomId}`);
     
-        rtdbRe.on("value", (snapshot) => {
+        rtdbRef.on("value", (snapshot) => {
           const currentState = this.getState();
           const value = snapshot.val();
           currentState.rtdbRoomId = value.currentGame;
