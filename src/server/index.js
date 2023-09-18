@@ -4,7 +4,6 @@ const db_1 = require("./db");
 const express = require("express");
 const nanoid = require("nanoid");
 const cors = require("cors");
-const path = require("path");
 const port = 3000;
 const app = express();
 app.use(express.json());
@@ -85,7 +84,7 @@ app.get("/rooms/:roomId", (req, res) => {
 });
 app.use(express.static("dist"));
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../../dist/index.html"));
+    res.sendFile(__dirname, "../../dist/index.html");
 });
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
