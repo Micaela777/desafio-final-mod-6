@@ -41,7 +41,9 @@ app.post("/rooms", (req, res) => {
     if(doc.exists){
       const roomRef = rtdb.ref("rooms/" + nanoid())
       roomRef.set({
-        owner: userId
+        currentgame:{
+          owner: userId
+        }
       }).then(() => {
         const roomLongId = roomRef.key
         const roomId = 10000 + Math.floor(Math.random() * 9999)
