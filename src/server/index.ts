@@ -14,6 +14,7 @@ app.use(cors());
 const userCollection = firestore.collection("users");
 const roomsCollection = firestore.collection("rooms");
 
+
 app.post("/auth", (req, res) => {
   const name = req.body.name
   userCollection.where("name", "==", name).get().then((searchResponse)=>{
@@ -35,15 +36,14 @@ app.post("/auth", (req, res) => {
   })
 })
 
+
 app.post("/rooms", (req, res) => {
   const userId = req.body.userId
   userCollection.doc(userId.toString()).get().then((doc) => {
     if(doc.exists){
       const roomRef = rtdb.ref("rooms/" + nanoid())
       roomRef.set({
-        currentGame:{
-          userId
-        }
+        currentGame:{}
       }).then(() => {
         const roomLongId = roomRef.key
         const roomId = 10000 + Math.floor(Math.random() * 9999)
@@ -63,6 +63,26 @@ app.post("/rooms", (req, res) => {
     }
   })
 })
+
+
+app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
+  const rtdbLongId = req.params.rtdbLongId
+  const userId = req.params.userId
+
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame/" + userId)
+  rtdbReference.set({
+    name: "",
+    choise: "",
+    online: "",
+    start:""
+  })
+
+  res.json({
+    ok:"todo ok"
+  })
+
+})
+
 
 app.get("/rooms/:roomId", (req, res) => {
   const userId = req.query.userId
@@ -86,6 +106,7 @@ app.get("/rooms/:roomId", (req, res) => {
     }
   })
 })
+
 
   app.use(express.static("dist"));
   app.get("*", (req, res) => {
