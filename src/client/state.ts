@@ -67,6 +67,26 @@ const state = {
             });
     },
 
+    setRoomUserData(rtdbId, userId, userName){
+        const cs = this.getState();
+
+        return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/currentGame/" + userId,  {
+            method: "post",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ userName }),
+        })
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            
+            console.log(data);
+
+            return data;
+        });
+    },
+
     accessToRoom(roomId){
         const cs = this.getState()
         
