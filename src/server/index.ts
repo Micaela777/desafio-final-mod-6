@@ -70,10 +70,11 @@ app.post("/rooms", (req, res) => {
 app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
   const rtdbLongId = req.params.rtdbLongId
   const userId = req.params.userId
+  const name = req.body.name
 
   const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame/" + userId)
   rtdbReference.set({
-    name: "",
+    name: name,
     choise: "",
     online: "",
     start:""
