@@ -8,6 +8,7 @@ const state = {
         name:"",
         opponentName:"",
         userId: "",
+        userLongId: "",
         roomId: "",
         rtdbRoomId: "",
     },
