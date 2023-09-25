@@ -18,6 +18,9 @@ class NewChatroom extends HTMLElement{
             e.preventDefault();
             Router.go('./instructions');
         });
+
+        const rtdbId = currentState.rtdbRoomId
+        const userId = currentState.userId
     };
 
     render(){
