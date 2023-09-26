@@ -70,7 +70,7 @@ const state = {
     setRoomUserData(rtdbId, userId){
         const cs = this.getState();
 
-        return fetch(API_BASE_URL + "/rooms/" + rtdbId + userId,  {
+        return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/" + userId,  {
             method: "post",
             headers: {
                 "content-type": "application/json",
