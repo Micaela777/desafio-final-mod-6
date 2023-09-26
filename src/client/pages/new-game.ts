@@ -16,11 +16,19 @@ class NewChatroom extends HTMLElement{
         const enterTheRoomButton = this.querySelector('.continue-button')
         enterTheRoomButton.addEventListener('click', (e) => {
             e.preventDefault();
+
+            const rtdbId = currentState.rtdbRoomId
+            const userId = currentState.userId
+
+            console.log(rtdbId, userId)
+
+            state.setRoomUserData(rtdbId, userId).then((res) => {
+                console.log(res)
+            })  
+
             Router.go('./instructions');
         });
 
-        const rtdbId = currentState.rtdbRoomId
-        const userId = currentState.userId
     };
 
     render(){

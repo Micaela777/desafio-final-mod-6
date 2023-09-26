@@ -67,15 +67,15 @@ const state = {
             });
     },
 
-    setRoomUserData(rtdbId, userId, userName){
+    setRoomUserData(rtdbId, userId){
         const cs = this.getState();
 
-        return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/currentGame/" + userId,  {
+        return fetch(`${API_BASE_URL}/rooms/${rtdbId}/${userId}`,  {
             method: "post",
             headers: {
                 "content-type": "application/json",
             },
-            body: JSON.stringify({ userName }),
+            body: JSON.stringify({ name: cs.name }),
         })
         .then((res) => {
             return res.json();
