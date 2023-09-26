@@ -8,7 +8,6 @@ const state = {
         name:"",
         opponentName:"",
         userId: "",
-        userLongId: "",
         roomId: "",
         rtdbRoomId: "",
     },
@@ -42,8 +41,8 @@ const state = {
             return res.json()
         }).then((data) => {
             cs.userId = data.id
-            //console.log(data)
             this.setState(cs)
+            console.log(cs.userId)
             return data
         });
     },
