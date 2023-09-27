@@ -27,8 +27,6 @@ export function initEnterTheRoomFormComponent() {
                         cs.rtdbRoomId = res.rtdbRoomId;
                         state.setState(cs);
 
-                        console.log(cs.rtdbRoomId, userId)
-
                         state.setRoomUserData(cs.rtdbRoomId, userId).then((res) => {
                             console.log(res)
                         })
