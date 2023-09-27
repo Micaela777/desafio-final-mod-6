@@ -22,8 +22,16 @@ export function initEnterTheRoomFormComponent() {
                 state.accessToRoom(targetRoomId).then((res) => {
                     if (res.rtdbRoomId){
                         const cs = state.getState();
+                        const userId = cs.userId;
+
                         cs.rtdbRoomId = res.rtdbRoomId;
                         state.setState(cs);
+
+                        console.log(cs.rtdbRoomId, userId)
+
+                        state.setRoomUserData(cs.rtdbRoomId, userId).then((res) => {
+                            console.log(res)
+                        })
 
                         Router.go("./instructions");
 
