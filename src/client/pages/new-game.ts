@@ -8,7 +8,7 @@ class NewChatroom extends HTMLElement{
         const currentState = state.getState();
         const roomId = currentState.roomId;
 
-        console.log(roomId)
+        //console.log(roomId)
 
         const idRoomReference = this.querySelector(".id")
         idRoomReference.textContent = `${roomId}`;
@@ -16,10 +16,10 @@ class NewChatroom extends HTMLElement{
         const rtdbId = currentState.rtdbRoomId
         const userId = currentState.userId
 
-        console.log(rtdbId, userId)
+        //console.log(rtdbId, userId)
 
         state.setRoomUserData(rtdbId, userId).then((res) => {
-            console.log(res)
+            //console.log(res)
         })
 
         const enterTheRoomButton = this.querySelector('.continue-button')
