@@ -87,6 +87,14 @@ const state = {
         });
     },
 
+    getUsersNames(){
+        const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}/currentGame`)
+        rtdbRef.on("value", (snapshot) => {
+            const value = snapshot.val()
+            console.log(value)
+        })
+    },
+
     accessToRoom(roomId){
         const cs = this.getState()
         

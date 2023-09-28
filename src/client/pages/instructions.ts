@@ -1,4 +1,5 @@
 import { Router } from '@vaadin/router';
+import { state } from '../state';
 
 class Instructions extends HTMLElement{
   connectedCallback(){
@@ -10,6 +11,8 @@ class Instructions extends HTMLElement{
 
             Router.go('./play')
         })
+
+        state.getUsersNames()
     };
 
     render(){
