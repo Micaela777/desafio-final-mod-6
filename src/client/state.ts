@@ -88,7 +88,7 @@ const state = {
     },
 
     getUsersNames(){
-        const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}/currentGame`)
+        const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
         rtdbRef.on("value", (snapshot) => {
             const value = snapshot.val()
             console.log(value)
