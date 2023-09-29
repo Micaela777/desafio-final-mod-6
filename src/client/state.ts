@@ -93,12 +93,12 @@ const state = {
             const value = snapshot.val()
             const usersData = value.currentGame
             const usersDataArr = Object.entries(usersData)
-            const usersDataArrMap = usersDataArr.map((a) => {
-                return a[0]
-            })
-            console.log(usersDataArrMap)
-
             
+
+            for (const value of usersDataArr) {
+                console.log(value[0])
+                return value
+            }
         })
     },
 
