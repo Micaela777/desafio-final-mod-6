@@ -87,11 +87,17 @@ const state = {
         });
     },
 
-    getUsersNames(){
+    getUsersData(){
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
         rtdbRef.on("value", (snapshot) => {
             const value = snapshot.val()
-            console.log(value)
+            const usersData = value.currentGame
+            const usersDataArr = Object.entries(usersData)
+            const tyt = usersDataArr.map((a) => {
+                return a
+            })
+
+            console.log(tyt)
         })
     },
 

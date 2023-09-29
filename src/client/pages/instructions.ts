@@ -12,7 +12,7 @@ class Instructions extends HTMLElement{
             Router.go('./play')
         })
 
-        state.getUsersNames()
+        state.getUsersData()
     };
 
     render(){
