@@ -94,8 +94,10 @@ const state = {
             const usersData = value.currentGame
             const usersDataArr = Object.entries(usersData)
             const usersDataArrMap = usersDataArr.map((a) => {
-                return a
+                return a[0]
             })
+            console.log(usersDataArrMap)
+
             
         })
     },
