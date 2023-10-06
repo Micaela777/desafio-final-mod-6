@@ -2,6 +2,7 @@ import { rtdb } from "./rtdb";
 
 const API_BASE_URL = "http://localhost:3000"
 
+
 const state = {
 
     data: {
@@ -88,14 +89,23 @@ const state = {
     },
 
     getUsersData(){
+        const cs = this.getState()
+
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
         rtdbRef.on("value", (snapshot) => {
             const value = snapshot.val()
             const usersData = value.currentGame
             const usersDataArr = Object.entries(usersData)
             const usersDataArrMap = usersDataArr.map((i) => {
+                if(i[1]["name"] == cs.name){
+                    console.log("si")
+                }
                 return i
             })
+            
+                
+            
+            
             console.log(usersDataArrMap)
         })
     },
