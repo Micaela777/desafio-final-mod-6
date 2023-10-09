@@ -11,6 +11,7 @@ const state = {
         userId: "",
         roomId: "",
         rtdbRoomId: "",
+        dataFromDb: [],
     },
     listeners: [],
 
@@ -95,19 +96,12 @@ const state = {
         rtdbRef.on("value", (snapshot) => {
             const value = snapshot.val()
             const usersData = value.currentGame
-            const usersDataArr = Object.entries(usersData)
-            const usersDataArrMap = usersDataArr.map((i) => {
-                if(i[1]["name"] == cs.name){
-                    console.log("si")
-                }
-                return i
-            })
+            cs.dataFromDb = usersData
             
-                
-            
-            
-            console.log(usersDataArrMap)
+            console.log(cs.dataFromDb)
         })
+
+        this.setState()
     },
 
     accessToRoom(roomId){

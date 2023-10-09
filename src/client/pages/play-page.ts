@@ -10,7 +10,7 @@ class Play extends HTMLElement{
         this.innerHTML = `
             <div class="play-section">
                 <div class="names-container">
-                    <h3 class="opponent-name">Maguis: 0</h3>
+                    <h3 class="opponent-name">${state.data.opponentName}: 0</h3>
                     <h3 class="my-name">${state.data.name}: 0</h3>
                 </div>
                 <div class="countdown-and-text-container">
