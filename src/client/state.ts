@@ -110,6 +110,9 @@ const state = {
         
         const nameFromDb = cs.dataFromDb
         nameFromDb.map((i) => {
+            if(i[1].name != cs.name){
+                cs.opponentName = i[1].name
+            }
             console.log(i[1].name)
         })
 
