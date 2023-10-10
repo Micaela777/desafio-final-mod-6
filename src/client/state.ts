@@ -19,16 +19,6 @@ const state = {
         return this.data;
     },
 
-    setName(name: string){
-
-        const cs = this.getState();
-        cs.name = name;
-        this.setState(cs)
-
-        console.log(cs.name)
-        
-    },
-
     auth(userName){
 
         const cs = this.getState()
@@ -90,18 +80,52 @@ const state = {
     },
 
     getUsersData(){
-        const cs = this.getState()
+        
 
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
         rtdbRef.on("value", (snapshot) => {
+            const cs = this.getState()
+
             const value = snapshot.val()
             const usersData = value.currentGame
-            cs.dataFromDb = usersData
+            const userDataArr = Object.entries(usersData)
+           /* userDataArr.map((i) => {
+                const firstName = i[1]["name"]
+                console.log(firstName)
+                return i
+            }) */
+
+            cs.dataFromDb = userDataArr
+
+            console.log(cs.dataFromDb, "cuando guardo la rtdb data")
             
-            console.log(cs.dataFromDb)
+            this.setState(cs)
+            this.getOpponentName()
+        })
+        
+    },
+
+    getOpponentName(){
+        const cs = this.getState()
+        
+        const nameFromDb = cs.dataFromDb
+        nameFromDb.map((i) => {
+            console.log(i[1].name)
         })
 
-        this.setState()
+        console.log(nameFromDb, "la supuesta data que deberia aprecer")
+        console.log(cs, "data del state completo")
+    },
+    
+    setName(name: string){
+
+        const cs = this.getState();
+        cs.name = name;
+
+        this.setState(cs)
+
+        console.log(cs.name)
+        
     },
 
     accessToRoom(roomId){

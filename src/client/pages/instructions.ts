@@ -3,6 +3,7 @@ import { state } from '../state';
 
 class Instructions extends HTMLElement{
   connectedCallback(){
+    
         this.render();
 
         const button = this.querySelector('.play-button')

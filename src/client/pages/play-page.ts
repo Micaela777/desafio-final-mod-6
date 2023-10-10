@@ -4,6 +4,7 @@ import { state } from '../state';
 class Play extends HTMLElement{
   connectedCallback(){
         this.render();
+        
     };
 
     render(){
