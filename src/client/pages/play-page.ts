@@ -3,8 +3,13 @@ import { state } from '../state';
 
 class Play extends HTMLElement{
   connectedCallback(){
-        this.render();
+    this.render()
         
+        state.subscribe(() => {
+            console.log("hola")
+            this.render()
+        })
+        this.render();
     };
 
     render(){
@@ -15,7 +20,7 @@ class Play extends HTMLElement{
                     <h3 class="my-name">${state.data.name}: 0</h3>
                 </div>
                 <div class="countdown-and-text-container">
-                    <h2 class="waiting-for-text">Esperando a que Maguis presione ¡Jugar!...</h2>
+                    <h2 class="waiting-for-text">Esperando a que ${state.data.opponentName} presione ¡Jugar!...</h2>
                     <custom-countdown class="countdown"></custom-countdown>
                 </div>
                 <div class="my-cat-hands-container">

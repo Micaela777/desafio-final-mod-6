@@ -125,6 +125,14 @@ const state = {
         const cs = this.getState();
         cs.name = name;
 
+        const nameFromDb = cs.dataFromDb
+        nameFromDb.map((i) => {
+            if(i[1].name != cs.opponentName){
+                cs.name = i[1].name
+            }
+            console.log(i[1].name)
+        })
+
         this.setState(cs)
 
         console.log(cs.name)
