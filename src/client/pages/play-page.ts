@@ -4,12 +4,12 @@ import { state } from '../state';
 class Play extends HTMLElement{
   connectedCallback(){
     this.render()
-        
+
         state.subscribe(() => {
-            console.log("hola")
             this.render()
         })
         this.render();
+
     };
 
     render(){
