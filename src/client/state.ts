@@ -7,8 +7,14 @@ const state = {
 
     data: {
         name:"",
-        opponentName:"",
         userId: "",
+        score: 0,
+        choise: "",
+        status: "",
+        opponentName:"",
+        opponentScore: 0,
+        opponentChoise: "",
+        opponentSatus: "",
         roomId: "",
         rtdbRoomId: "",
         dataFromDb: [],
