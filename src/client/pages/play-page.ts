@@ -13,14 +13,22 @@ class Play extends HTMLElement{
     };
 
     render(){
+
+        const dataFromState = state.getState();
+        const name = dataFromState.name;
+        const score = dataFromState.score;
+        const opponentName = dataFromState.opponentName;
+        const opponentScore = dataFromState.opponentScore;
+        const roomId = dataFromState.roomId;
+
         this.innerHTML = `
             <div class="play-section">
                 <div class="names-container">
-                    <h3 class="opponent-name">${state.data.opponentName}: 0</h3>
-                    <h3 class="my-name">${state.data.name}: 0</h3>
+                    <h3 class="opponent-name">${opponentName}: ${opponentScore}</h3>
+                    <h3 class="my-name">${name}: ${score}</h3>
                 </div>
                 <div class="countdown-and-text-container">
-                    <h2 class="waiting-for-text">Esperando a que ${state.data.opponentName} presione ¡Jugar!...</h2>
+                    <h2 class="waiting-for-text">Esperando a que ${opponentName} presione ¡Jugar!...</h2>
                     <custom-countdown class="countdown"></custom-countdown>
                 </div>
                 <div class="my-cat-hands-container">
@@ -30,7 +38,7 @@ class Play extends HTMLElement{
                 </div>
                 <div class="room-id-container">
                     <h3 class="room-text">Sala:</h3>
-                    <h2 class="room-id">${state.data.roomId}</h2>
+                    <h2 class="room-id">${roomId}</h2>
                 </div>
             </div>
         `
