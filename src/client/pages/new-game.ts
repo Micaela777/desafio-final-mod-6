@@ -25,7 +25,7 @@ class NewChatroom extends HTMLElement{
         const enterTheRoomButton = this.querySelector('.continue-button')
         enterTheRoomButton.addEventListener('click', (e) => {
             e.preventDefault();
-            Router.go('./instructions');
+            Router.go('./waiting');
         });
     };
 

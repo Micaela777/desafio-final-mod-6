@@ -6,12 +6,12 @@ class WaitingForOpponent extends HTMLElement{
     
         this.render();
 
-        const button = this.querySelector('.play-button')
+       /* const button = this.querySelector('.play-button')
         button.addEventListener('click', (e) => {
             e.preventDefault()
 
-            Router.go('./play')
-        })
+            Router.go('./play') 
+        }) */
 
         state.getUsersData()
     };

@@ -7,6 +7,7 @@ router.setRoutes([
   { path: '/pre-game-options', component: 'pre-game-options-page'},
   { path: '/new-game', component: 'new-chatroom-page' },
   { path: '/enter-the-room', component: 'enter-the-room-page' },
+  { path: '/waiting', component: 'waiting-page' },
   { path: '/instructions', component: 'instructions-page' },
   { path: '/play', component: 'play-page' },
   { path: '/results', component: 'results-page' },

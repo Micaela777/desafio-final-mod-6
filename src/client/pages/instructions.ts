@@ -12,8 +12,6 @@ class Instructions extends HTMLElement{
 
             Router.go('./play')
         })
-
-        state.getUsersData()
     };
 
     render(){

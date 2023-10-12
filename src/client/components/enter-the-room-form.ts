@@ -33,7 +33,7 @@ export function initEnterTheRoomFormComponent() {
                             console.log(res)
                         })
 
-                        Router.go("./instructions");
+                        Router.go("./waiting");
 
                     } else {
                         const errorText = this.shadow.querySelector(".error-text") as HTMLInputElement;
