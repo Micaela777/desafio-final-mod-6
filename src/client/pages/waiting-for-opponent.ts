@@ -1,7 +1,7 @@
 import { Router } from '@vaadin/router';
 import { state } from '../state';
 
-class Instructions extends HTMLElement{
+class WaitingForOpponent extends HTMLElement{
   connectedCallback(){
     
         this.render();
@@ -18,11 +18,11 @@ class Instructions extends HTMLElement{
 
     render(){
         this.innerHTML = `
-            <div class="instructions-section">
+            <div class="waiting-section">
                 
-                <div class="instructions-items-container">
-                    <h3 class="instructions-text">A continuación, presioná jugar y elegí: <span class="text-color">Piedra, Papel o Tijera</span> antes de que pasen los 5 segundos.</h3>
-                    <custom-choose-option-button class="play-button">¡Jugar!</custom-choose-option-button>
+                <div class="waiting-items-container">
+                    <h3 class="waiting-text">Esperando a que tu oponente se una a la sala...</h3>
+                    <custom-choose-option-button class="next-button">Siguiente</custom-choose-option-button>
                 </div>
                 
             </div>
@@ -30,7 +30,7 @@ class Instructions extends HTMLElement{
 
         const style = document.createElement("style");
         style.innerHTML = `
-            .instructions-section{
+            .waiting-section{
                 height: 100vh;
                 padding: 0px 7px;
                 display: flex;
@@ -42,12 +42,12 @@ class Instructions extends HTMLElement{
                 background: linear-gradient(to left, #0e123b, #0a325c, #206985);
             }
             @media (min-width: 769px){
-                .instructions-section{
+                .waiting-section{
                     padding-bottom: 20px;
                 }
             }
 
-            .instructions-items-container{
+            .waiting-items-container{
                 width: 100%;
                 display: flex;
                 flex-direction: column;
@@ -56,7 +56,7 @@ class Instructions extends HTMLElement{
                 gap: 45px;
             }
 
-            .instructions-text{
+            .waiting-text{
                 max-width: 300px;
                 margin: 0px;
                 font-weight: 400;
@@ -66,11 +66,7 @@ class Instructions extends HTMLElement{
                 color: #ffffff;
             }
 
-            .text-color{
-                color: #da70db;
-            }
-
-            .play-button{
+            .next-button{
                 width: 100%;
                 max-width: 340px;
             }
@@ -79,4 +75,4 @@ class Instructions extends HTMLElement{
         this.appendChild(style)
     };
 };
-customElements.define('instructions-page', Instructions);
+customElements.define('waiting-page', WaitingForOpponent);

@@ -87,7 +87,6 @@ const state = {
 
     getUsersData(){
         
-
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
         rtdbRef.on("value", (snapshot) => {
             const cs = this.getState()
