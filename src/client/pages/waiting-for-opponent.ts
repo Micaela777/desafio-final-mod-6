@@ -13,18 +13,21 @@ class WaitingForOpponent extends HTMLElement{
             Router.go('./play') 
         }) */
 
+        /* puedo poner el state.getOpponentNumber() dentro de un if*/
         state.getUsersData()
+
+        
     };
 
     render(){
         this.innerHTML = `
             <div class="waiting-section">
-                
                 <div class="waiting-items-container">
-                    <h3 class="waiting-text">Esperando a que tu oponente se una a la sala...</h3>
+                    <h3 class="waiting-first-text">Esperando a que tu oponente se una a la sala...</h3>
+                    <h3 class="waiting-second-text">¡Tu oponente se ha unido!</h3>
+                    
                     <custom-choose-option-button class="next-button">Siguiente</custom-choose-option-button>
                 </div>
-                
             </div>
         `
 
@@ -56,7 +59,7 @@ class WaitingForOpponent extends HTMLElement{
                 gap: 45px;
             }
 
-            .waiting-text{
+            .waiting-first-text{
                 max-width: 300px;
                 margin: 0px;
                 font-weight: 400;

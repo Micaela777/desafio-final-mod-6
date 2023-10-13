@@ -106,6 +106,7 @@ const state = {
             
             this.setState(cs)
             this.getOpponentName()
+            this.getNumberOfUsers();
         })
         
     },
@@ -124,9 +125,15 @@ const state = {
         console.log(nameFromDb, "la supuesta data que deberia aprecer")
         console.log(cs, "data del state completo")
     },
+
+    getNumberOfUsers(){
+        const cs = this.getState();
+
+        const usersFromDb = cs.dataFromDb
+        console.log(usersFromDb.length)
+    },
     
     setName(name: string){
-
         const cs = this.getState();
         cs.name = name;
 
