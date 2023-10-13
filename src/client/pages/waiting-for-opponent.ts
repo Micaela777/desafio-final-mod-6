@@ -15,8 +15,6 @@ class WaitingForOpponent extends HTMLElement{
 
         /* puedo poner el state.getOpponentNumber() dentro de un if*/
         state.getUsersData()
-
-        
     };
 
     render(){
