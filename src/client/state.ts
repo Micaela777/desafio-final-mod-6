@@ -6,15 +6,13 @@ const API_BASE_URL = "http://localhost:3000"
 const state = {
 
     data: {
-        name:"",
         userId: "",
+        name:"",
         score: 0,
         choise: "",
-        status: "",
         opponentName:"",
         opponentScore: 0,
         opponentChoise: "",
-        opponentSatus: "",
         roomId: "",
         rtdbRoomId: "",
         dataFromDb: [],
@@ -94,12 +92,7 @@ const state = {
             const value = snapshot.val()
             const usersData = value.currentGame
             const userDataArr = Object.entries(usersData)
-           /* userDataArr.map((i) => {
-                const firstName = i[1]["name"]
-                console.log(firstName)
-                return i
-            }) */
-
+          
             cs.dataFromDb = userDataArr
 
             console.log(cs.dataFromDb, "cuando guardo la rtdb data")
@@ -125,7 +118,7 @@ const state = {
         console.log(cs, "data del state completo")
     },
 
-    getNumberOfUsers(){
+    getUsersStatus(){
         const cs = this.getState();
 
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}/currentGame`)
