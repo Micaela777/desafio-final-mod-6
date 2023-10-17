@@ -6,14 +6,15 @@ class WaitingForOpponent extends HTMLElement{
     
         this.render();
 
-       /* const button = this.querySelector('.play-button')
+        const button = this.querySelector('.next-button')
         button.addEventListener('click', (e) => {
             e.preventDefault()
 
-            Router.go('./play') 
-        }) */
+            Router.go('./instructions') 
+        }) 
 
         /* puedo poner el state.getOpponentNumber() dentro de un if*/
+
         state.getUsersData()
     };
 

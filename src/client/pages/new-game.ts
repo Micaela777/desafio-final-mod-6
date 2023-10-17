@@ -27,6 +27,7 @@ class NewChatroom extends HTMLElement{
             e.preventDefault();
             Router.go('./waiting');
         });
+
     };
 
     render(){

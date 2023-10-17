@@ -106,7 +106,6 @@ const state = {
             
             this.setState(cs)
             this.getOpponentName()
-            this.getNumberOfUsers();
         })
         
     },
@@ -129,8 +128,8 @@ const state = {
     getNumberOfUsers(){
         const cs = this.getState();
 
-        const usersFromDb = cs.dataFromDb
-        console.log(usersFromDb.length)
+        const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}/currentGame`)
+
     },
     
     setName(name: string){

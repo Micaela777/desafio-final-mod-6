@@ -67,8 +67,8 @@ app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
     rtdbReference.set({
         name: name,
         choise: "",
-        online: "",
-        start: ""
+        online: "false",
+        start: "false"
     });
     res.json({
         ok: "todo ok"
