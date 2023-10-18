@@ -118,7 +118,13 @@ const state = {
         console.log(cs, "data del state completo")
     },
 
-    setUsersOnline(){}, //lo tengo que llamar en el formulario del nombre
+    setUsersOnline(){
+
+        const cs = this.getState()
+
+        const rtdbRef = rtdb.ref(`/rooms/${cs.rtdbRoomId}/currentGame/${cs.userId}`)
+        
+    }, //lo tengo que llamar en el formulario del nombre
 
     setUsersStatus(){
         const cs = this.getState();
@@ -128,9 +134,10 @@ const state = {
             const value = snapshot.val()
             const usersData = value.currentGame
             const userDataArr = Object.entries(usersData)
+
             userDataArr.map((i) => {
                 console.log(i[1]["online"])
-                if(i[1]["online"] == "false"){
+                if(i[1]["online"] == false){
                     console.log("es falso")
                 }
             }) 
@@ -138,7 +145,7 @@ const state = {
         })
 
     },
-    
+
     setName(name: string){
         const cs = this.getState();
         cs.name = name;

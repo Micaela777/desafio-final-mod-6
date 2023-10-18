@@ -17,6 +17,7 @@ class WaitingForOpponent extends HTMLElement{
 
         state.getUsersData()
         state.setUsersStatus()
+        state.setUsersOnline()
     };
 
     render(){
