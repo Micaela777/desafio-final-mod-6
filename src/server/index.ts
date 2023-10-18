@@ -65,26 +65,6 @@ app.post("/rooms", (req, res) => {
 })
 
 
-app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
-  const rtdbLongId = req.params.rtdbLongId
-  const userId = req.params.userId
-  const name = req.body.name
-
-  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame/" + userId)
-  rtdbReference.set({
-    name: name,
-    choise: "",
-    online: false,
-    start: false
-  })
-
-  res.json({
-    ok:"todo ok"
-  })
-
-})
-
-
 app.get("/rooms/:roomId", (req, res) => {
   const userId = req.query.userId
   const roomId = req.params.roomId
@@ -106,6 +86,26 @@ app.get("/rooms/:roomId", (req, res) => {
       })
     }
   })
+})
+
+
+app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
+  const rtdbLongId = req.params.rtdbLongId
+  const userId = req.params.userId
+  const name = req.body.name
+
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame/" + userId)
+  rtdbReference.set({
+    name: name,
+    choise: "",
+    online: false,
+    start: false
+  })
+
+  res.json({
+    ok:"todo ok"
+  })
+
 })
 
 

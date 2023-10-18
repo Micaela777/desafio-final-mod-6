@@ -120,9 +120,7 @@ const state = {
 
     setUsersOnline(){
 
-        const cs = this.getState()
-
-        const rtdbRef = rtdb.ref(`/rooms/${cs.rtdbRoomId}/currentGame/${cs.userId}`)
+        
         
     }, //lo tengo que llamar en el formulario del nombre
 
