@@ -17,6 +17,9 @@ class WaitingForOpponent extends HTMLElement{
 
         state.getUsersData()
         state.setUsersStatus()
+       /* state.changeData().then((res) => {
+            console.log(res)
+        })*/
     };
 
     render(){

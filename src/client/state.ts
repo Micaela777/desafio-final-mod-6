@@ -83,6 +83,26 @@ const state = {
         });
     },
 
+   /* changeData(){
+        const cs = this.getState();
+
+        return fetch(API_BASE_URL + "/rooms/" + cs.rtdbRoomId + "/" + cs.userId + "/online",  {
+            method: "patch",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ status: "true" }),
+        })
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            
+            console.log(data);
+
+            return data;
+        });
+    }, */
+
     getUsersData(){
         
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
@@ -135,7 +155,7 @@ const state = {
 
             userDataArr.map((i) => {
                 console.log(i[1]["online"])
-                if(i[1]["online"] == false){
+                if(i[1]["online"] == "false"){
                     console.log("es falso")
                 }
             }) 
