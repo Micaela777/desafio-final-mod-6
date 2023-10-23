@@ -101,12 +101,14 @@ app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
 app.patch("/rooms/:rtdbLongId/:userId/online", (req, res) => {
     const rtdbLongId = req.params.rtdbLongId;
     const userId = req.params.userId;
+    const userStatus = req.body.status;
     const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame/" + userId);
     rtdbReference.update({
-        online: "true",
-    });
-    res.json({
-        ok: "todo ok"
+        online: userStatus,
+    }).then((i) => {
+        res.json({
+            ok: "todo ok"
+        });
     });
 });
 app.use(express.static("dist"));

@@ -5,6 +5,10 @@ class Play extends HTMLElement{
   connectedCallback(){
     this.render()
 
+    state.changeData().then((res) => {
+        console.log(res)
+    })
+
         state.subscribe(() => {
             this.render()
         })

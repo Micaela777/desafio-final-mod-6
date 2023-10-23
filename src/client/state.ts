@@ -83,7 +83,7 @@ const state = {
         });
     },
 
-   /* changeData(){
+    /*changeData(){
         const cs = this.getState();
 
         return fetch(API_BASE_URL + "/rooms/" + cs.rtdbRoomId + "/" + cs.userId + "/online",  {
@@ -91,7 +91,6 @@ const state = {
             headers: {
                 "content-type": "application/json",
             },
-            body: JSON.stringify({ status: "true" }),
         })
         .then((res) => {
             return res.json();
@@ -101,7 +100,7 @@ const state = {
 
             return data;
         });
-    }, */
+    }, */ 
 
     getUsersData(){
         
