@@ -3,8 +3,18 @@ import { state } from '../state';
 
 class Instructions extends HTMLElement{
   connectedCallback(){
-    
         this.render();
+
+        const currentState = state.getState();
+
+        const rtdbId = currentState.rtdbRoomId
+        const userId = currentState.userId
+
+        console.log(rtdbId, userId)
+
+        state.changeData(rtdbId, userId).then((res) => {
+            console.log(res)
+        })
 
         const button = this.querySelector('.play-button')
         button.addEventListener('click', (e) => {

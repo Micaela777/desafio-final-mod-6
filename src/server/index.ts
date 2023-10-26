@@ -116,10 +116,10 @@ app.patch("/rooms/:rtdbLongId/:userId/online", (req, res) => {
   const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame/" + userId)
   rtdbReference.update({
     online: userStatus,
-  }).then((i) => {
-    res.json({
-      ok:"todo ok"
-    })
+  })
+
+  res.json({
+    ok: "todo ok"
   })
 
 })
