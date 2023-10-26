@@ -16,7 +16,16 @@ class WaitingForOpponent extends HTMLElement{
         /* puedo poner el state.getOpponentNumber() dentro de un if*/
 
         state.getUsersData()
-        
+        const currentState = state.getState();
+
+        const rtdbId = currentState.rtdbRoomId
+        const userId = currentState.userId
+
+        console.log(rtdbId, userId)
+
+        state.changeData(rtdbId, userId).then((res) => {
+            console.log(res)
+        })
         
     };
 
