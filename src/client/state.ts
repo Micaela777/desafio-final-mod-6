@@ -14,7 +14,6 @@ const state = {
         opponentName:"",
         opponentScore: 0,
         opponentChoise: "",
-        numberOfUsers: 0,
         roomId: "",
         rtdbRoomId: "",
         dataFromDb: [],
@@ -145,8 +144,6 @@ const state = {
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
         rtdbRef.on("value", (snapshot) => {
 
-            const cs = this.getState()
-
             const value = snapshot.val()
             const usersData = value.currentGame
             const userDataArr = Object.entries(usersData)
@@ -157,7 +154,6 @@ const state = {
                 Router.go('./instructions')
             }
 
-            console.log(cs.numberOfUsers)
             //console.log(userDataArr[0][1]["online"], userDataArr[1][1]["online"])
         })
         
