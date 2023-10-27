@@ -8,6 +8,7 @@ router.setRoutes([
   { path: '/new-game', component: 'new-chatroom-page' },
   { path: '/enter-the-room', component: 'enter-the-room-page' },
   { path: '/waiting', component: 'waiting-page' },
+  { path: '/lobby', component: 'lobby-page' },
   { path: '/instructions', component: 'instructions-page' },
   { path: '/play', component: 'play-page' },
   { path: '/results', component: 'results-page' },

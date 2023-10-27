@@ -151,7 +151,7 @@ const state = {
             const users = userDataArr.length
 
             if(users == 2){
-                Router.go('./instructions')
+                Router.go('./lobby')
             }
 
             //console.log(userDataArr[0][1]["online"], userDataArr[1][1]["online"])

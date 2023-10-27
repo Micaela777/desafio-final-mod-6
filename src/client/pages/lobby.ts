@@ -50,17 +50,17 @@ class Lobby extends HTMLElement{
                 flex-direction: column;
                 align-items: center;
                 padding: 9px 0px;
-                gap: 45px;
+                gap: 70px;
             }
 
-            .lobby-first-text{
+            .lobby-text{
                 max-width: 300px;
                 margin: 0px;
                 font-weight: 400;
                 font-size: 26px;
                 text-align: center;
                 font-family: 'Roboto', sans-serif;
-                color: #ffffff;
+                color: #fd7aff;
             }
 
             .next-button{
