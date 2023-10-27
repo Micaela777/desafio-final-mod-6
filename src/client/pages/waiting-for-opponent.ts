@@ -13,20 +13,26 @@ class WaitingForOpponent extends HTMLElement{
             Router.go('./instructions') 
         }) 
 
-        /* puedo poner el state.getOpponentNumber() dentro de un if*/
-
         state.getUsersData()
+        state.setUsersOnline()
         const currentState = state.getState();
 
         const rtdbId = currentState.rtdbRoomId
         const userId = currentState.userId
+        const users = currentState.numberOfUsers
 
-        console.log(rtdbId, userId)
+        if(users == 0){
+            console.log("es 0")
+        } else if (users == 1){
+            console.log("es 1")
+        }
+        
+         console.log(users)
 
         state.changeData(rtdbId, userId).then((res) => {
-            console.log(res)
+           // console.log(res)
         })
-        
+
     };
 
     render(){
@@ -35,8 +41,7 @@ class WaitingForOpponent extends HTMLElement{
                 <div class="waiting-items-container">
                     <h3 class="waiting-first-text">Esperando a que tu oponente se una a la sala...</h3>
                     <h3 class="waiting-second-text">¡Tu oponente se ha unido!</h3>
-                    
-                    <custom-choose-option-button class="next-button">Siguiente</custom-choose-option-button>
+                    <button class="next-button" disabled>Siguiente</button>
                 </div>
             </div>
         `
@@ -82,7 +87,25 @@ class WaitingForOpponent extends HTMLElement{
             .next-button{
                 width: 100%;
                 max-width: 340px;
+                padding: 13px 0px;
+                border: 3px solid #ffffff;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 23px;
+                color: #ffffff;
+                font-family: 'Roboto', sans-serif;
+                background-color: transparent;
+                transition: 0.1s;
             }
+            @media (min-width: 860px){
+                .next-button:hover{
+                    cursor: pointer;
+                    text-shadow: 0 0 1px #ffffff;
+                    box-shadow: inset 0 0 2px #ffffff, 0 0 2px #ffffff;
+                    transition: 0.1s;
+                    color: #ffffff;
+                    background-color: rgba(227,225,225,0.1);
+                }
         `;
 
         this.appendChild(style)

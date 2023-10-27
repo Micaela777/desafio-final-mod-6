@@ -1,3 +1,4 @@
+import { Route, Router } from "@vaadin/router";
 import { rtdb } from "./rtdb";
 
 const API_BASE_URL = "http://localhost:3000"
@@ -13,6 +14,7 @@ const state = {
         opponentName:"",
         opponentScore: 0,
         opponentChoise: "",
+        numberOfUsers: 0,
         roomId: "",
         rtdbRoomId: "",
         dataFromDb: [],
@@ -83,26 +85,7 @@ const state = {
         });
     },
 
-    changeData(rtdbId, userId){
-        const cs = this.getState();
-
-        return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/" + userId + "/online",  {
-            method: "PATCH",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify({ status: "true" }),
-        })
-        .then((res) => {
-            return res.json();
-        }).then((data) => {
-            
-            console.log(data);
-
-            return data;
-        });
-    },  
-
+      
     getUsersData(){
         
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
@@ -138,31 +121,48 @@ const state = {
         console.log(cs, "data del state completo")
     },
 
-    setUsersOnline(){
-
-        
-        
-    }, //lo tengo que llamar en el formulario del nombre
-
-    setUsersStatus(){
+    changeData(rtdbId, userId){
         const cs = this.getState();
 
+        return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/" + userId + "/online",  {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ status: "true" }),
+        })
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            
+            console.log(data);
+
+            return data;
+        });
+    },
+
+    setUsersOnline(){
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
         rtdbRef.on("value", (snapshot) => {
+
+            const cs = this.getState()
+
             const value = snapshot.val()
             const usersData = value.currentGame
             const userDataArr = Object.entries(usersData)
 
-            userDataArr.map((i) => {
-                console.log(i[1]["online"])
-                if(i[1]["online"] == "false"){
-                    console.log("es falso")
-                }
-            }) 
-            
-        })
+            const users = userDataArr.length
 
-    },
+            if(users == 2){
+                Router.go('./instructions')
+            }
+
+            console.log(cs.numberOfUsers)
+            //console.log(userDataArr[0][1]["online"], userDataArr[1][1]["online"])
+        })
+        
+        
+    }, //lo tengo que llamar en el formulario del nombre
 
     setName(name: string){
         const cs = this.getState();
