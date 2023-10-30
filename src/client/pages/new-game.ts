@@ -10,7 +10,7 @@ class NewChatroom extends HTMLElement{
 
         //console.log(roomId)
 
-        const idRoomReference = this.querySelector(".id")
+        const idRoomReference = this.querySelector(".id") as any
         idRoomReference.textContent = `${roomId}`;
 
         const rtdbId = currentState.rtdbRoomId
@@ -25,7 +25,19 @@ class NewChatroom extends HTMLElement{
         const enterTheRoomButton = this.querySelector('.continue-button')
         enterTheRoomButton.addEventListener('click', (e) => {
             e.preventDefault();
-            Router.go('./waiting');
+
+            navigator.clipboard.writeText(roomId)
+
+            const idRoomAlert = this.querySelector('.room-id-alert') as HTMLElement;
+            idRoomAlert.style.display = 'inherit';
+
+            setTimeout(() => {
+
+                idRoomAlert.style.display = 'none';
+                Router.go('./waiting');
+
+            }, 2000)
+
         });
 
     };
@@ -33,6 +45,7 @@ class NewChatroom extends HTMLElement{
     render(){
         this.innerHTML = `
             <div class="new-chatroom-section">
+                <custom-room-id-text class="room-id-alert"></custom-room-id-text>
                 <custom-cat-silhouette></custom-cat-silhouette>
                 <div class="new-chatroom-section-items-container">
                     <h2 class="room-id-reference">ID de la sala:</h2>
@@ -65,6 +78,12 @@ class NewChatroom extends HTMLElement{
                 .new-chatroom-section{
                     padding-bottom: 20px;
                 }
+            }
+
+            .room-id-alert{
+                display: none;
+                position: absolute;
+                top: 0px;
             }
 
             .new-chatroom-section-items-container{

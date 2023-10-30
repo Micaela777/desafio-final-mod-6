@@ -21,6 +21,7 @@ import { initCatSilhouetteComponent } from "./components/cat-silhouette";
 import { initLineImgComponent } from "./components/custom-line-img";
 import { initErrorTextComponent } from "./components/error-text";
 import { initEnterTheRoomFormComponent } from "./components/enter-the-room-form";
+import { initCopiedRoomIdTextComponent } from "./components/copied-room-id-text";
 import { initCountdownComponent } from "./components/countdown-component";
 import { initCatPaperComponent } from "./components/cat-paper";
 import { initCatRockComponent } from "./components/cat-rock";
@@ -38,6 +39,7 @@ import { initLoseImageComponent } from "./components/lose-img";
     initAuthFormComponent();
     initChooseOptionButtonComponent();
     initEnterTheRoomFormComponent();
+    initCopiedRoomIdTextComponent();
     initCatSilhouetteComponent()
     initLineImgComponent();
     initErrorTextComponent();
