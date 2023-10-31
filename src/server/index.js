@@ -110,6 +110,27 @@ app.patch("/rooms/:rtdbLongId/:userId/online", (req, res) => {
         ok: "todo ok"
     });
 });
+app.get("/rooms/:rtdbLongId/:userId/connected", (req, res) => {
+    const rtdbLongId = req.params.rtdbLongId;
+    const userId = req.params.userId;
+    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame");
+    rtdbReference.get().then((snap) => {
+        const data = snap.val();
+        const dataDos = Object.entries(data);
+        const dataTres = dataDos.length;
+        if (dataTres == 2) {
+            res.json({
+                dataTres,
+                si: "son 2 jugadores"
+            });
+        }
+        else {
+            res.json({
+                no: "solo es 1"
+            });
+        }
+    });
+});
 app.use(express.static("dist"));
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../../dist/index.html"));
