@@ -132,21 +132,21 @@ app.get("/rooms/:rtdbLongId/:userId/connected", (req, res) => {
   const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame")
   rtdbReference.get().then((snap) => {
     const data = snap.val()
-    const dataDos = Object.entries(data)
-    const dataTres = dataDos.length
+    const dataArr = Object.entries(data)
+    const dataLength = dataArr.length
 
-    if(dataTres == 2){
-      res.json({
-        dataTres,
-        si: "son 2 jugadores"
-      })
-    }else{
-      res.json({
-        no: "solo es 1"
-      })
-    }
+    dataArr.map((i) => {
 
-
+      if(dataLength == 2 && i[0] == userId){
+        res.json({
+          si: "son 2 jugadores y los id coinciden",
+        })
+      } else if (dataLength !== 2 && i[0] !== userId){
+        res.status(401).json({
+          message: "sala llena",
+        })
+      }
+    })
   })
 })
 
