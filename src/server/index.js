@@ -121,7 +121,7 @@ app.get("/rooms/:rtdbLongId/:userId/connected", (req, res) => {
         dataArr.map((i) => {
             if (dataLength == 2 && i[0] == userId) {
                 res.json({
-                    si: "son 2 jugadores y los id coinciden",
+                    message: "continuar",
                 });
             }
             else if (dataLength !== 2 && i[0] !== userId) {

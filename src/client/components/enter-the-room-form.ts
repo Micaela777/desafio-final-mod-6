@@ -33,6 +33,10 @@ export function initEnterTheRoomFormComponent() {
                             console.log(res)
                         })
 
+                        state.setFullRoom(cs.rtdbRoomId, userId).then((res) => {
+                            console.log(res.message)
+                        })
+
                         Router.go("./waiting");
 
                     } else {

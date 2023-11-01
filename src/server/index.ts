@@ -139,7 +139,7 @@ app.get("/rooms/:rtdbLongId/:userId/connected", (req, res) => {
 
       if(dataLength == 2 && i[0] == userId){
         res.json({
-          si: "son 2 jugadores y los id coinciden",
+          message: "continuar",
         })
       } else if (dataLength !== 2 && i[0] !== userId){
         res.status(401).json({

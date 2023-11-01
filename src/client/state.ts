@@ -156,9 +156,26 @@ const state = {
 
             //console.log(userDataArr[0][1]["online"], userDataArr[1][1]["online"])
         })
-        
-        
-    }, //lo tengo que llamar en el formulario del nombre
+    }, 
+
+    setFullRoom(rtdbId, userId){
+        const cs = this.getState();
+
+        return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/" + userId + "/connected",  {
+            method: "get",
+            headers: {
+                "content-type": "application/json",
+            },
+        })
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            
+            console.log(data);
+
+            return data;
+        });
+    },
 
     setName(name: string){
         const cs = this.getState();
