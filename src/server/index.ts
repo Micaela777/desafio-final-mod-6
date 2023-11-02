@@ -150,6 +150,23 @@ app.get("/rooms/:rtdbLongId/:userId/connected", (req, res) => {
   })
 })
 
+
+app.patch("/rooms/:rtdbLongId/:userId/start", (req, res) => {
+  const rtdbLongId = req.params.rtdbLongId
+  const userId = req.params.userId
+  const userStart = req.body.start
+
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame/" + userId)
+  rtdbReference.update({
+    start: userStart,
+  })
+
+  res.json({
+    ok: "todo ok"
+  })
+
+})
+
   app.use(express.static("dist"));
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../../dist/index.html"))

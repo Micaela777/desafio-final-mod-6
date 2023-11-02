@@ -84,7 +84,6 @@ const state = {
         });
     },
 
-      
     getUsersData(){
         
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)

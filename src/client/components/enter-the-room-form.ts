@@ -33,11 +33,20 @@ export function initEnterTheRoomFormComponent() {
                             console.log(res)
                         })
 
-                        state.setFullRoom(cs.rtdbRoomId, userId).then((res) => {
-                            console.log(res.message)
-                        })
-
                         Router.go("./waiting");
+
+                        /* state.setFullRoom(cs.rtdbRoomId, userId).then((res) => {
+
+                            const message = res.message
+
+                            if( message == "continuar" ){
+                               // Router.go("./waiting");
+
+                            } else if ( message == "sala llena" ) {
+                                console.log("la sala esta llena")
+                            }
+                        }) */
+
 
                     } else {
                         const errorText = this.shadow.querySelector(".error-text") as HTMLInputElement;
