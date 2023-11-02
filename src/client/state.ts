@@ -176,6 +176,26 @@ const state = {
         });
     },
 
+    changeStartData(rtdbId, userId){
+        const cs = this.getState();
+
+        return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/" + userId + "/start",  {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ start: "true" }),
+        })
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            
+            console.log(data);
+
+            return data;
+        });
+    },
+
     setName(name: string){
         const cs = this.getState();
         cs.name = name;
