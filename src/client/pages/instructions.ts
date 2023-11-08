@@ -24,12 +24,18 @@ class Instructions extends HTMLElement{
     render(){
         this.innerHTML = `
             <div class="instructions-section">
-                
+                <custom-header class="header"></custom-header>
                 <div class="instructions-items-container">
-                    <h3 class="instructions-text">A continuación, presioná jugar y elegí: <span class="text-color">Piedra, Papel o Tijera</span> antes de que pasen los 5 segundos.</h3>
-                    <custom-choose-option-button class="play-button">¡Jugar!</custom-choose-option-button>
+                    <div class="text-container">
+                        <h3 class="instructions-text">A continuación, presioná jugar y elegí: <span class="text-color">Piedra, Papel o Tijera</span> antes de que pasen los 5 segundos.</h3>
+                        <custom-choose-option-button class="play-button">¡Jugar!</custom-choose-option-button>
+                    </div>
+                    <div class="hands-container">
+                        <custom-cat-paper></custom-cat-paper>
+                        <custom-cat-rock></custom-cat-rock>
+                        <custom-cat-scissors></custom-cat-scissors>
+                    </div>
                 </div>
-                
             </div>
         `
 
@@ -37,19 +43,25 @@ class Instructions extends HTMLElement{
         style.innerHTML = `
             .instructions-section{
                 height: 100vh;
-                padding: 0px 7px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                justify-content: center;
+                justify-content: flex-end;
                 overflow: auto;
                 gap: 45px;
                 background: linear-gradient(to left, #0e123b, #0a325c, #206985);
             }
-            @media (min-width: 769px){
-                .instructions-section{
-                    padding-bottom: 20px;
-                }
+
+            .header{
+                height: 100%;
+                width: 100%;
+            }
+
+            .text-container{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 35px;
             }
 
             .instructions-items-container{
@@ -57,12 +69,10 @@ class Instructions extends HTMLElement{
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                padding: 9px 0px;
-                gap: 45px;
             }
 
             .instructions-text{
-                max-width: 300px;
+                max-width: 600px;
                 margin: 0px;
                 font-weight: 400;
                 font-size: 26px;
@@ -78,6 +88,15 @@ class Instructions extends HTMLElement{
             .play-button{
                 width: 100%;
                 max-width: 340px;
+            }
+
+            .hands-container{
+                width: 100%;
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-around;
+                padding: 0px 200px;
+                gap: 10px;
             }
         `;
 
