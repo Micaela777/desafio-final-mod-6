@@ -54,7 +54,7 @@ class NewChatroom extends HTMLElement{
                     </div>
                     <h2 class="share-room-id">Compartilo con tu contrincante</h2>
                     <div class="continue-button-container">
-                        <button class="continue-button">Siguiente</button>
+                        <button class="continue-button">¡Copiar!</button>
                     </div>
                 </div>
                 <custom-line-img class="bottom-line-img"></custom-line-img>
