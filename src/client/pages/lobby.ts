@@ -16,11 +16,20 @@ class Lobby extends HTMLElement{
     };
 
     render(){
+
         this.innerHTML = `
             <div class="lobby-section">
+                <custom-header class="header"></custom-header>
                 <div class="lobby-items-container">
-                    <h3 class="lobby-text">¡Tu oponente se ha unido!</h3>
-                    <custom-choose-option-button class="next-button">Siguiente</custom-choose-option-button>
+                    <div class="text-container">
+                        <h3 class="lobby-text">¡Tu oponente se ha unido!</h3>
+                        <custom-choose-option-button class="next-button">Siguiente</custom-choose-option-button>
+                    </div>
+                    <div class="hands-container">
+                        <custom-cat-paper></custom-cat-paper>
+                        <custom-cat-rock></custom-cat-rock>
+                        <custom-cat-scissors></custom-cat-scissors>
+                    </div>
                 </div>
             </div>
         `
@@ -29,19 +38,18 @@ class Lobby extends HTMLElement{
         style.innerHTML = `
             .lobby-section{
                 height: 100vh;
-                padding: 0px 7px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                justify-content: center;
+                justify-content: flex-end;
                 overflow: auto;
                 gap: 45px;
                 background: linear-gradient(to left, #0e123b, #0a325c, #206985);
             }
-            @media (min-width: 769px){
-                .lobby-section{
-                    padding-bottom: 20px;
-                }
+
+            .header{
+                height: 100%;
+                width: 100%;
             }
 
             .lobby-items-container{
@@ -49,8 +57,13 @@ class Lobby extends HTMLElement{
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                padding: 9px 0px;
-                gap: 70px;
+                gap: 10px;
+            }
+
+            .text-container{
+                display: flex;
+                flex-direction: column;
+                gap: 35px;
             }
 
             .lobby-text{
@@ -66,6 +79,15 @@ class Lobby extends HTMLElement{
             .next-button{
                 width: 100%;
                 max-width: 340px;
+            }
+
+            .hands-container{
+                width: 100%;
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-around;
+                padding: 0px 200px;
+                gap: 10px;
             }
         `;
 

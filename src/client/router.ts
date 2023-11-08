@@ -12,5 +12,6 @@ router.setRoutes([
   { path: '/instructions', component: 'instructions-page' },
   { path: '/play', component: 'play-page' },
   { path: '/results', component: 'results-page' },
+  { path: '/prueba', component: 'prueba-page' },
 
 ]);

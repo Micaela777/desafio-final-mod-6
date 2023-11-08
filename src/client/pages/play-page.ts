@@ -16,6 +16,7 @@ class Play extends HTMLElement{
         const opponentScore = dataFromState.opponentScore;
         const roomId = dataFromState.roomId;
 
+        
         this.innerHTML = `
             <div class="play-section">
                 <div class="names-container">

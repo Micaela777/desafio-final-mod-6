@@ -1,4 +1,4 @@
-import { Route, Router } from "@vaadin/router";
+import { Router } from "@vaadin/router";
 import { rtdb } from "./rtdb";
 
 const API_BASE_URL = "http://localhost:3000"
@@ -156,6 +156,25 @@ const state = {
             //console.log(userDataArr[0][1]["online"], userDataArr[1][1]["online"])
         })
     }, 
+
+    /*setUsersStart(){
+        const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
+        rtdbRef.on("value", (snapshot) => {
+
+            const value = snapshot.val()
+            const usersData = value.currentGame
+            const userDataArr = Object.entries(usersData)
+
+            const userTrue = userDataArr[0][1]["online"]
+            const opponentTrue = userDataArr[1][1]["online"]
+
+            console.log(userTrue, opponentTrue )
+
+            if(userTrue == "true" && opponentTrue == "true"){
+                Router.go('./play')
+            }
+        })
+    },*/
 
     setFullRoom(rtdbId, userId){
         const cs = this.getState();

@@ -9,6 +9,7 @@ import "./pages/lobby";
 import "./pages/instructions";
 import "./pages/play-page";
 import "./pages/results-page";
+import "./pages/prueba"
 import { state } from "./state";
 
 import { initMainTitleComponent } from "./components/main-title";
@@ -19,6 +20,7 @@ import { initAuthFormComponent } from "./components/auth-form";
 import { initChooseOptionButtonComponent } from "./components/choose-option-button";
 import { initCatSilhouetteComponent } from "./components/cat-silhouette";
 import { initLineImgComponent } from "./components/custom-line-img";
+import { initHeaderComponent } from "./components/header";
 import { initErrorTextComponent } from "./components/error-text";
 import { initEnterTheRoomFormComponent } from "./components/enter-the-room-form";
 import { initCopiedRoomIdTextComponent } from "./components/copied-room-id-text";
@@ -42,6 +44,7 @@ import { initLoseImageComponent } from "./components/lose-img";
     initCopiedRoomIdTextComponent();
     initCatSilhouetteComponent()
     initLineImgComponent();
+    initHeaderComponent();
     initErrorTextComponent();
     initCountdownComponent()
     initCatPaperComponent();
