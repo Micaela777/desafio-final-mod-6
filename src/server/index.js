@@ -83,19 +83,75 @@ app.get("/rooms/:roomId", (req, res) => {
         }
     });
 });
-app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
-    const rtdbLongId = req.params.rtdbLongId;
-    const userId = req.params.userId;
-    const name = req.body.name;
-    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame/" + userId);
-    rtdbReference.set({
+/*app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
+  const rtdbLongId = req.params.rtdbLongId
+  const userId = req.params.userId
+  const name = req.body.name
+
+  const rtdbRefOtro = rtdb.ref("rooms/" + rtdbLongId)
+  
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame/" + userId)
+  rtdbRefOtro.get().then((snap) => {
+    const data = snap.val().currentGame
+    const dataArr = Object.entries(data)
+    const dataLength = dataArr.length
+    
+    if(dataLength !== 2){
+      rtdbReference.set({
         name: name,
         choise: "",
         online: "false",
         start: "false"
-    });
-    res.json({
-        ok: "todo ok"
+      }).then(() => {
+        res.json({
+          message: "el usuario se unió a la sala"
+        })
+      })
+    } else if (dataLength == 2){
+      res.json({
+        message: "esta lleno kpo"
+      })
+    }
+  })
+})*/
+/*app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
+  const rtdbLongId = req.params.rtdbLongId
+  const userId = req.params.userId
+  const name = req.body.name
+
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame/" + userId)
+
+  rtdbReference.set({
+    name: name,
+    choise: "",
+    online: "false",
+    start: "false"
+  })
+
+  res.json({
+    ok:"todo ok"
+  })
+})*/
+app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
+    const rtdbLongId = req.params.rtdbLongId;
+    const userId = req.params.userId;
+    const name = req.body.name;
+    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame");
+    rtdbReference.get().then((snap) => {
+        const data = snap.val();
+        const dataArr = Object.entries(data);
+        const dataLength = dataArr.length;
+        if (dataLength !== 2) {
+            rtdbReference.child(userId).set({
+                name: name,
+                choise: "",
+                online: "false",
+                start: "false"
+            });
+        }
+        else if (dataLength == 2) {
+            res.json({ message: "esta lleno" });
+        }
     });
 });
 app.patch("/rooms/:rtdbLongId/:userId/online", (req, res) => {
@@ -110,28 +166,30 @@ app.patch("/rooms/:rtdbLongId/:userId/online", (req, res) => {
         ok: "todo ok"
     });
 });
-app.get("/rooms/:rtdbLongId/:userId/connected", (req, res) => {
-    const rtdbLongId = req.params.rtdbLongId;
-    const userId = req.params.userId;
-    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame");
-    rtdbReference.get().then((snap) => {
-        const data = snap.val();
-        const dataArr = Object.entries(data);
-        const dataLength = dataArr.length;
-        dataArr.map((i) => {
-            if (dataLength == 2 && i[0] == userId) {
-                res.json({
-                    message: "continuar",
-                });
-            }
-            else if (dataLength !== 2 && i[0] !== userId) {
-                res.status(401).json({
-                    message: "sala llena",
-                });
-            }
-        });
-    });
-});
+/*app.get("/rooms/:rtdbLongId/:userId/connected", (req, res) => {
+  const rtdbLongId = req.params.rtdbLongId
+  const userId = req.params.userId
+
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame")
+  rtdbReference.get().then((snap) => {
+    const data = snap.val()
+    const dataArr = Object.entries(data)
+    const dataLength = dataArr.length
+
+    dataArr.map((i) => {
+
+      if(dataLength == 2 && i[0] == userId){
+        res.json({
+          message: "continuar",
+        })
+      } else if (dataLength !== 2 && i[0] !== userId){
+        res.status(401).json({
+          message: "sala llena",
+        })
+      }
+    })
+  })
+})*/
 app.patch("/rooms/:rtdbLongId/:userId/start", (req, res) => {
     const rtdbLongId = req.params.rtdbLongId;
     const userId = req.params.userId;

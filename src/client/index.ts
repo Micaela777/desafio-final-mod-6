@@ -8,6 +8,7 @@ import "./pages/waiting-for-opponent";
 import "./pages/lobby";
 import "./pages/instructions";
 import "./pages/play-page";
+import "./pages/full-room";
 import "./pages/results-page";
 import "./pages/prueba"
 import { state } from "./state";

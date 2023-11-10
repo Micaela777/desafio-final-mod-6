@@ -11,6 +11,7 @@ router.setRoutes([
   { path: '/lobby', component: 'lobby-page' },
   { path: '/instructions', component: 'instructions-page' },
   { path: '/play', component: 'play-page' },
+  { path: '/full-room', component: 'full-room-page' },
   { path: '/results', component: 'results-page' },
   { path: '/prueba', component: 'prueba-page' },
 

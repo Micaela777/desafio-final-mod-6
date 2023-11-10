@@ -14,9 +14,9 @@ class WaitingForOpponent extends HTMLElement{
         const rtdbId = currentState.rtdbRoomId
         const userId = currentState.userId
 
-        state.changeData(rtdbId, userId).then((res) => {
+        /*state.changeData(rtdbId, userId).then((res) => {
            // console.log(res)
-        })
+        })*/
     };
 
     render(){
