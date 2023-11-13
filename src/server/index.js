@@ -34,11 +34,19 @@ app.post("/auth", (req, res) => {
 });
 app.post("/rooms", (req, res) => {
     const userId = req.body.userId;
+    const name = req.body.name;
     userCollection.doc(userId.toString()).get().then((doc) => {
         if (doc.exists) {
             const roomRef = db_1.rtdb.ref("rooms/" + nanoid());
             roomRef.set({
-                currentGame: {}
+                currentGame: {
+                    [userId]: {
+                        name: name,
+                        choise: "",
+                        online: "false",
+                        start: "false"
+                    }
+                }
             }).then(() => {
                 const roomLongId = roomRef.key;
                 const roomId = 10000 + Math.floor(Math.random() * 9999);
@@ -83,37 +91,37 @@ app.get("/rooms/:roomId", (req, res) => {
         }
     });
 });
-/*app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
-  const rtdbLongId = req.params.rtdbLongId
-  const userId = req.params.userId
-  const name = req.body.name
-
-  const rtdbRefOtro = rtdb.ref("rooms/" + rtdbLongId)
-  
-  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame/" + userId)
-  rtdbRefOtro.get().then((snap) => {
-    const data = snap.val().currentGame
-    const dataArr = Object.entries(data)
-    const dataLength = dataArr.length
-    
-    if(dataLength !== 2){
-      rtdbReference.set({
-        name: name,
-        choise: "",
-        online: "false",
-        start: "false"
-      }).then(() => {
-        res.json({
-          message: "el usuario se unió a la sala"
-        })
-      })
-    } else if (dataLength == 2){
-      res.json({
-        message: "esta lleno kpo"
-      })
-    }
-  })
-})*/
+app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
+    const rtdbLongId = req.params.rtdbLongId;
+    const userId = req.params.userId;
+    const name = req.body.name;
+    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame");
+    rtdbReference.get().then((snap) => {
+        const data = snap.val();
+        const dataArr = Object.entries(data);
+        const dataLength = dataArr.length;
+        const id = data.userId[0];
+        if (dataLength !== 2) {
+            rtdbReference.update({
+                [userId]: {
+                    name: name,
+                    choise: "",
+                    online: "false",
+                    start: "false"
+                }
+            }).then(() => {
+                res.send({
+                    message: "usuario conectado",
+                });
+            });
+        }
+        else if (dataLength == 2) {
+            res.send({
+                message: "sala llena"
+            });
+        }
+    });
+});
 /*app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
   const rtdbLongId = req.params.rtdbLongId
   const userId = req.params.userId
@@ -132,28 +140,30 @@ app.get("/rooms/:roomId", (req, res) => {
     ok:"todo ok"
   })
 })*/
-app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
-    const rtdbLongId = req.params.rtdbLongId;
-    const userId = req.params.userId;
-    const name = req.body.name;
-    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame");
-    rtdbReference.get().then((snap) => {
-        const data = snap.val();
-        const dataArr = Object.entries(data);
-        const dataLength = dataArr.length;
-        if (dataLength !== 2) {
-            rtdbReference.child(userId).set({
-                name: name,
-                choise: "",
-                online: "false",
-                start: "false"
-            });
-        }
-        else if (dataLength == 2) {
-            res.json({ message: "esta lleno" });
-        }
-    });
-});
+/*app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
+  const rtdbLongId = req.params.rtdbLongId
+  const userId = req.params.userId
+  const name = req.body.name
+
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame")
+  rtdbReference.get().then((snap) => {
+    const data = snap.val()
+    const dataArr = Object.entries(data)
+    const dataLength = dataArr.length
+
+    if(dataLength !== 2){
+      rtdbReference.child(userId).set({
+        name: name,
+        choise: "",
+        online: "false",
+        start: "false"
+      })
+    } else if (dataLength == 2){
+      res.json({ message: "esta lleno"})
+    }
+  })
+
+})*/
 app.patch("/rooms/:rtdbLongId/:userId/online", (req, res) => {
     const rtdbLongId = req.params.rtdbLongId;
     const userId = req.params.userId;

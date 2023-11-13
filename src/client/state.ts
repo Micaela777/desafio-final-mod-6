@@ -52,7 +52,7 @@ const state = {
                 headers: {
                     "content-type": "application/json",
                 },
-                body: JSON.stringify({userId: cs.userId}),
+                body: JSON.stringify({ userId: cs.userId, name: cs.name }),
             }).then((res) => {
                 return res.json()
             }).then((data) => {
@@ -139,7 +139,7 @@ const state = {
         });
     },
 
-    setUsersOnline(){
+    /*setUsersOnline(){
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
         rtdbRef.on("value", (snapshot) => {
 
@@ -155,7 +155,7 @@ const state = {
 
             //console.log(userDataArr[0][1]["online"], userDataArr[1][1]["online"])
         })
-    }, 
+    }, */
 
     /*setUsersStart(){
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)

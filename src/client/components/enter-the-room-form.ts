@@ -30,11 +30,15 @@ export function initEnterTheRoomFormComponent() {
                         //console.log(cs.rtdbRoomId, userId)
 
                         state.setRoomUserData(cs.rtdbRoomId, userId).then((res) => {
-                            console.log(res)
+                            //console.log(res)
+                            if(res.message == "usuario conectado"){
+                                Router.go("./waiting");
+                                
+                            } else if (res.message == "sala llena"){
+                                Router.go('full-room')
+                            }
                         })
-                        Router.go("./waiting");
 
-                        
 
                     } else {
                         const errorText = this.shadow.querySelector(".error-text") as HTMLInputElement;

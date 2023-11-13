@@ -39,11 +39,19 @@ app.post("/auth", (req, res) => {
 
 app.post("/rooms", (req, res) => {
   const userId = req.body.userId
+  const name = req.body.name
   userCollection.doc(userId.toString()).get().then((doc) => {
     if(doc.exists){
       const roomRef = rtdb.ref("rooms/" + nanoid())
       roomRef.set({
-        currentGame: {}
+        currentGame: {
+          [userId]:{
+            name: name,
+            choise: "",
+            online: "false",
+            start: "false"
+          }
+        }
       }).then(() => {
         const roomLongId = roomRef.key
         const roomId = 10000 + Math.floor(Math.random() * 9999)
@@ -94,28 +102,30 @@ app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
   const userId = req.params.userId
   const name = req.body.name
 
-  const rtdbRefOtro = rtdb.ref("rooms/" + rtdbLongId)
-  
-  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame/" + userId)
-  rtdbRefOtro.get().then((snap) => {
-    const data = snap.val().currentGame
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame")
+  rtdbReference.get().then((snap) => {
+    const data = snap.val()
     const dataArr = Object.entries(data)
     const dataLength = dataArr.length
-    
+
+    const id = data.userId[0]
+
     if(dataLength !== 2){
-      rtdbReference.set({
-        name: name,
-        choise: "",
-        online: "false",
-        start: "false"
+      rtdbReference.update({
+        [userId]:{
+          name: name,
+          choise: "",
+          online: "false",
+          start: "false"
+        }
       }).then(() => {
-        res.json({
-          message: "el usuario se unió a la sala"
+        res.send({
+          message: "usuario conectado",
         })
       })
     } else if (dataLength == 2){
-      res.json({
-        message: "esta lleno kpo"
+      res.send({
+        message: "sala llena"
       })
     }
   })

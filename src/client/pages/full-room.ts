@@ -1,8 +1,17 @@
+import { Router } from "@vaadin/router";
+
 class FullRoom extends HTMLElement{
     connectedCallback(){
           this.render();
+
+          const button = this.querySelector('.full-room-button')
+          button.addEventListener('click', (e) => {
+              e.preventDefault()
+
+            Router.go('./pre-game-options') 
+          })
       };
-  
+ 
       render(){
           this.innerHTML = `
               <div class="full-room-section">
@@ -28,6 +37,7 @@ class FullRoom extends HTMLElement{
               }
               
               .full-room-items-container{
+                  width: 100%;
                   display: flex;
                   flex-direction: column;
                   align-items: center;
@@ -39,9 +49,14 @@ class FullRoom extends HTMLElement{
                   margin: 0px;
                   text-align: center;
                   font-weight: 400;
-                  font-size: 22px;
+                  font-size: 28px;
                   color: #ffffff;
                   font-family: 'Roboto', sans-serif;
+              }
+
+              .full-room-button{
+                width: 100%;
+                max-width: 340px;
               }
           `;
   
