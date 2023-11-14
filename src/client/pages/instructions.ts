@@ -9,15 +9,8 @@ class Instructions extends HTMLElement{
         button.addEventListener('click', (e) => {
             e.preventDefault()
 
-            const currentGame = state.getState();
-            const userId = currentGame.userId;
-            const rtdbLongId = currentGame.rtdbRoomId;
-
-            state.changeStartData(rtdbLongId, userId).then((res) => {
-                // console.log(res)
-                Router.go('./play')
-                
-            })
+            Router.go('./play')
+            
         })
     };
 

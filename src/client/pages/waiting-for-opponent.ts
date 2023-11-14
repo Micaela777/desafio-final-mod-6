@@ -7,16 +7,17 @@ class WaitingForOpponent extends HTMLElement{
         this.render();
  
         state.getUsersData()
-        //state.setUsersOnline()
+        
 
         const currentState = state.getState();
 
         const rtdbId = currentState.rtdbRoomId
         const userId = currentState.userId
 
-        /*state.changeData(rtdbId, userId).then((res) => {
+        state.changeData(rtdbId, userId).then((res) => {
            // console.log(res)
-        })*/
+        })
+        state.setUsersOnline()
     };
 
     render(){

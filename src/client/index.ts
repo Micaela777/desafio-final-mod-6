@@ -10,7 +10,7 @@ import "./pages/instructions";
 import "./pages/play-page";
 import "./pages/full-room";
 import "./pages/results-page";
-import "./pages/prueba"
+import "./pages/playing";
 import { state } from "./state";
 
 import { initMainTitleComponent } from "./components/main-title";

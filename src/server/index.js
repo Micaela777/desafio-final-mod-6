@@ -100,7 +100,9 @@ app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
         const data = snap.val();
         const dataArr = Object.entries(data);
         const dataLength = dataArr.length;
-        const id = data.userId[0];
+        /*res.json({
+          id
+        })*/
         if (dataLength !== 2) {
             rtdbReference.update({
                 [userId]: {
@@ -110,13 +112,13 @@ app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
                     start: "false"
                 }
             }).then(() => {
-                res.send({
+                res.json({
                     message: "usuario conectado",
                 });
             });
         }
         else if (dataLength == 2) {
-            res.send({
+            res.json({
                 message: "sala llena"
             });
         }

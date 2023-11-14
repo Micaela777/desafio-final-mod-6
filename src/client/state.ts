@@ -139,7 +139,7 @@ const state = {
         });
     },
 
-    /*setUsersOnline(){
+    setUsersOnline(){
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
         rtdbRef.on("value", (snapshot) => {
 
@@ -152,12 +152,10 @@ const state = {
             if(users == 2){
                 Router.go('./lobby')
             }
-
-            //console.log(userDataArr[0][1]["online"], userDataArr[1][1]["online"])
         })
-    }, */
+    }, 
 
-    /*setUsersStart(){
+    setUsersStart(){
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
         rtdbRef.on("value", (snapshot) => {
 
@@ -165,16 +163,16 @@ const state = {
             const usersData = value.currentGame
             const userDataArr = Object.entries(usersData)
 
-            const userTrue = userDataArr[0][1]["online"]
-            const opponentTrue = userDataArr[1][1]["online"]
+            const userTrue = userDataArr[0][1]["start"]
+            const opponentTrue = userDataArr[1][1]["start"]
 
             console.log(userTrue, opponentTrue )
 
             if(userTrue == "true" && opponentTrue == "true"){
-                Router.go('./play')
+                Router.go('./playing')
             }
         })
-    },*/
+    },
 
     setFullRoom(rtdbId, userId){
         const cs = this.getState();

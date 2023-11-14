@@ -18,10 +18,6 @@ class NewChatroom extends HTMLElement{
 
         //console.log(rtdbId, userId)
 
-        state.setRoomUserData(rtdbId, userId).then((res) => {
-            //console.log(res)
-        })
-
         const enterTheRoomButton = this.querySelector('.continue-button')
         enterTheRoomButton.addEventListener('click', (e) => {
             e.preventDefault();

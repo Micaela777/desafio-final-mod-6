@@ -1,18 +1,13 @@
 import { Router } from '@vaadin/router';
 import { state } from '../state';
 
-class Play extends HTMLElement{
+class Playing extends HTMLElement{
   connectedCallback(){
     this.render()
 
     const currentGame = state.getState();
     const userId = currentGame.userId;
     const rtdbLongId = currentGame.rtdbRoomId;
-
-    state.changeStartData(rtdbLongId, userId).then((res) => {
-        // console.log(res)
-    })
-    state.setUsersStart()
 
     };
 
@@ -23,9 +18,8 @@ class Play extends HTMLElement{
 
         this.innerHTML = `
             <div class="play-section">
-                <custom-header class="header"></custom-header>
                 <div class="play-items-container">
-                    <h2 class="waiting-for-text">Esperando a que ${opponentName} presione ¡Jugar!...</h2>
+                    <h2 class="waiting-for-text">Holandaaaa</h2>
                     <div class="hands-container">
                         <custom-cat-paper></custom-cat-paper>
                         <custom-cat-rock></custom-cat-rock>
@@ -83,4 +77,4 @@ class Play extends HTMLElement{
         this.appendChild(style)
     };
 };
-customElements.define('play-page', Play);
+customElements.define('playing-page', Playing);
