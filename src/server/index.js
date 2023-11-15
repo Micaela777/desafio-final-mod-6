@@ -100,9 +100,6 @@ app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
         const data = snap.val();
         const dataArr = Object.entries(data);
         const dataLength = dataArr.length;
-        /*res.json({
-          id
-        })*/
         if (dataLength !== 2) {
             rtdbReference.update({
                 [userId]: {
@@ -124,48 +121,28 @@ app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
         }
     });
 });
-/*app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
-  const rtdbLongId = req.params.rtdbLongId
-  const userId = req.params.userId
-  const name = req.body.name
-
-  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame/" + userId)
-
-  rtdbReference.set({
-    name: name,
-    choise: "",
-    online: "false",
-    start: "false"
-  })
-
-  res.json({
-    ok:"todo ok"
-  })
-})*/
-/*app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
-  const rtdbLongId = req.params.rtdbLongId
-  const userId = req.params.userId
-  const name = req.body.name
-
-  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame")
-  rtdbReference.get().then((snap) => {
-    const data = snap.val()
-    const dataArr = Object.entries(data)
-    const dataLength = dataArr.length
-
-    if(dataLength !== 2){
-      rtdbReference.child(userId).set({
-        name: name,
-        choise: "",
-        online: "false",
-        start: "false"
-      })
-    } else if (dataLength == 2){
-      res.json({ message: "esta lleno"})
-    }
-  })
-
-})*/
+app.get("/rooms/:rtdbLongId/:userId/authentication", (req, res) => {
+    const rtdbLongId = req.params.rtdbLongId;
+    const userId = req.params.userId;
+    const name = req.body.name;
+    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame");
+    rtdbReference.get().then((snap) => {
+        const data = snap.val();
+        const dataArr = Object.entries(data);
+        const firtsUser = dataArr[0][0];
+        const secondUser = dataArr[1][0];
+        if (firtsUser == userId || secondUser == userId) {
+            res.json({
+                message: "validado"
+            });
+        }
+        else {
+            res.json({
+                message: "no validado"
+            });
+        }
+    });
+});
 app.patch("/rooms/:rtdbLongId/:userId/online", (req, res) => {
     const rtdbLongId = req.params.rtdbLongId;
     const userId = req.params.userId;
