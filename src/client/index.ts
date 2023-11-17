@@ -4,6 +4,7 @@ import "./pages/auth";
 import "./pages/pregame-options";
 import "./pages/new-game";
 import "./pages/enter-the-room";
+import "./pages/loading-data";
 import "./pages/waiting-for-opponent";
 import "./pages/lobby";
 import "./pages/instructions";

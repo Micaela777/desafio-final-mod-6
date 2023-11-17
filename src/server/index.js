@@ -40,8 +40,16 @@ app.post("/rooms", (req, res) => {
             const roomRef = db_1.rtdb.ref("rooms/" + nanoid());
             roomRef.set({
                 currentGame: {
-                    [userId]: {
+                    playerOne: {
+                        id: userId,
                         name: name,
+                        choise: "",
+                        online: "false",
+                        start: "false"
+                    },
+                    playerTwo: {
+                        id: "",
+                        name: "",
                         choise: "",
                         online: "false",
                         start: "false"
@@ -94,101 +102,78 @@ app.get("/rooms/:roomId", (req, res) => {
 app.post("/rooms/:rtdbLongId/:userId", (req, res) => {
     const rtdbLongId = req.params.rtdbLongId;
     const userId = req.params.userId;
-    const name = req.body.name;
+    const userName = req.body.name;
     const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame");
     rtdbReference.get().then((snap) => {
         const data = snap.val();
-        const dataArr = Object.entries(data);
-        const dataLength = dataArr.length;
-        if (dataLength !== 2) {
-            rtdbReference.update({
-                [userId]: {
-                    name: name,
-                    choise: "",
-                    online: "false",
-                    start: "false"
-                }
-            }).then(() => {
-                res.json({
-                    message: "usuario conectado",
+        const playerOneId = data.playerOne.id;
+        const playerTwoId = data.playerTwo.id;
+        const playerTwoName = data.playerTwo.name;
+        if (playerOneId == userId || playerTwoId == userId || playerTwoId == "") {
+            if (playerTwoId == "" && playerTwoName == "") {
+                const playerTwoRef = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerTwo");
+                playerTwoRef.update({
+                    id: userId,
+                    name: userName
                 });
+            }
+            res.json({
+                message: "usuario conectado",
             });
         }
-        else if (dataLength == 2) {
+        else {
             res.json({
                 message: "sala llena"
             });
         }
     });
 });
-app.get("/rooms/:rtdbLongId/:userId/authentication", (req, res) => {
+app.patch("/rooms/:rtdbLongId/playerOne/online", (req, res) => {
     const rtdbLongId = req.params.rtdbLongId;
-    const userId = req.params.userId;
-    const name = req.body.name;
-    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame");
-    rtdbReference.get().then((snap) => {
-        const data = snap.val();
-        const dataArr = Object.entries(data);
-        const firtsUser = dataArr[0][0];
-        const secondUser = dataArr[1][0];
-        if (firtsUser == userId || secondUser == userId) {
-            res.json({
-                message: "validado"
-            });
-        }
-        else {
-            res.json({
-                message: "no validado"
-            });
-        }
-    });
-});
-app.patch("/rooms/:rtdbLongId/:userId/online", (req, res) => {
-    const rtdbLongId = req.params.rtdbLongId;
-    const userId = req.params.userId;
-    const userStatus = req.body.status;
-    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame/" + userId);
+    const userStatus = req.body.online;
+    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerOne");
     rtdbReference.update({
         online: userStatus,
-    });
-    res.json({
-        ok: "todo ok"
+    }).then(() => {
+        res.json({
+            ok: "todo ok"
+        });
     });
 });
-/*app.get("/rooms/:rtdbLongId/:userId/connected", (req, res) => {
-  const rtdbLongId = req.params.rtdbLongId
-  const userId = req.params.userId
-
-  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame")
-  rtdbReference.get().then((snap) => {
-    const data = snap.val()
-    const dataArr = Object.entries(data)
-    const dataLength = dataArr.length
-
-    dataArr.map((i) => {
-
-      if(dataLength == 2 && i[0] == userId){
-        res.json({
-          message: "continuar",
-        })
-      } else if (dataLength !== 2 && i[0] !== userId){
-        res.status(401).json({
-          message: "sala llena",
-        })
-      }
-    })
-  })
-})*/
-app.patch("/rooms/:rtdbLongId/:userId/start", (req, res) => {
+app.patch("/rooms/:rtdbLongId/playerTwo/online", (req, res) => {
     const rtdbLongId = req.params.rtdbLongId;
-    const userId = req.params.userId;
-    const userStart = req.body.start;
-    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame/" + userId);
+    const userStatus = req.body.online;
+    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerTwo");
     rtdbReference.update({
-        start: userStart,
+        online: userStatus,
+    }).then(() => {
+        res.json({
+            ok: "todo ok"
+        });
     });
-    res.json({
-        ok: "todo ok"
+});
+app.patch("/rooms/:rtdbLongId/start", (req, res) => {
+    const rtdbLongId = req.params.rtdbLongId;
+    const userStatus = req.body.start;
+    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerOne");
+    rtdbReference.update({
+        start: userStatus,
+    }).then(() => {
+        res.json({
+            ok: "todo ok"
+        });
+    });
+});
+app.patch("/rooms/:rtdbLongId/start", (req, res) => {
+    const rtdbLongId = req.params.rtdbLongId;
+    const userStatus = req.body.start;
+    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerTwo");
+    rtdbReference.update({
+        start: userStatus,
+    }).then(() => {
+        res.json({
+            ok: "todo ok"
+        });
     });
 });
 app.use(express.static("dist"));

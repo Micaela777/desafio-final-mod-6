@@ -64,7 +64,28 @@ const state = {
             });
     },
 
-    setRoomUserData(rtdbId, userId){
+    accessToRoom(roomId){
+        const cs = this.getState()
+        
+        return fetch(API_BASE_URL + "/rooms/" + roomId + "?userId=" + cs.userId)
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            cs.rtdbRoomId = data.rtdbRoomId;
+            console.log(data);
+            this.setState(cs);
+            return data;
+        });
+    },
+
+    existingRoom(roomId){
+        const cs = this.getState();
+        cs.roomId = roomId;
+        this.setState(cs);
+        console.log(cs.roomId)
+    },
+
+    setNewUserAndFullRoom(rtdbId, userId){
         const cs = this.getState();
 
         return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/" + userId,  {
@@ -85,7 +106,6 @@ const state = {
     },
 
     getUsersData(){
-        
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
         rtdbRef.on("value", (snapshot) => {
             const cs = this.getState()
@@ -119,69 +139,15 @@ const state = {
         console.log(cs, "data del state completo")
     },
 
-    changeData(rtdbId, userId){
+    changeOnlineData(rtdbId){
         const cs = this.getState();
 
-        return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/" + userId + "/online",  {
+        return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/online",  {
             method: "PATCH",
             headers: {
                 "content-type": "application/json",
             },
-            body: JSON.stringify({ status: "true" }),
-        })
-        .then((res) => {
-            return res.json();
-        }).then((data) => {
-            
-            console.log(data);
-
-            return data;
-        });
-    },
-
-    setUsersOnline(){
-        const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
-        rtdbRef.on("value", (snapshot) => {
-
-            const value = snapshot.val()
-            const usersData = value.currentGame
-            const userDataArr = Object.entries(usersData)
-
-            const users = userDataArr.length
-
-            if(users == 2){
-                Router.go('./lobby')
-            }
-        })
-    }, 
-
-    setUsersStart(){
-        const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
-        rtdbRef.on("value", (snapshot) => {
-
-            const value = snapshot.val()
-            const usersData = value.currentGame
-            const userDataArr = Object.entries(usersData)
-
-            const userTrue = userDataArr[0][1]["start"]
-            const opponentTrue = userDataArr[1][1]["start"]
-
-            console.log(userTrue, opponentTrue )
-
-            if(userTrue == "true" && opponentTrue == "true"){
-                Router.go('./playing')
-            }
-        })
-    },
-
-    setFullRoom(rtdbId, userId){
-        const cs = this.getState();
-
-        return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/" + userId + "/connected",  {
-            method: "get",
-            headers: {
-                "content-type": "application/json",
-            },
+            body: JSON.stringify({ online: "true" }),
         })
         .then((res) => {
             return res.json();
@@ -213,6 +179,48 @@ const state = {
         });
     },
 
+    setUsersOnline(){
+        const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
+        rtdbRef.on("value", (snapshot) => {
+
+            const value = snapshot.val()
+            const usersData = value.currentGame.playerOne
+            const userDataArr = Object.entries(usersData)
+
+            //const users = userDataArr.length
+
+            const userTrue = userDataArr[0][1]["start"]
+            const opponentTrue = userDataArr[1][1]["start"]
+
+            if(userTrue == "true" && opponentTrue == "true"){
+                Router.go('./playing')
+            }
+
+            /*if(users == 2){
+                Router.go('./lobby')
+            }*/
+        })
+    }, 
+
+    setUsersStart(){
+        const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
+        rtdbRef.on("value", (snapshot) => {
+
+            const value = snapshot.val()
+            const usersData = value.currentGame
+            const userDataArr = Object.entries(usersData)
+
+            const userTrue = userDataArr[0][1]["start"]
+            const opponentTrue = userDataArr[1][1]["start"]
+
+            console.log(userTrue, opponentTrue )
+
+            if(userTrue == "true" && opponentTrue == "true"){
+                Router.go('./playing')
+            }
+        })
+    },
+
     setName(name: string){
         const cs = this.getState();
         cs.name = name;
@@ -229,27 +237,6 @@ const state = {
 
         console.log(cs.name)
         
-    },
-
-    accessToRoom(roomId){
-        const cs = this.getState()
-        
-        return fetch(API_BASE_URL + "/rooms/" + roomId + "?userId=" + cs.userId)
-        .then((res) => {
-            return res.json();
-        }).then((data) => {
-            cs.rtdbRoomId = data.rtdbRoomId;
-            console.log(data);
-            this.setState(cs);
-            return data;
-        });
-    },
-
-    existingRoom(roomId){
-        const cs = this.getState();
-        cs.roomId = roomId;
-        this.setState(cs);
-        console.log(cs.roomId)
     },
 
     listenDatabase() {

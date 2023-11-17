@@ -23,13 +23,12 @@ export function initEnterTheRoomFormComponent() {
                     if (res.rtdbRoomId){
                         const cs = state.getState();
                         const userId = cs.userId;
+                        const rtdbId = cs.rtdbRoomId
 
                         cs.rtdbRoomId = res.rtdbRoomId;
                         state.setState(cs);
 
-                        //console.log(cs.rtdbRoomId, userId)
-
-                        state.setRoomUserData(cs.rtdbRoomId, userId).then((res) => {
+                        state.setNewUserAndFullRoom(rtdbId, userId).then((res) => {
                             //console.log(res)
                             if(res.message == "usuario conectado"){
                                 Router.go("./waiting");
@@ -38,8 +37,7 @@ export function initEnterTheRoomFormComponent() {
                                 Router.go('full-room')
                             }
                         })
-
-
+                        
                     } else {
                         const errorText = this.shadow.querySelector(".error-text") as HTMLInputElement;
                         errorText.style.display = "inherit";

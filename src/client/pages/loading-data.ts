@@ -1,35 +1,35 @@
 import { Router } from '@vaadin/router';
 import { state } from '../state';
 
-class WaitingForOpponent extends HTMLElement{
+class LoadingData extends HTMLElement{
   connectedCallback(){
     
         this.render();
+ 
         state.getUsersData()
         
+
         const currentState = state.getState();
 
         const rtdbId = currentState.rtdbRoomId
         const userId = currentState.userId
 
-        /*state.changeOnlineData(rtdbId).then((res) => {
-            console.log(res)
-        })*/
-        //state.setUsersOnline()
+        
+
     };
 
     render(){
         this.innerHTML = `
-            <div class="waiting-section">
-                <div class="waiting-items-container">
-                    <h3 class="waiting-text">Esperando a que tu oponente se una a la sala...</h3>
+            <div class="loading-data-section">
+                <div class="loading-data-items-container">
+                    <h3 class="loading-data-text">Cargando...</h3>
                 </div>
             </div>
         `
 
         const style = document.createElement("style");
         style.innerHTML = `
-            .waiting-section{
+            .loading-data-section{
                 height: 100vh;
                 padding: 0px 7px;
                 display: flex;
@@ -41,12 +41,12 @@ class WaitingForOpponent extends HTMLElement{
                 background: linear-gradient(to left, #0e123b, #0a325c, #206985);
             }
             @media (min-width: 769px){
-                .waiting-section{
+                .loading-data-section{
                     padding-bottom: 20px;
                 }
             }
 
-            .waiting-items-container{
+            .loading-data-items-container{
                 width: 100%;
                 display: flex;
                 flex-direction: column;
@@ -55,7 +55,7 @@ class WaitingForOpponent extends HTMLElement{
                 gap: 45px;
             }
 
-            .waiting-text{
+            .loading-data-text{
                 max-width: 300px;
                 margin: 0px;
                 font-weight: 400;
@@ -69,4 +69,4 @@ class WaitingForOpponent extends HTMLElement{
         this.appendChild(style)
     };
 };
-customElements.define('waiting-page', WaitingForOpponent);
+customElements.define('loading-data-page', LoadingData);
