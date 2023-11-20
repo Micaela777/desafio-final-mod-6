@@ -139,10 +139,30 @@ const state = {
         console.log(cs, "data del state completo")
     },
 
-    changeOnlineData(rtdbId){
+    changePlayerOneOnlineData(rtdbId){
         const cs = this.getState();
 
-        return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/online",  {
+        return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/playerOne" + "/online",  {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ online: "true" }),
+        })
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            
+            console.log(data);
+
+            return data;
+        });
+    },
+
+    changePlayerTwoOnlineData(rtdbId){
+        const cs = this.getState();
+
+        return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/playerTwo" + "/online",  {
             method: "PATCH",
             headers: {
                 "content-type": "application/json",
@@ -184,21 +204,14 @@ const state = {
         rtdbRef.on("value", (snapshot) => {
 
             const value = snapshot.val()
-            const usersData = value.currentGame.playerOne
-            const userDataArr = Object.entries(usersData)
+            const playerOne = value.currentGame.playerOne.online
+            const playerTwo = value.currentGame.playerTwo.online
 
-            //const users = userDataArr.length
+            console.log(playerOne, playerTwo)
 
-            const userTrue = userDataArr[0][1]["start"]
-            const opponentTrue = userDataArr[1][1]["start"]
-
-            if(userTrue == "true" && opponentTrue == "true"){
-                Router.go('./playing')
-            }
-
-            /*if(users == 2){
+            if(playerOne == "true" && playerTwo == "true"){
                 Router.go('./lobby')
-            }*/
+            }
         })
     }, 
 
@@ -210,12 +223,12 @@ const state = {
             const usersData = value.currentGame
             const userDataArr = Object.entries(usersData)
 
-            const userTrue = userDataArr[0][1]["start"]
-            const opponentTrue = userDataArr[1][1]["start"]
+            const user = userDataArr[0][1]["start"]
+            const opponent = userDataArr[1][1]["start"]
 
-            console.log(userTrue, opponentTrue )
+            console.log(user, opponent )
 
-            if(userTrue == "true" && opponentTrue == "true"){
+            if(user == "true" && opponent == "true"){
                 Router.go('./playing')
             }
         })
