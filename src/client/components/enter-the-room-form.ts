@@ -35,7 +35,7 @@ export function initEnterTheRoomFormComponent() {
 
                         state.setNewUserAndFullRoom(rtdbId, userId).then((res) => {
                            
-                            state.changePlayerTwoOnlineData(rtdbId).then((res) => {
+                            state.changePlayerTwoOnlineTrue(rtdbId).then((res) => {
                                 console.log(res)
                             })
 

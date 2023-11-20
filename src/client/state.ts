@@ -139,7 +139,24 @@ const state = {
         console.log(cs, "data del state completo")
     },
 
-    changePlayerOneOnlineData(rtdbId){
+    setName(name: string){
+        const cs = this.getState();
+        cs.name = name;
+
+        const nameFromDb = cs.dataFromDb
+        nameFromDb.map((i) => {
+            if(i[1].name != cs.opponentName){
+                cs.name = i[1].name
+            }
+            console.log(i[1].name)
+        })
+
+        this.setState(cs)
+
+        console.log(cs.name)
+    },
+
+    changePlayerOneOnlineTrue(rtdbId){
         const cs = this.getState();
 
         return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/playerOne" + "/online",  {
@@ -159,7 +176,7 @@ const state = {
         });
     },
 
-    changePlayerTwoOnlineData(rtdbId){
+    changePlayerTwoOnlineTrue(rtdbId){
         const cs = this.getState();
 
         return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/playerTwo" + "/online",  {
@@ -179,7 +196,63 @@ const state = {
         });
     },
 
-    changeStartData(rtdbId, userId){
+    changePlayerOneOnlineFalse(rtdbId){
+        const cs = this.getState();
+
+        return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/playerOne" + "/online" + "/false",  {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ online: "false" }),
+        })
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            
+            console.log(data);
+
+            return data;
+        });
+    },
+
+    changePlayerTwoOnlineFalse(rtdbId){
+        const cs = this.getState();
+
+        return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/playerTwo" + "/online" + "/false",  {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ online: "false" }),
+        })
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            
+            console.log(data);
+
+            return data;
+        });
+    },
+
+    setOnline(){
+        const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
+        rtdbRef.on("value", (snapshot) => {
+
+            const value = snapshot.val()
+            const playerOne = value.currentGame.playerOne.online
+            const playerTwo = value.currentGame.playerTwo.online
+
+            console.log(playerOne, playerTwo)
+
+            if(playerOne == "true" && playerTwo == "true"){
+                Router.go('./lobby')
+            }
+        })
+    }, 
+
+    changePlayersStartStatus(rtdbId, userId){
         const cs = this.getState();
 
         return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/" + userId + "/start",  {
@@ -199,57 +272,20 @@ const state = {
         });
     },
 
-    setUsersOnline(){
+    setStart(){
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
         rtdbRef.on("value", (snapshot) => {
 
             const value = snapshot.val()
-            const playerOne = value.currentGame.playerOne.online
-            const playerTwo = value.currentGame.playerTwo.online
+            const playerOne = value.currentGame.playerOne.start
+            const playerTwo = value.currentGame.playerTwo.start
 
-            console.log(playerOne, playerTwo)
+            console.log(playerOne, playerTwo )
 
             if(playerOne == "true" && playerTwo == "true"){
-                Router.go('./lobby')
-            }
-        })
-    }, 
-
-    setUsersStart(){
-        const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
-        rtdbRef.on("value", (snapshot) => {
-
-            const value = snapshot.val()
-            const usersData = value.currentGame
-            const userDataArr = Object.entries(usersData)
-
-            const user = userDataArr[0][1]["start"]
-            const opponent = userDataArr[1][1]["start"]
-
-            console.log(user, opponent )
-
-            if(user == "true" && opponent == "true"){
                 Router.go('./playing')
             }
         })
-    },
-
-    setName(name: string){
-        const cs = this.getState();
-        cs.name = name;
-
-        const nameFromDb = cs.dataFromDb
-        nameFromDb.map((i) => {
-            if(i[1].name != cs.opponentName){
-                cs.name = i[1].name
-            }
-            console.log(i[1].name)
-        })
-
-        this.setState(cs)
-
-        console.log(cs.name)
-        
     },
 
     listenDatabase() {

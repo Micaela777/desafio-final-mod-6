@@ -152,30 +152,88 @@ app.patch("/rooms/:rtdbLongId/playerTwo/online", (req, res) => {
         });
     });
 });
-app.patch("/rooms/:rtdbLongId/start", (req, res) => {
+app.patch("/rooms/:rtdbLongId/playerOne/online/false", (req, res) => {
     const rtdbLongId = req.params.rtdbLongId;
-    const userStatus = req.body.start;
+    const userStatus = req.body.online;
     const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerOne");
     rtdbReference.update({
-        start: userStatus,
+        online: userStatus,
     }).then(() => {
         res.json({
             ok: "todo ok"
         });
     });
 });
-app.patch("/rooms/:rtdbLongId/start", (req, res) => {
+app.patch("/rooms/:rtdbLongId/playerTwo/online/false", (req, res) => {
     const rtdbLongId = req.params.rtdbLongId;
-    const userStatus = req.body.start;
+    const userStatus = req.body.online;
     const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerTwo");
     rtdbReference.update({
-        start: userStatus,
+        online: userStatus,
     }).then(() => {
         res.json({
             ok: "todo ok"
         });
     });
 });
+app.patch("/rooms/:rtdbLongId/:userId/start", (req, res) => {
+    const rtdbLongId = req.params.rtdbLongId;
+    const userId = req.params.userId;
+    const userStatus = req.body.start;
+    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame");
+    rtdbReference.get().then((snap) => {
+        const value = snap.val();
+        const user = value.playerOne.id;
+        const opponent = value.playerTwo.id;
+        if (userId == user) {
+            const playerOne = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerOne");
+            playerOne.update({
+                start: userStatus,
+            }).then(() => {
+                res.json({
+                    ok: "true"
+                });
+            });
+        }
+        else if (userId == opponent) {
+            const playerTwo = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerTwo");
+            playerTwo.update({
+                start: userStatus,
+            }).then(() => {
+                res.json({
+                    ok: "true"
+                });
+            });
+        }
+    });
+});
+/*app.patch("/rooms/:rtdbLongId/playerOne/start", (req, res) => {
+  const rtdbLongId = req.params.rtdbLongId
+  const userStatus = req.body.start
+
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerOne")
+  rtdbReference.update({
+    start: userStatus,
+  }).then(() => {
+    res.json({
+      ok: "todo ok"
+    })
+  })
+})
+
+app.patch("/rooms/:rtdbLongId/playerTwo/start", (req, res) => {
+  const rtdbLongId = req.params.rtdbLongId
+  const userStatus = req.body.start
+
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerTwo")
+  rtdbReference.update({
+    start: userStatus,
+  }).then(() => {
+    res.json({
+      ok: "todo ok"
+    })
+  })
+})*/
 app.use(express.static("dist"));
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../../dist/index.html"));

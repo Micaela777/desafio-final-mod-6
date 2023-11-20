@@ -5,14 +5,7 @@ class Play extends HTMLElement{
   connectedCallback(){
     this.render()
 
-    const currentGame = state.getState();
-    const userId = currentGame.userId;
-    const rtdbLongId = currentGame.rtdbRoomId;
-
-    state.changeStartData(rtdbLongId, userId).then((res) => {
-        // console.log(res)
-    })
-    state.setUsersStart()
+    state.setStart()
 
     };
 

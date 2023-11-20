@@ -11,11 +11,11 @@ class WaitingForOpponent extends HTMLElement{
 
         const rtdbId = currentState.rtdbRoomId
 
-        state.changePlayerOneOnlineData(rtdbId).then((res) => {
+        state.changePlayerOneOnlineTrue(rtdbId).then((res) => {
             console.log(res)
         })
 
-        state.setUsersOnline()
+        state.setOnline()
     };
 
     render(){

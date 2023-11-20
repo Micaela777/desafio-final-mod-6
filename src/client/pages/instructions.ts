@@ -5,9 +5,27 @@ class Instructions extends HTMLElement{
   connectedCallback(){
         this.render();
 
+        const currentGame = state.getState();
+        const rtdbId = currentGame.rtdbRoomId;
+
+        state.changePlayerOneOnlineFalse(rtdbId).then((res) => {
+            console.log(res)
+        })
+        state.changePlayerTwoOnlineFalse(rtdbId).then((res) => {
+            console.log(res)
+        })
+
         const button = this.querySelector('.play-button')
         button.addEventListener('click', (e) => {
             e.preventDefault()
+
+            const currentGame = state.getState();
+            const rtdbId = currentGame.rtdbRoomId;
+            const userId = currentGame.userId
+
+            state.changePlayersStartStatus(rtdbId, userId).then((res) => {
+                console.log(res)
+            })
 
             Router.go('./play')
             
