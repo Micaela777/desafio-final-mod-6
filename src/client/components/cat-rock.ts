@@ -31,8 +31,8 @@ export function initCatRockComponent() {
                 }
                 @media (min-width: 769px){
                     .rock-img{
-                        height: 285px;
-                        width: 100px;
+                        height: 255px;
+                        width: 83px;
                     }
                 }
             `;

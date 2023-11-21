@@ -29,8 +29,8 @@ export function initCatPaperComponent() {
                 }
                 @media (min-width: 769px){
                     .paper-img{
-                        height: 296px;
-                        width: 120px;
+                        height: 260px;
+                        width: 95px;
                     }
                 }
             `;

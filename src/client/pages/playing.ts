@@ -13,64 +13,56 @@ class Playing extends HTMLElement{
 
     render(){
 
-        const currentState = state.getState()
-        const opponentName = currentState.opponentName
-
         this.innerHTML = `
-            <div class="play-section">
-                <div class="play-items-container">
-                    <h2 class="waiting-for-text">Holandaaaa</h2>
-                    <div class="hands-container">
-                        <custom-cat-paper></custom-cat-paper>
-                        <custom-cat-rock></custom-cat-rock>
-                        <custom-cat-scissors></custom-cat-scissors>
-                    </div>
+            <div class="playing-section">
+                <div class="playerTwo-hands">
+                    <custom-cat-paper class="playerTwo-paper"></custom-cat-paper>
+                    <custom-cat-rock class="playerTwo-rock"></custom-cat-rock>
+                    <custom-cat-scissors class="playerTwo-scissors"></custom-cat-scissors>
+                </div>
+                <custom-countdown class="countdown"></custom-countdown>
+                <div class="playerOne-hands">
+                    <custom-cat-paper class="playerOne-paper"></custom-cat-paper>
+                    <custom-cat-rock class="playerOne-rock"></custom-cat-rock>
+                    <custom-cat-scissors class="playerOne-scissors"></custom-cat-scissors>
                 </div>
             </div>
         `
 
         const style = document.createElement("style");
         style.innerHTML = `
-            .play-section{
+            .playing-section{
                 height: 100vh;
                 display: flex;
                 flex-direction: column;
+                justify-content: space-between;
                 align-items: center;
-                justify-content: flex-end;
-                overflow: auto;
-                gap: 45px;
                 background: linear-gradient(to left, #0e123b, #0a325c, #206985);
             }
 
-            .header{
-                height: 100%;
-                width: 100%;
+            
+            .playerTwo-paper{
+                display: none;
+                align-items: start;
+                transform: rotate(180deg);
             }
 
-            .play-items-container{
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
+            .playerTwo-rock{
+                display: none;
+                align-items: start;
+                transform: rotate(180deg);
             }
 
-            .waiting-for-text{
-                max-width: 350px;
-                text-align: center;
-                font-size: 28px;
-                font-weight: 400;
-                font-family: 'Roboto', sans-serif;
-                color: #ffffff;
+            .playerTwo-scissors{
+                display: none;
+                align-items: start;
+                transform: rotate(180deg);
             }
 
-            .hands-container{
-                width: 100%;
+            .playerOne-hands{
                 display: flex;
                 align-items: flex-end;
-                justify-content: space-around;
-                padding: 0px 200px;
-                gap: 10px;
+                gap: 55px;
             }
         `;
 

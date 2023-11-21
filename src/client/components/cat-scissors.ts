@@ -29,8 +29,8 @@ export function initCatScissorsComponent() {
                 }
                 @media (min-width: 769px){
                     .scissors-img{
-                        height: 296px;
-                        width: 95px;
+                        height: 260px;
+                        width: 79px;
                     }
                 }
             `;
