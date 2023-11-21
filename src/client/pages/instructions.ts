@@ -105,8 +105,8 @@ class Instructions extends HTMLElement{
                 width: 100%;
                 display: flex;
                 align-items: flex-end;
-                justify-content: space-around;
-                padding: 0px 200px;
+                justify-content: space-evenly;
+                padding: 0px 150px;
                 gap: 10px;
             }
         `;

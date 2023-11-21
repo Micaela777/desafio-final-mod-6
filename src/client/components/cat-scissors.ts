@@ -23,8 +23,8 @@ export function initCatScissorsComponent() {
                     display: flex;
                 }
                 .scissors-img{
-                    height: 290px;
-                    width: 90px;
+                    height: 260px;
+                    width: 79px;
                     object-position: 0px 90px;
                 }
                 @media (min-width: 769px){

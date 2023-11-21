@@ -13,6 +13,7 @@ router.setRoutes([
   { path: '/instructions', component: 'instructions-page' },
   { path: '/play', component: 'play-page' },
   { path: '/full-room', component: 'full-room-page' },
-  { path: '/results', component: 'results-page' },
   { path: '/playing', component: 'playing-page' },
+  { path: '/results', component: 'results-page' },
+  { path: '/no-choise', component: 'no-choise-page' },
 ]);

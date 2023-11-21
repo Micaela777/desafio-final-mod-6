@@ -1,5 +1,4 @@
 import { Router } from '@vaadin/router';
-import { state } from '../state';
 
 class Lobby extends HTMLElement{
   connectedCallback(){
@@ -11,8 +10,7 @@ class Lobby extends HTMLElement{
             e.preventDefault()
 
             Router.go('./instructions') 
-        }) 
-
+        })
     };
 
     render(){
@@ -85,9 +83,13 @@ class Lobby extends HTMLElement{
                 width: 100%;
                 display: flex;
                 align-items: flex-end;
-                justify-content: space-around;
-                padding: 0px 200px;
+                justify-content: space-evenly;
                 gap: 10px;
+            }
+            @media (min-width: 769px){
+                .hands-container{
+                    padding: 0px 150px;
+                }
             }
         `;
 

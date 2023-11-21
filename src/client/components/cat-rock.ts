@@ -24,8 +24,8 @@ export function initCatRockComponent() {
                 }
 
                 .rock-img{
-                    height: 280px;
-                    width: 90px;
+                    height: 255px;
+                    width: 83px;
                     object-position: 0px 90px;
                     
                 }

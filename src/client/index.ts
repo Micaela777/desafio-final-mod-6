@@ -7,11 +7,12 @@ import "./pages/enter-the-room";
 import "./pages/loading-data";
 import "./pages/waiting-for-opponent";
 import "./pages/lobby";
+import "./pages/full-room";
 import "./pages/instructions";
 import "./pages/play-page";
-import "./pages/full-room";
-import "./pages/results-page";
 import "./pages/playing";
+import "./pages/results-page";
+import "./pages/no-choise";
 import { state } from "./state";
 
 import { initMainTitleComponent } from "./components/main-title";

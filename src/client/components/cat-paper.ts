@@ -23,8 +23,8 @@ export function initCatPaperComponent() {
                     display: flex;
                 }
                 .paper-img{
-                    height: 290px;
-                    width: 107px;
+                    height: 260px;
+                    width: 95px;
                     object-position: 0px 90px;
                 }
                 @media (min-width: 769px){

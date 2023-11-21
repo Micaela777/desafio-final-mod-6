@@ -64,9 +64,44 @@ class Playing extends HTMLElement{
                 align-items: flex-end;
                 gap: 55px;
             }
+
+            .playerOne-paper:hover{
+                cursor: pointer;
+                transform: translateY(-1px);
+                transition: all 0.1s;
+            }
+
+            .playerOne-rock:hover{
+                cursor: pointer;
+                transform: translateY(-1px);
+                transition: all 0.1s;
+            }
+
+            .playerOne-scissors:hover{
+                cursor: pointer;
+                transform: translateY(-1px);
+                transition: all 0.1s;
+            }
         `;
 
         this.appendChild(style)
+
+        const countdown = this.querySelector(".countdown")
+
+        const playerOnePaper = this.querySelector('.playerOne-paper') as any;
+        const playerOnePaperComponentImg = playerOnePaper.shadowRoot.querySelector('.paper-img') as any;
+        playerOnePaperComponentImg.style.height = '292px';
+        playerOnePaperComponentImg.style.width = '116px';
+
+        const playerOneRock = this.querySelector('.playerOne-rock') as any;
+        const playerOneRockComponentImg = playerOneRock.shadowRoot.querySelector('.rock-img') as any;
+        playerOneRockComponentImg.style.height = '281px';
+        playerOneRockComponentImg.style.width = '96px';
+
+        const playerOneScissors = this.querySelector('.playerOne-scissors') as any;
+        const playerOneScissorsComponentImg = playerOneScissors.shadowRoot.querySelector('.scissors-img') as any;
+        playerOneScissorsComponentImg.style.height = '281px';
+        playerOneScissorsComponentImg.style.width = '96px';
     };
 };
 customElements.define('playing-page', Playing);
