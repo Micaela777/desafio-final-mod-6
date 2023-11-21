@@ -3,6 +3,7 @@ import { rtdb } from "./rtdb";
 
 const API_BASE_URL = "http://localhost:3000"
 
+type Jugada = "piedra" | "papel" | "tijeras";
 
 const state = {
 

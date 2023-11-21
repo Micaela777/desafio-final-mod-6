@@ -5,6 +5,16 @@ class Playing extends HTMLElement{
   connectedCallback(){
     this.render()
 
+    let counter = 5;
+
+    /*const intervalId = setInterval(() => {
+        counter--;
+        if (counter < 1) {
+            clearInterval(intervalId);
+            Router.go('./no-choise');
+        };
+    }, 1000);*/
+
     const currentGame = state.getState();
     const userId = currentGame.userId;
     const rtdbLongId = currentGame.rtdbRoomId;
