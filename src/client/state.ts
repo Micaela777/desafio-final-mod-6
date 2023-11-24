@@ -289,6 +289,24 @@ const state = {
         })
     },
 
+    setPlayerOneChoise(move: Jugada){
+        const cs = this.getState();
+
+        return fetch(API_BASE_URL + "/rooms/" + cs.rtdbRoomId + "/playerOne" + "/choise",  {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ choise: move }),
+        })
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            console.log(data);
+            return data;
+        });
+    },
+
     listenDatabase() {
         
         const rtdbRef = rtdb.ref(`/rooms/${this.data.roomId}`);

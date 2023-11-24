@@ -264,6 +264,41 @@ app.patch("/rooms/:rtdbLongId/playerTwo/choise", (req, res) => {
 })
 
 
+/*app.patch("/rooms/:rtdbLongId/:userId/play", (req, res) => {
+  const rtdbLongId = req.params.rtdbLongId
+  const userId = req.params.userId
+  const userStatus = req.body.choise
+
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame")
+  rtdbReference.get().then((snap) => {
+    const value = snap.val()
+    const user = value.playerOne.id
+    const opponent = value.playerTwo.id 
+
+    if(userId == user){
+      const playerOne = rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerOne")
+      playerOne.update({
+        choise: userStatus,
+      }).then(() => {
+        res.json({
+          ok: "true"
+        })
+      })
+
+    } else if (userId == opponent){
+      const playerTwo = rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerTwo")
+      playerTwo.update({
+        choise: userStatus,
+      }).then(() => {
+        res.json({
+          ok: "true"
+        })
+      })
+    }
+  })
+})*/
+
+
   app.use(express.static("dist"));
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../../dist/index.html"))
