@@ -289,10 +289,9 @@ const state = {
         })
     },
 
-    setPlayerOneChoise(move: Jugada){
-        const cs = this.getState();
+    setPlayerChoise(move: Jugada, roomId, userId){
 
-        return fetch(API_BASE_URL + "/rooms/" + cs.rtdbRoomId + "/playerOne" + "/choise",  {
+        return fetch(API_BASE_URL + "/rooms/" + roomId + userId + "/play",  {
             method: "PATCH",
             headers: {
                 "content-type": "application/json",

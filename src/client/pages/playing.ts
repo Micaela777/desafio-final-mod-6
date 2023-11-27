@@ -22,10 +22,15 @@ class Playing extends HTMLElement{
         this.innerHTML = `
             <div class="playing-section">
                 <custom-countdown class="countdown"></custom-countdown>
-                <div class="player-hands">
-                    <custom-cat-paper class="paper"></custom-cat-paper>
-                    <custom-cat-rock class="rock"></custom-cat-rock>
-                    <custom-cat-scissors class="scissors"></custom-cat-scissors>
+                <div class="top-hands">
+                    <custom-cat-paper class="top-paper"></custom-cat-paper>
+                    <custom-cat-rock class="top-rock"></custom-cat-rock>
+                    <custom-cat-scissors class="top-scissors"></custom-cat-scissors>
+                </div>
+                <div class="bottom-hands">
+                    <custom-cat-paper class="bottom-paper"></custom-cat-paper>
+                    <custom-cat-rock class="bottom-rock"></custom-cat-rock>
+                    <custom-cat-scissors class="bottom-scissors"></custom-cat-scissors>
                 </div>
             </div>
         `
@@ -41,25 +46,44 @@ class Playing extends HTMLElement{
                 background: linear-gradient(to left, #0e123b, #0a325c, #206985);
             }
 
-            .player-hands{
+            .top-hands{
+                display: flex;
+                align-items: flex-end;
+                gap: 55px;
+                transform: rotate(180deg);
+            }
+
+            .top-paper{
+                display: none;
+            }
+
+            .top-rock{
+                display: none;
+            }
+
+            .top-scissors{
+                display: none;
+            }
+
+            .bottom-hands{
                 display: flex;
                 align-items: flex-end;
                 gap: 55px;
             }
 
-            .paper:hover{
+            .bottom-paper:hover{
                 cursor: pointer;
                 transform: translateY(-1px);
                 transition: all 0.1s;
             }
 
-            .rock:hover{
+            .bottom-rock:hover{
                 cursor: pointer;
                 transform: translateY(-1px);
                 transition: all 0.1s;
             }
 
-            .scissors:hover{
+            .bottom-scissors:hover{
                 cursor: pointer;
                 transform: translateY(-1px);
                 transition: all 0.1s;
@@ -68,22 +92,25 @@ class Playing extends HTMLElement{
 
         this.appendChild(style)
 
+    };
+
+    addListeners(){
         const countdown = this.querySelector(".countdown")
 
-        const playerPaper = this.querySelector('.paper') as any;
-        const playerPaperComponentImg = playerPaper.shadowRoot.querySelector('.paper-img') as any;
-        playerPaperComponentImg.style.height = '292px';
-        playerPaperComponentImg.style.width = '116px';
+        const bottomPaper = this.querySelector('.paper') as any;
+        const bottomPaperComponentImg = bottomPaper.shadowRoot.querySelector('.paper-img') as any;
+        bottomPaperComponentImg.style.height = '292px';
+        bottomPaperComponentImg.style.width = '116px';
 
-        const playerRock = this.querySelector('.rock') as any;
-        const playerRockComponentImg = playerRock.shadowRoot.querySelector('.rock-img') as any;
-        playerRockComponentImg.style.height = '281px';
-        playerRockComponentImg.style.width = '96px';
+        const bottomRock = this.querySelector('.rock') as any;
+        const bottomRockComponentImg = bottomRock.shadowRoot.querySelector('.rock-img') as any;
+        bottomRockComponentImg.style.height = '281px';
+        bottomRockComponentImg.style.width = '96px';
 
-        const playerScissors = this.querySelector('.scissors') as any;
-        const playerScissorsComponentImg = playerScissors.shadowRoot.querySelector('.scissors-img') as any;
-        playerScissorsComponentImg.style.height = '281px';
-        playerScissorsComponentImg.style.width = '96px';
-    };
+        const bottomScissors = this.querySelector('.scissors') as any;
+        const bottomScissorsComponentImg = bottomScissors.shadowRoot.querySelector('.scissors-img') as any;
+        bottomScissorsComponentImg.style.height = '281px';
+        bottomScissorsComponentImg.style.width = '96px';
+    }
 };
 customElements.define('playing-page', Playing);

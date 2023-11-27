@@ -234,7 +234,7 @@ app.patch("/rooms/:rtdbLongId/:userId/start", (req, res) => {
 })
 
 
-app.patch("/rooms/:rtdbLongId/playerOne/choise", (req, res) => {
+/*app.patch("/rooms/:rtdbLongId/playerOne/choise", (req, res) => {
   const rtdbLongId = req.params.rtdbLongId
   const userStatus = req.body.choise
 
@@ -264,7 +264,23 @@ app.patch("/rooms/:rtdbLongId/playerTwo/choise", (req, res) => {
 })
 
 
-/*app.patch("/rooms/:rtdbLongId/:userId/play", (req, res) => {
+app.patch("/rooms/:rtdbLongId/choise", (req, res) => {
+  const rtdbLongId = req.params.rtdbLongId
+  const user = req.body.user
+  const userStatus = req.body.choise
+
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + user)
+  rtdbReference.update({
+    choise: userStatus,
+  }).then(() => {
+    res.json({
+      message: "ok"
+    })
+  })
+})*/
+
+
+app.patch("/rooms/:rtdbLongId/:userId/play", (req, res) => {
   const rtdbLongId = req.params.rtdbLongId
   const userId = req.params.userId
   const userStatus = req.body.choise
@@ -296,7 +312,7 @@ app.patch("/rooms/:rtdbLongId/playerTwo/choise", (req, res) => {
       })
     }
   })
-})*/
+})
 
 
   app.use(express.static("dist"));

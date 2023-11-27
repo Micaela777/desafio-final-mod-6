@@ -207,63 +207,81 @@ app.patch("/rooms/:rtdbLongId/:userId/start", (req, res) => {
         }
     });
 });
-app.patch("/rooms/:rtdbLongId/playerOne/choise", (req, res) => {
-    const rtdbLongId = req.params.rtdbLongId;
-    const userStatus = req.body.choise;
-    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerOne");
-    rtdbReference.update({
-        choise: userStatus,
-    }).then(() => {
-        res.json({
-            message: "ok"
-        });
-    });
-});
-app.patch("/rooms/:rtdbLongId/playerTwo/choise", (req, res) => {
-    const rtdbLongId = req.params.rtdbLongId;
-    const userStatus = req.body.choise;
-    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerTwo");
-    rtdbReference.update({
-        choise: userStatus,
-    }).then(() => {
-        res.json({
-            message: "ok"
-        });
-    });
-});
-/*app.patch("/rooms/:rtdbLongId/:userId/play", (req, res) => {
+/*app.patch("/rooms/:rtdbLongId/playerOne/choise", (req, res) => {
   const rtdbLongId = req.params.rtdbLongId
-  const userId = req.params.userId
   const userStatus = req.body.choise
 
-  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame")
-  rtdbReference.get().then((snap) => {
-    const value = snap.val()
-    const user = value.playerOne.id
-    const opponent = value.playerTwo.id
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerOne")
+  rtdbReference.update({
+    choise: userStatus,
+  }).then(() => {
+    res.json({
+      message: "ok"
+    })
+  })
+})
 
-    if(userId == user){
-      const playerOne = rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerOne")
-      playerOne.update({
-        choise: userStatus,
-      }).then(() => {
-        res.json({
-          ok: "true"
-        })
-      })
 
-    } else if (userId == opponent){
-      const playerTwo = rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerTwo")
-      playerTwo.update({
-        choise: userStatus,
-      }).then(() => {
-        res.json({
-          ok: "true"
-        })
-      })
-    }
+app.patch("/rooms/:rtdbLongId/playerTwo/choise", (req, res) => {
+  const rtdbLongId = req.params.rtdbLongId
+  const userStatus = req.body.choise
+
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerTwo")
+  rtdbReference.update({
+    choise: userStatus,
+  }).then(() => {
+    res.json({
+      message: "ok"
+    })
+  })
+})
+
+
+app.patch("/rooms/:rtdbLongId/choise", (req, res) => {
+  const rtdbLongId = req.params.rtdbLongId
+  const user = req.body.user
+  const userStatus = req.body.choise
+
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + user)
+  rtdbReference.update({
+    choise: userStatus,
+  }).then(() => {
+    res.json({
+      message: "ok"
+    })
   })
 })*/
+app.patch("/rooms/:rtdbLongId/:userId/play", (req, res) => {
+    const rtdbLongId = req.params.rtdbLongId;
+    const userId = req.params.userId;
+    const userStatus = req.body.choise;
+    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame");
+    rtdbReference.get().then((snap) => {
+        const value = snap.val();
+        const user = value.playerOne.id;
+        const opponent = value.playerTwo.id;
+        if (userId == user) {
+            const playerOne = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerOne");
+            playerOne.update({
+                choise: userStatus,
+            }).then(() => {
+                res.json({
+                    ok: "true"
+                });
+            });
+        }
+        else if (userId == opponent) {
+            const playerTwo = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerTwo");
+            playerTwo.update({
+                choise: userStatus,
+            }).then(() => {
+                res.json({
+                    ok: "true"
+                });
+            });
+        }
+    });
+});
 app.use(express.static("dist"));
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../../dist/index.html"));
