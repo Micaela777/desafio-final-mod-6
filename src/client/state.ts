@@ -306,7 +306,7 @@ const state = {
         });
     },
 
-    setStateChoise(move: Jugada, userId){
+    setStateChoise(){
 
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
         rtdbRef.on("value", (snapshot) => {
@@ -314,20 +314,17 @@ const state = {
             const cs = state.getState()
 
             const value = snapshot.val()
-            const playerOneId = value.currentGame.playerOne.id
-            const playerTwoId = value.currentGame.playerTwo.id
+            const playerOneChoise = value.currentGame.playerOne.choise
+            const playerTwoChoise= value.currentGame.playerTwo.choise
 
-            if(playerOneId == userId){
-                cs.choise = move
-                
-            } else if (playerTwoId == userId){
-                cs.opponentChoise = move
-    
-            }
+            cs.choise = playerOneChoise
+            cs.opponentChoise = playerTwoChoise
 
             this.setState(cs)
-
+            console.log(cs.choise)
+            console.log(cs.opponentChoise)
         })
+
     },
 
     listenDatabase() {

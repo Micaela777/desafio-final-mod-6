@@ -32,7 +32,8 @@ class Playing extends HTMLElement{
                 console.log(res)
                 console.log("el usuario eligió papel")
 
-                state.setStateChoise("papel", userId)
+                state.setStateChoise()
+    
 
             })
 
@@ -88,7 +89,7 @@ class Playing extends HTMLElement{
                 console.log(res)
                 console.log("el usuario eligió piedra")
                 
-                state.setStateChoise("piedra", userId)
+                state.setStateChoise()
                 
             })
 
@@ -192,7 +193,6 @@ class Playing extends HTMLElement{
             bottomPaper.style.transform = 'unset';
         }
         bottomScissorsComponentImg.addEventListener('click', removeScissorsClick);
-    
     };
 
     render(){
