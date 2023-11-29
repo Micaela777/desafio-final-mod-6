@@ -15,6 +15,10 @@ class Playing extends HTMLElement{
         };
     }, 1000);*/
 
+    const cs = state.getState()
+    const roomId = cs.rtdbRoomId
+    const userId = cs.userId
+
         const countdown = this.querySelector(".countdown") as any;
 
         const bottomPaper = this.querySelector('.bottom-paper') as any;
@@ -23,7 +27,15 @@ class Playing extends HTMLElement{
         bottomPaperComponentImg.style.width = '116px';
 
         const removePaperClick = () => {
-            //state.setMove("tijeras");
+
+            state.setPlayerChoise("papel", roomId, userId).then((res) => {
+                console.log(res)
+                console.log("el usuario eligió papel")
+
+                state.setStateChoise("papel", userId)
+
+            })
+
             bottomPaperComponentImg.style.objectPosition = '0px 43px';
             bottomPaperComponentImg.style.transition = 'all 0.2s ease-out';
     
@@ -71,7 +83,15 @@ class Playing extends HTMLElement{
         bottomRockComponentImg.style.width = '96px';
 
         const removeRockClick = () => {
-            //state.setMove("tijeras");
+
+            state.setPlayerChoise("piedra", roomId, userId).then((res) => {
+                console.log(res)
+                console.log("el usuario eligió piedra")
+                
+                state.setStateChoise("piedra", userId)
+                
+            })
+
             bottomRockComponentImg.style.objectPosition = '0px 43px';
             bottomRockComponentImg.style.transition = 'all 0.2s ease-out';
     
@@ -119,7 +139,20 @@ class Playing extends HTMLElement{
         bottomScissorsComponentImg.style.width = '96px';
 
         const removeScissorsClick = () => {
-            //state.setMove("tijeras");
+
+            state.setPlayerChoise("tijeras", roomId, userId).then((res) => {
+                console.log(res)
+                console.log("el usuario eligió tijera")
+
+                const message = res.message
+
+                if(message == "playerOne"){
+                    cs.choise = "tijeras"
+                } else if (message == "playerTwo"){
+                    cs.opponentChoise = "tijeras"
+                }
+            })
+            
             bottomScissorsComponentImg.style.objectPosition = '0px 43px';
             bottomScissorsComponentImg.style.transition = 'all 0.2s ease-out';
     

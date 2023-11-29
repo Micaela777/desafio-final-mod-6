@@ -291,7 +291,7 @@ const state = {
 
     setPlayerChoise(move: Jugada, roomId, userId){
 
-        return fetch(API_BASE_URL + "/rooms/" + roomId + userId + "/play",  {
+        return fetch(API_BASE_URL + "/rooms/" + roomId + "/" + userId + "/play",  {
             method: "PATCH",
             headers: {
                 "content-type": "application/json",
@@ -304,6 +304,30 @@ const state = {
             console.log(data);
             return data;
         });
+    },
+
+    setStateChoise(move: Jugada, userId){
+
+        const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
+        rtdbRef.on("value", (snapshot) => {
+
+            const cs = state.getState()
+
+            const value = snapshot.val()
+            const playerOneId = value.currentGame.playerOne.id
+            const playerTwoId = value.currentGame.playerTwo.id
+
+            if(playerOneId == userId){
+                cs.choise = move
+                
+            } else if (playerTwoId == userId){
+                cs.opponentChoise = move
+    
+            }
+
+            this.setState(cs)
+
+        })
     },
 
     listenDatabase() {

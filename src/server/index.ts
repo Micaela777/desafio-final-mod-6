@@ -297,7 +297,7 @@ app.patch("/rooms/:rtdbLongId/:userId/play", (req, res) => {
         choise: userStatus,
       }).then(() => {
         res.json({
-          ok: "true"
+          message: "playerOne"
         })
       })
 
@@ -307,7 +307,7 @@ app.patch("/rooms/:rtdbLongId/:userId/play", (req, res) => {
         choise: userStatus,
       }).then(() => {
         res.json({
-          ok: "true"
+          message: "playerTwo"
         })
       })
     }
