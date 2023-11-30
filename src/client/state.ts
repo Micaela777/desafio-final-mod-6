@@ -321,10 +321,7 @@ const state = {
             cs.opponentChoise = playerTwoChoise
 
             this.setState(cs)
-            console.log(cs.choise)
-            console.log(cs.opponentChoise)
         })
-
     },
 
     listenDatabase() {

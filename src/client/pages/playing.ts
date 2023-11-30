@@ -21,6 +21,23 @@ class Playing extends HTMLElement{
 
         const countdown = this.querySelector(".countdown") as any;
 
+        const topPaper = this.querySelector('.top-paper') as any;
+        const topPaperComponentImg = topPaper.shadowRoot.querySelector('.paper-img') as any;
+        topPaperComponentImg.style.height = '292px';
+        topPaperComponentImg.style.width = '116px';
+
+        const topRock = this.querySelector('.top-rock') as any;
+        const topRockComponentImg = topRock.shadowRoot.querySelector('.rock-img') as any;
+        topRockComponentImg.style.height = '281px';
+        topRockComponentImg.style.width = '96px';
+
+        const topScissors = this.querySelector('.top-scissors') as any;
+        const topScissorsComponentImg = topScissors.shadowRoot.querySelector('.scissors-img') as any;
+        topScissorsComponentImg.style.height = '281px';
+        topScissorsComponentImg.style.width = '96px';
+        
+    // ------------------------------------------------------------------------------------    
+        
         const bottomPaper = this.querySelector('.bottom-paper') as any;
         const bottomPaperComponentImg = bottomPaper.shadowRoot.querySelector('.paper-img') as any;
         bottomPaperComponentImg.style.height = '292px';
@@ -30,11 +47,23 @@ class Playing extends HTMLElement{
 
             state.setPlayerChoise("papel", roomId, userId).then((res) => {
                 console.log(res)
-                console.log("el usuario eligió papel")
+                console.log(`${res.message} eligio papel`)
 
                 state.setStateChoise()
-    
-
+                
+                if(res.message == "playerOne"){
+                    if(cs.opponentChoise == "tijeras"){
+                        countdown.style.display = 'none';
+                        topScissors.style.display = 'inherit';
+                        console.log("el segundo usuario es tijeras")
+                    }
+                } else if (res.message == "playerTwo"){
+                    if(cs.choise == "papel"){
+                        countdown.style.display = 'none';
+                        topPaper.style.display = 'inherit';
+                        console.log("el primer usuario es papel")
+                    }
+                }
             })
 
             bottomPaperComponentImg.style.objectPosition = '0px 43px';
@@ -43,6 +72,8 @@ class Playing extends HTMLElement{
             // Acá se le baja opacidad a los elementos no elegidos
             bottomScissors.style.opacity = '0.4';
             bottomRock.style.opacity = '0.4';
+
+            
     
             /*setTimeout(() => {
                 if (state.data.currentGame.computerPlay == "tijeras") {
@@ -87,10 +118,9 @@ class Playing extends HTMLElement{
 
             state.setPlayerChoise("piedra", roomId, userId).then((res) => {
                 console.log(res)
-                console.log("el usuario eligió piedra")
+                console.log(`${res.message} eligio piedra`)
                 
                 state.setStateChoise()
-                
             })
 
             bottomRockComponentImg.style.objectPosition = '0px 43px';
@@ -143,14 +173,22 @@ class Playing extends HTMLElement{
 
             state.setPlayerChoise("tijeras", roomId, userId).then((res) => {
                 console.log(res)
-                console.log("el usuario eligió tijera")
+                console.log(`${res.message} eligio tijera`)
 
-                const message = res.message
+                state.setStateChoise()
 
-                if(message == "playerOne"){
-                    cs.choise = "tijeras"
-                } else if (message == "playerTwo"){
-                    cs.opponentChoise = "tijeras"
+                if(res.message == "playerOne"){
+                    if(cs.opponentChoise == "tijeras"){
+                        countdown.style.display = 'none';
+                        topScissors.style.display = 'inherit';
+                        console.log("el segundo usuario es tijeras")
+                    }
+                } else if (res.message == "playerTwo"){
+                    if(cs.choise == "papel"){
+                        countdown.style.display = 'none';
+                        topPaper.style.display = 'inherit';
+                        console.log("el primer usuario es papel")
+                    }
                 }
             })
             
