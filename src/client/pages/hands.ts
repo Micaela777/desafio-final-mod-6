@@ -1,7 +1,7 @@
 import { Router } from '@vaadin/router';
 import { state } from '../state';
 
-class LoadingData extends HTMLElement{
+class Hands extends HTMLElement{
   connectedCallback(){
     
         this.render();
@@ -69,4 +69,4 @@ class LoadingData extends HTMLElement{
         this.appendChild(style)
     };
 };
-customElements.define('loading-data-page', LoadingData);
+customElements.define('hands-page', Hands);

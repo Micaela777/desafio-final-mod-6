@@ -43,7 +43,7 @@ export function initEnterTheRoomFormComponent() {
                                 Router.go("./waiting");
                                 
                             } else if (res.message == "sala llena"){
-                                Router.go('full-room')
+                                Router.go('./full-room')
                             }
                         })
                         

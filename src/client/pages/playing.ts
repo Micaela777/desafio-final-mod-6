@@ -46,24 +46,26 @@ class Playing extends HTMLElement{
         const removePaperClick = () => {
 
             state.setPlayerChoise("papel", roomId, userId).then((res) => {
-                console.log(res)
+                console.log(res, "primer res")
                 console.log(`${res.message} eligio papel`)
 
                 state.setStateChoise()
-                
-                if(res.message == "playerOne"){
-                    if(cs.opponentChoise == "tijeras"){
-                        countdown.style.display = 'none';
-                        topScissors.style.display = 'inherit';
-                        console.log("el segundo usuario es tijeras")
+
+                setTimeout(() => {
+                    if(res.message == "playerOne"){
+                        if(cs.opponentChoise == "tijeras"){
+                            countdown.style.display = 'none';
+                            topScissors.style.display = 'inherit';
+                            console.log("el segundo usuario es tijeras")
+                        }
+                    } else if (res.message == "playerTwo"){
+                        if(cs.choise == "papel"){
+                            countdown.style.display = 'none';
+                            topPaper.style.display = 'inherit';
+                            console.log("el primer usuario es papel")
+                        }
                     }
-                } else if (res.message == "playerTwo"){
-                    if(cs.choise == "papel"){
-                        countdown.style.display = 'none';
-                        topPaper.style.display = 'inherit';
-                        console.log("el primer usuario es papel")
-                    }
-                }
+                }, 800);
             })
 
             bottomPaperComponentImg.style.objectPosition = '0px 43px';
@@ -107,8 +109,9 @@ class Playing extends HTMLElement{
             bottomRock.style.transform = 'unset';
         }
         bottomPaperComponentImg.addEventListener('click', removePaperClick);
+        
 
-
+// ---------------------------------------------------------------------------------------------------------
         const bottomRock = this.querySelector('.bottom-rock') as any;
         const bottomRockComponentImg = bottomRock.shadowRoot.querySelector('.rock-img') as any;
         bottomRockComponentImg.style.height = '281px';
@@ -162,8 +165,8 @@ class Playing extends HTMLElement{
             bottomPaper.style.transform = 'unset';
         }
         bottomRockComponentImg.addEventListener('click', removeRockClick);
-    
 
+//------------------------------------------------------------------------------------------------------------
         const bottomScissors = this.querySelector('.bottom-scissors') as any;
         const bottomScissorsComponentImg = bottomScissors.shadowRoot.querySelector('.scissors-img') as any;
         bottomScissorsComponentImg.style.height = '281px';
@@ -177,7 +180,23 @@ class Playing extends HTMLElement{
 
                 state.setStateChoise()
 
-                if(res.message == "playerOne"){
+                setTimeout(() => {
+                    if(res.message == "playerOne"){
+                        if(cs.opponentChoise == "tijeras"){
+                            countdown.style.display = 'none';
+                            topScissors.style.display = 'inherit';
+                            console.log("el segundo usuario es tijeras")
+                        }
+                    } else if (res.message == "playerTwo"){
+                        if(cs.choise == "papel"){
+                            countdown.style.display = 'none';
+                            topPaper.style.display = 'inherit';
+                            console.log("el primer usuario es papel")
+                        }
+                    }
+                }, 800)
+
+                /*if(res.message == "playerOne"){
                     if(cs.opponentChoise == "tijeras"){
                         countdown.style.display = 'none';
                         topScissors.style.display = 'inherit';
@@ -189,7 +208,7 @@ class Playing extends HTMLElement{
                         topPaper.style.display = 'inherit';
                         console.log("el primer usuario es papel")
                     }
-                }
+                }*/
             })
             
             bottomScissorsComponentImg.style.objectPosition = '0px 43px';

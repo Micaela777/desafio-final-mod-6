@@ -315,6 +315,22 @@ app.patch("/rooms/:rtdbLongId/:userId/play", (req, res) => {
 })
 
 
+/*app.get("/rooms/:rtdbLongId/:userId/getchoise", (req, res) => {
+  const rtdbLongId = req.params.rtdbLongId
+  const userId = req.params.userId
+  const userStatus = req.body.choise
+
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + userId)
+  rtdbReference.update({
+    choise: userStatus,
+  }).then(() => {
+    res.json({
+      message: "ok"
+    })
+  })
+})*/
+
+
   app.use(express.static("dist"));
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../../dist/index.html"))

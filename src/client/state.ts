@@ -324,6 +324,17 @@ const state = {
         })
     },
 
+    /*getPlayersChoises(){
+        const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
+        rtdbRef.on("value", (snapshot) => {
+
+            const value = snapshot.val()
+            const playerOneChoise = value.currentGame.playerOne.choise
+            const playerTwoChoise= value.currentGame.playerTwo.choise
+
+        })
+    },*/
+
     listenDatabase() {
         
         const rtdbRef = rtdb.ref(`/rooms/${this.data.roomId}`);
