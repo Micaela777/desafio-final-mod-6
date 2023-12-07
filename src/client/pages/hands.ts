@@ -13,6 +13,10 @@ class Hands extends HTMLElement{
 
         const rtdbId = currentState.rtdbRoomId
         const userId = currentState.userId
+        const playerOneChoise = currentState.choise
+        const playerTwoChoise = currentState.opponentChoise
+
+        console.log(playerOneChoise, playerTwoChoise)
 
         
 
@@ -20,16 +24,23 @@ class Hands extends HTMLElement{
 
     render(){
         this.innerHTML = `
-            <div class="loading-data-section">
-                <div class="loading-data-items-container">
-                    <h3 class="loading-data-text">Cargando...</h3>
+            <div class="hands-section">
+                <div class="top-hands">
+                    <custom-cat-paper class="top-paper"></custom-cat-paper>
+                    <custom-cat-rock class="top-rock"></custom-cat-rock>
+                    <custom-cat-scissors class="top-scissors"></custom-cat-scissors>
+                </div>
+                <div class="bottom-hands">
+                    <custom-cat-paper class="bottom-paper"></custom-cat-paper>
+                    <custom-cat-rock class="bottom-rock"></custom-cat-rock>
+                    <custom-cat-scissors class="bottom-scissors"></custom-cat-scissors>
                 </div>
             </div>
         `
 
         const style = document.createElement("style");
         style.innerHTML = `
-            .loading-data-section{
+            .hands-section{
                 height: 100vh;
                 padding: 0px 7px;
                 display: flex;
@@ -41,12 +52,12 @@ class Hands extends HTMLElement{
                 background: linear-gradient(to left, #0e123b, #0a325c, #206985);
             }
             @media (min-width: 769px){
-                .loading-data-section{
+                .hands-section{
                     padding-bottom: 20px;
                 }
             }
 
-            .loading-data-items-container{
+            .hands-items-container{
                 width: 100%;
                 display: flex;
                 flex-direction: column;
@@ -55,7 +66,7 @@ class Hands extends HTMLElement{
                 gap: 45px;
             }
 
-            .loading-data-text{
+            .hands-text{
                 max-width: 300px;
                 margin: 0px;
                 font-weight: 400;

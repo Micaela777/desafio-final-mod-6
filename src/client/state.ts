@@ -324,7 +324,7 @@ const state = {
         })
     },
 
-    /*getPlayersChoises(){
+    getPlayersChoises(){
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
         rtdbRef.on("value", (snapshot) => {
 
@@ -332,8 +332,11 @@ const state = {
             const playerOneChoise = value.currentGame.playerOne.choise
             const playerTwoChoise= value.currentGame.playerTwo.choise
 
+            if(playerOneChoise !== "" && playerTwoChoise !== ""){
+                Router.go("./hands")
+            }
         })
-    },*/
+    },
 
     listenDatabase() {
         

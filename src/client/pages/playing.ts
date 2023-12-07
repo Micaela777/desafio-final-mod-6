@@ -15,10 +15,11 @@ class Playing extends HTMLElement{
         };
     }, 1000);*/
 
-    const cs = state.getState()
-    const roomId = cs.rtdbRoomId
-    const userId = cs.userId
+        const cs = state.getState()
+        const roomId = cs.rtdbRoomId
+        const userId = cs.userId
 
+    
         const countdown = this.querySelector(".countdown") as any;
 
         const topPaper = this.querySelector('.top-paper') as any;
@@ -51,7 +52,7 @@ class Playing extends HTMLElement{
 
                 state.setStateChoise()
 
-                setTimeout(() => {
+                /*setTimeout(() => {
                     if(res.message == "playerOne"){
                         if(cs.opponentChoise == "tijeras"){
                             countdown.style.display = 'none';
@@ -65,7 +66,8 @@ class Playing extends HTMLElement{
                             console.log("el primer usuario es papel")
                         }
                     }
-                }, 800);
+                }, 800);*/
+
             })
 
             bottomPaperComponentImg.style.objectPosition = '0px 43px';
@@ -180,7 +182,7 @@ class Playing extends HTMLElement{
 
                 state.setStateChoise()
 
-                setTimeout(() => {
+                /*setTimeout(() => {
                     if(res.message == "playerOne"){
                         if(cs.opponentChoise == "tijeras"){
                             countdown.style.display = 'none';
@@ -194,7 +196,7 @@ class Playing extends HTMLElement{
                             console.log("el primer usuario es papel")
                         }
                     }
-                }, 800)
+                }, 800)*/
 
                 /*if(res.message == "playerOne"){
                     if(cs.opponentChoise == "tijeras"){
@@ -250,6 +252,8 @@ class Playing extends HTMLElement{
             bottomPaper.style.transform = 'unset';
         }
         bottomScissorsComponentImg.addEventListener('click', removeScissorsClick);
+
+        state.getPlayersChoises()
     };
 
     render(){
