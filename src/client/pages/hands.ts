@@ -6,20 +6,83 @@ class Hands extends HTMLElement{
     
         this.render();
  
-        state.getUsersData()
-        
+        const topPaper = this.querySelector('.top-paper') as any;
+        const topPaperComponentImg = topPaper.shadowRoot.querySelector('.paper-img') as any;
+        topPaperComponentImg.style.height = '320px';
+        topPaperComponentImg.style.width = '130px';
 
-        const currentState = state.getState();
+        const topRock = this.querySelector('.top-rock') as any;
+        const topRockComponentImg = topRock.shadowRoot.querySelector('.rock-img') as any;
+        topRockComponentImg.style.height = '320px';
+        topRockComponentImg.style.width = '105px';
 
-        const rtdbId = currentState.rtdbRoomId
-        const userId = currentState.userId
-        const playerOneChoise = currentState.choise
-        const playerTwoChoise = currentState.opponentChoise
+        const topScissors = this.querySelector('.top-scissors') as any;
+        const topScissorsComponentImg = topScissors.shadowRoot.querySelector('.scissors-img') as any;
+        topScissorsComponentImg.style.height = '320px';
+        topScissorsComponentImg.style.width = '105px';
 
-        console.log(playerOneChoise, playerTwoChoise)
+        //--------------------------------------------------------------
 
-        
+        const bottomPaper = this.querySelector('.bottom-paper') as any;
+        const bottomPaperComponentImg = bottomPaper.shadowRoot.querySelector('.paper-img') as any;
+        bottomPaperComponentImg.style.height = '330px';
+        bottomPaperComponentImg.style.width = '130px'; 
 
+        const bottomRock = this.querySelector('.bottom-rock') as any;
+        const bottomRockComponentImg = bottomRock.shadowRoot.querySelector('.rock-img') as any;
+        bottomRockComponentImg.style.height = '320px';
+        bottomRockComponentImg.style.width = '105px';
+
+        const bottomScissors = this.querySelector('.bottom-scissors') as any;
+        const bottomScissorsComponentImg = bottomScissors.shadowRoot.querySelector('.scissors-img') as any;
+        bottomScissorsComponentImg.style.height = '320px';
+        bottomScissorsComponentImg.style.width = '105px';
+
+
+        const cs = state.getState();
+
+        const roomId = cs.rtdbRoomId
+        const userId = cs.userId
+
+       state.getChoiseResult(roomId, userId).then((res) => {
+
+        if(res.message == "playerOne"){
+
+            if(cs.choise == "papel"){
+                bottomPaper.style.display = "inherit"
+            } else if (cs.choise == "piedra"){
+                bottomRock.style.display = "inherit"
+            } else if (cs.choise == "tijeras"){
+                bottomScissors.style.display = "inherit"
+            }
+
+            if (cs.opponentChoise == "papel"){
+                topPaper.style.display  = "inherit"
+            } else if (cs.opponentChoise == "piedra"){
+                topRock.style.display = "inherit"
+            } else if (cs.opponentChoise == "tijeras"){
+                topScissors.style.display = "inherit"
+            }
+
+        } else if (res.message == "playerTwo"){
+            
+            if(cs.opponentChoise == "papel"){
+                bottomPaper.style.display = "inherit"
+            } else if (cs.opponentChoise == "piedra"){
+                bottomRock.style.display = "inherit"
+            } else if (cs.opponentChoise == "tijeras"){
+                bottomScissors.style.display = "inherit"
+            }
+
+            if(cs.choise == "papel"){
+                topPaper.style.display = "inherit"
+            } else if (cs.choise == "piedra"){
+                topRock.style.display = "inherit"
+            } else if (cs.choise == "tijeras"){
+                topScissors.style.display = "inherit"
+            }
+        }
+       })
     };
 
     render(){
@@ -42,38 +105,48 @@ class Hands extends HTMLElement{
         style.innerHTML = `
             .hands-section{
                 height: 100vh;
-                padding: 0px 7px;
                 display: flex;
                 flex-direction: column;
+                justify-content: space-between;
                 align-items: center;
-                justify-content: center;
-                overflow: auto;
-                gap: 45px;
                 background: linear-gradient(to left, #0e123b, #0a325c, #206985);
             }
-            @media (min-width: 769px){
-                .hands-section{
-                    padding-bottom: 20px;
-                }
-            }
 
-            .hands-items-container{
-                width: 100%;
+            .top-hands{
                 display: flex;
-                flex-direction: column;
-                align-items: center;
-                padding: 9px 0px;
-                gap: 45px;
+                align-items: flex-end;
+                gap: 55px;
+                transform: rotate(180deg);
+            }
+            
+            .top-paper{
+                display: none;
             }
 
-            .hands-text{
-                max-width: 300px;
-                margin: 0px;
-                font-weight: 400;
-                font-size: 26px;
-                text-align: center;
-                font-family: 'Roboto', sans-serif;
-                color: #ffffff;
+            .top-rock{
+                display: none;
+            }
+
+            .top-scissors{
+                display: none;
+            }
+
+            .bottom-hands{
+                display: flex;
+                align-items: flex-end;
+                gap: 55px;
+            }
+
+            .bottom-paper{
+                display: none;
+            }
+
+            .bottom-rock{
+                display: none;
+            }
+
+            .bottom-scissors{
+                display: none;
             }
         `;
 

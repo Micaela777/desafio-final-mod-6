@@ -315,20 +315,27 @@ app.patch("/rooms/:rtdbLongId/:userId/play", (req, res) => {
 })
 
 
-/*app.get("/rooms/:rtdbLongId/:userId/getchoise", (req, res) => {
+app.get("/rooms/:rtdbLongId/:userId/getchoise", (req, res) => {
   const rtdbLongId = req.params.rtdbLongId
   const userId = req.params.userId
-  const userStatus = req.body.choise
 
-  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + userId)
-  rtdbReference.update({
-    choise: userStatus,
-  }).then(() => {
-    res.json({
-      message: "ok"
-    })
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame")
+  rtdbReference.get().then((snap) => {
+    const value = snap.val()
+    const user = value.playerOne.id
+    const opponent = value.playerTwo.id
+
+    if(user == userId){
+      res.json({
+        message: "playerOne"
+      })
+    } else if (opponent == userId){
+      res.json({
+        message: "playerTwo"
+      })
+    }
   })
-})*/
+})
 
 
   app.use(express.static("dist"));

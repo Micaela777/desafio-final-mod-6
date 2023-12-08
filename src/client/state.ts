@@ -338,6 +338,21 @@ const state = {
         })
     },
 
+    getChoiseResult(roomId, userId){
+        return fetch(API_BASE_URL + "/rooms/" + roomId + "/" + userId + "/getchoise",  {
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+            },
+        })
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            console.log(data);
+            return data;
+        });
+    },
+
     listenDatabase() {
         
         const rtdbRef = rtdb.ref(`/rooms/${this.data.roomId}`);

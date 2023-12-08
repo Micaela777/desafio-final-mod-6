@@ -282,6 +282,26 @@ app.patch("/rooms/:rtdbLongId/:userId/play", (req, res) => {
         }
     });
 });
+app.get("/rooms/:rtdbLongId/:userId/getchoise", (req, res) => {
+    const rtdbLongId = req.params.rtdbLongId;
+    const userId = req.params.userId;
+    const rtdbReference = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame");
+    rtdbReference.get().then((snap) => {
+        const value = snap.val();
+        const user = value.playerOne.id;
+        const opponent = value.playerTwo.id;
+        if (user == userId) {
+            res.json({
+                message: "playerOne"
+            });
+        }
+        else if (opponent == userId) {
+            res.json({
+                message: "playerTwo"
+            });
+        }
+    });
+});
 app.use(express.static("dist"));
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../../dist/index.html"));

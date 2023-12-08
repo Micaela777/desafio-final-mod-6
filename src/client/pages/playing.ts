@@ -5,6 +5,10 @@ class Playing extends HTMLElement{
   connectedCallback(){
     this.render()
 
+    const cs = state.getState()
+        const roomId = cs.rtdbRoomId
+        const userId = cs.userId
+
     let counter = 5;
 
     /*const intervalId = setInterval(() => {
@@ -15,34 +19,10 @@ class Playing extends HTMLElement{
         };
     }, 1000);*/
 
-        const cs = state.getState()
-        const roomId = cs.rtdbRoomId
-        const userId = cs.userId
-
-    
-        const countdown = this.querySelector(".countdown") as any;
-
-        const topPaper = this.querySelector('.top-paper') as any;
-        const topPaperComponentImg = topPaper.shadowRoot.querySelector('.paper-img') as any;
-        topPaperComponentImg.style.height = '292px';
-        topPaperComponentImg.style.width = '116px';
-
-        const topRock = this.querySelector('.top-rock') as any;
-        const topRockComponentImg = topRock.shadowRoot.querySelector('.rock-img') as any;
-        topRockComponentImg.style.height = '281px';
-        topRockComponentImg.style.width = '96px';
-
-        const topScissors = this.querySelector('.top-scissors') as any;
-        const topScissorsComponentImg = topScissors.shadowRoot.querySelector('.scissors-img') as any;
-        topScissorsComponentImg.style.height = '281px';
-        topScissorsComponentImg.style.width = '96px';
-        
-    // ------------------------------------------------------------------------------------    
-        
-        const bottomPaper = this.querySelector('.bottom-paper') as any;
-        const bottomPaperComponentImg = bottomPaper.shadowRoot.querySelector('.paper-img') as any;
-        bottomPaperComponentImg.style.height = '292px';
-        bottomPaperComponentImg.style.width = '116px';
+        const paper = this.querySelector('.paper') as any;
+        const paperComponentImg = paper.shadowRoot.querySelector('.paper-img') as any;
+        paperComponentImg.style.height = '292px';
+        paperComponentImg.style.width = '116px';
 
         const removePaperClick = () => {
 
@@ -51,73 +31,32 @@ class Playing extends HTMLElement{
                 console.log(`${res.message} eligio papel`)
 
                 state.setStateChoise()
-
-                /*setTimeout(() => {
-                    if(res.message == "playerOne"){
-                        if(cs.opponentChoise == "tijeras"){
-                            countdown.style.display = 'none';
-                            topScissors.style.display = 'inherit';
-                            console.log("el segundo usuario es tijeras")
-                        }
-                    } else if (res.message == "playerTwo"){
-                        if(cs.choise == "papel"){
-                            countdown.style.display = 'none';
-                            topPaper.style.display = 'inherit';
-                            console.log("el primer usuario es papel")
-                        }
-                    }
-                }, 800);*/
-
             })
 
-            bottomPaperComponentImg.style.objectPosition = '0px 43px';
-            bottomPaperComponentImg.style.transition = 'all 0.2s ease-out';
+            paperComponentImg.style.objectPosition = '0px 43px';
+            paperComponentImg.style.transition = 'all 0.2s ease-out';
     
             // Acá se le baja opacidad a los elementos no elegidos
-            bottomScissors.style.opacity = '0.4';
-            bottomRock.style.opacity = '0.4';
+            scissors.style.opacity = '0.4';
+            rock.style.opacity = '0.4';
 
-            
-    
-            /*setTimeout(() => {
-                if (state.data.currentGame.computerPlay == "tijeras") {
-                    computerScissorsComponent.style.display = 'flex';
-                } else if (state.data.currentGame.computerPlay == "piedra") {
-                    computerRockComponent.style.display = 'flex';
-                } else if (state.data.currentGame.computerPlay == "papel") {
-                    computerPaperComponent.style.display = 'flex';
-                };
-    
-                countdownComponent.style.display = 'none';
-                rockComponent.style.display = 'none';
-                paperComponent.style.display = 'none';
-    
-                bottomPaperComponentImg.style.height = '279px';
-                bottomPaperComponentImg.style.width = '87px';
-            }, 800);
-    
-            clearInterval(intervalId);
-            setTimeout(() => {
-                params.goTo('/results');
-            }, 2500);*/
-            bottomPaperComponentImg.removeEventListener('click', removePaperClick);
-            bottomPaper.style.cursor = 'default';
-            bottomPaper.style.transform = 'unset';
-            bottomScissorsComponentImg.removeEventListener("click", removeScissorsClick);
-            bottomScissors.style.cursor = 'default';
-            bottomScissors.style.transform = 'unset';
-            bottomRockComponentImg.removeEventListener('click', removeRockClick);
-            bottomRock.style.cursor = 'default';
-            bottomRock.style.transform = 'unset';
+            paperComponentImg.removeEventListener('click', removePaperClick);
+            paper.style.cursor = 'default';
+            paper.style.transform = 'unset';
+            scissorsComponentImg.removeEventListener("click", removeScissorsClick);
+            scissors.style.cursor = 'default';
+            scissors.style.transform = 'unset';
+            rockComponentImg.removeEventListener('click', removeRockClick);
+            rock.style.cursor = 'default';
+            rock.style.transform = 'unset';
         }
-        bottomPaperComponentImg.addEventListener('click', removePaperClick);
+        paperComponentImg.addEventListener('click', removePaperClick);
         
 
-// ---------------------------------------------------------------------------------------------------------
-        const bottomRock = this.querySelector('.bottom-rock') as any;
-        const bottomRockComponentImg = bottomRock.shadowRoot.querySelector('.rock-img') as any;
-        bottomRockComponentImg.style.height = '281px';
-        bottomRockComponentImg.style.width = '96px';
+        const rock = this.querySelector('.rock') as any;
+        const rockComponentImg = rock.shadowRoot.querySelector('.rock-img') as any;
+        rockComponentImg.style.height = '281px';
+        rockComponentImg.style.width = '96px';
 
         const removeRockClick = () => {
 
@@ -128,51 +67,30 @@ class Playing extends HTMLElement{
                 state.setStateChoise()
             })
 
-            bottomRockComponentImg.style.objectPosition = '0px 43px';
-            bottomRockComponentImg.style.transition = 'all 0.2s ease-out';
+            rockComponentImg.style.objectPosition = '0px 43px';
+            rockComponentImg.style.transition = 'all 0.2s ease-out';
     
             // Acá se le baja opacidad a los elementos no elegidos
-            bottomScissors.style.opacity = '0.4';
-            bottomPaper.style.opacity = '0.4';
+            scissors.style.opacity = '0.4';
+            paper.style.opacity = '0.4';
     
-            /*setTimeout(() => {
-                if (state.data.currentGame.computerPlay == "tijeras") {
-                    computerScissorsComponent.style.display = 'flex';
-                } else if (state.data.currentGame.computerPlay == "piedra") {
-                    computerRockComponent.style.display = 'flex';
-                } else if (state.data.currentGame.computerPlay == "papel") {
-                    computerPaperComponent.style.display = 'flex';
-                };
-    
-                countdownComponent.style.display = 'none';
-                rockComponent.style.display = 'none';
-                paperComponent.style.display = 'none';
-    
-                bottomRockComponentImg.style.height = '279px';
-                bottomRockComponentImg.style.width = '87px';
-            }, 800);
-    
-            clearInterval(intervalId);
-            setTimeout(() => {
-                params.goTo('/results');
-            }, 2500);*/
-            bottomRockComponentImg.removeEventListener('click', removeRockClick);
-            bottomRock.style.cursor = 'default';
-            bottomRock.style.transform = 'unset';
-            bottomScissorsComponentImg.removeEventListener("click", removeScissorsClick);
-            bottomScissors.style.cursor = 'default';
-            bottomScissors.style.transform = 'unset';
-            bottomPaperComponentImg.removeEventListener('click', removePaperClick);
-            bottomPaper.style.cursor = 'default';
-            bottomPaper.style.transform = 'unset';
+            rockComponentImg.removeEventListener('click', removeRockClick);
+            rock.style.cursor = 'default';
+            rock.style.transform = 'unset';
+            scissorsComponentImg.removeEventListener("click", removeScissorsClick);
+            scissors.style.cursor = 'default';
+            scissors.style.transform = 'unset';
+            paperComponentImg.removeEventListener('click', removePaperClick);
+            paper.style.cursor = 'default';
+            paper.style.transform = 'unset';
         }
-        bottomRockComponentImg.addEventListener('click', removeRockClick);
+        rockComponentImg.addEventListener('click', removeRockClick);
 
-//------------------------------------------------------------------------------------------------------------
-        const bottomScissors = this.querySelector('.bottom-scissors') as any;
-        const bottomScissorsComponentImg = bottomScissors.shadowRoot.querySelector('.scissors-img') as any;
-        bottomScissorsComponentImg.style.height = '281px';
-        bottomScissorsComponentImg.style.width = '96px';
+
+        const scissors = this.querySelector('.scissors') as any;
+        const scissorsComponentImg = scissors.shadowRoot.querySelector('.scissors-img') as any;
+        scissorsComponentImg.style.height = '281px';
+        scissorsComponentImg.style.width = '96px';
 
         const removeScissorsClick = () => {
 
@@ -181,77 +99,26 @@ class Playing extends HTMLElement{
                 console.log(`${res.message} eligio tijera`)
 
                 state.setStateChoise()
-
-                /*setTimeout(() => {
-                    if(res.message == "playerOne"){
-                        if(cs.opponentChoise == "tijeras"){
-                            countdown.style.display = 'none';
-                            topScissors.style.display = 'inherit';
-                            console.log("el segundo usuario es tijeras")
-                        }
-                    } else if (res.message == "playerTwo"){
-                        if(cs.choise == "papel"){
-                            countdown.style.display = 'none';
-                            topPaper.style.display = 'inherit';
-                            console.log("el primer usuario es papel")
-                        }
-                    }
-                }, 800)*/
-
-                /*if(res.message == "playerOne"){
-                    if(cs.opponentChoise == "tijeras"){
-                        countdown.style.display = 'none';
-                        topScissors.style.display = 'inherit';
-                        console.log("el segundo usuario es tijeras")
-                    }
-                } else if (res.message == "playerTwo"){
-                    if(cs.choise == "papel"){
-                        countdown.style.display = 'none';
-                        topPaper.style.display = 'inherit';
-                        console.log("el primer usuario es papel")
-                    }
-                }*/
             })
             
-            bottomScissorsComponentImg.style.objectPosition = '0px 43px';
-            bottomScissorsComponentImg.style.transition = 'all 0.2s ease-out';
+            scissorsComponentImg.style.objectPosition = '0px 43px';
+            scissorsComponentImg.style.transition = 'all 0.2s ease-out';
     
             // Acá se le baja opacidad a los elementos no elegidos
-            bottomRock.style.opacity = '0.4';
-            bottomPaper.style.opacity = '0.4';
+            rock.style.opacity = '0.4';
+            paper.style.opacity = '0.4';
     
-            /*setTimeout(() => {
-                if (state.data.currentGame.computerPlay == "tijeras") {
-                    computerScissorsComponent.style.display = 'flex';
-                } else if (state.data.currentGame.computerPlay == "piedra") {
-                    computerRockComponent.style.display = 'flex';
-                } else if (state.data.currentGame.computerPlay == "papel") {
-                    computerPaperComponent.style.display = 'flex';
-                };
-    
-                countdownComponent.style.display = 'none';
-                rockComponent.style.display = 'none';
-                paperComponent.style.display = 'none';
-    
-                bottomScissorsComponentImg.style.height = '279px';
-                bottomScissorsComponentImg.style.width = '87px';
-            }, 800);
-    
-            clearInterval(intervalId);
-            setTimeout(() => {
-                params.goTo('/results');
-            }, 2500);*/
-            bottomScissorsComponentImg.removeEventListener('click', removeScissorsClick);
-            bottomScissors.style.cursor = 'default';
-            bottomScissors.style.transform = 'unset';
-            bottomRockComponentImg.removeEventListener("click", removeRockClick);
-            bottomRock.style.cursor = 'default';
-            bottomRock.style.transform = 'unset';
-            bottomPaperComponentImg.removeEventListener('click', removePaperClick);
-            bottomPaper.style.cursor = 'default';
-            bottomPaper.style.transform = 'unset';
+            scissorsComponentImg.removeEventListener('click', removeScissorsClick);
+            scissors.style.cursor = 'default';
+            scissors.style.transform = 'unset';
+            rockComponentImg.removeEventListener("click", removeRockClick);
+            rock.style.cursor = 'default';
+            rock.style.transform = 'unset';
+            paperComponentImg.removeEventListener('click', removePaperClick);
+            paper.style.cursor = 'default';
+            paper.style.transform = 'unset';
         }
-        bottomScissorsComponentImg.addEventListener('click', removeScissorsClick);
+        scissorsComponentImg.addEventListener('click', removeScissorsClick);
 
         state.getPlayersChoises()
     };
@@ -261,15 +128,10 @@ class Playing extends HTMLElement{
         this.innerHTML = `
             <div class="playing-section">
                 <custom-countdown class="countdown"></custom-countdown>
-                <div class="top-hands">
-                    <custom-cat-paper class="top-paper"></custom-cat-paper>
-                    <custom-cat-rock class="top-rock"></custom-cat-rock>
-                    <custom-cat-scissors class="top-scissors"></custom-cat-scissors>
-                </div>
-                <div class="bottom-hands">
-                    <custom-cat-paper class="bottom-paper"></custom-cat-paper>
-                    <custom-cat-rock class="bottom-rock"></custom-cat-rock>
-                    <custom-cat-scissors class="bottom-scissors"></custom-cat-scissors>
+                <div class="hands">
+                    <custom-cat-paper class="paper"></custom-cat-paper>
+                    <custom-cat-rock class="rock"></custom-cat-rock>
+                    <custom-cat-scissors class="scissors"></custom-cat-scissors>
                 </div>
             </div>
         `
@@ -285,44 +147,25 @@ class Playing extends HTMLElement{
                 background: linear-gradient(to left, #0e123b, #0a325c, #206985);
             }
 
-            .top-hands{
-                display: flex;
-                align-items: flex-end;
-                gap: 55px;
-                transform: rotate(180deg);
-            }
-
-            .top-paper{
-                display: none;
-            }
-
-            .top-rock{
-                display: none;
-            }
-
-            .top-scissors{
-                display: none;
-            }
-
-            .bottom-hands{
+            .hands{
                 display: flex;
                 align-items: flex-end;
                 gap: 55px;
             }
 
-            .bottom-paper:hover{
+            .paper:hover{
                 cursor: pointer;
                 transform: translateY(-1px);
                 transition: all 0.1s;
             }
 
-            .bottom-rock:hover{
+            .rock:hover{
                 cursor: pointer;
                 transform: translateY(-1px);
                 transition: all 0.1s;
             }
 
-            .bottom-scissors:hover{
+            .scissors:hover{
                 cursor: pointer;
                 transform: translateY(-1px);
                 transition: all 0.1s;
