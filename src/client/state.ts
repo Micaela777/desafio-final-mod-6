@@ -253,7 +253,7 @@ const state = {
         })
     }, 
 
-    changePlayersStartStatus(rtdbId, userId){
+    changePlayersStartTrueStatus(rtdbId, userId){
         const cs = this.getState();
 
         return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/" + userId + "/start",  {
@@ -287,6 +287,26 @@ const state = {
                 Router.go('./playing')
             }
         })
+    },
+
+    changePlayersStartFalseStatus(rtdbId, userId){
+        const cs = this.getState();
+
+        return fetch(API_BASE_URL + "/rooms/" + rtdbId + "/" + userId + "/start",  {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ start: "false" }),
+        })
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            
+            console.log(data);
+
+            return data;
+        });
     },
 
     setPlayerChoise(move: Jugada, roomId, userId){

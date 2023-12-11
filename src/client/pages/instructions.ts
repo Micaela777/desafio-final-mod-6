@@ -23,7 +23,7 @@ class Instructions extends HTMLElement{
             const rtdbId = currentGame.rtdbRoomId;
             const userId = currentGame.userId
 
-            state.changePlayersStartStatus(rtdbId, userId).then((res) => {
+            state.changePlayersStartTrueStatus(rtdbId, userId).then((res) => {
                 console.log(res)
             })
 

@@ -6,18 +6,25 @@ class Playing extends HTMLElement{
     this.render()
 
     const cs = state.getState()
-        const roomId = cs.rtdbRoomId
-        const userId = cs.userId
+        const roomId = cs.rtdbRoomId;
+        const userId = cs.userId;
+        const userChoise = cs.userChoise;
+        const opponentChoise = cs.opponentChoise;
 
     let counter = 5;
 
-    /*const intervalId = setInterval(() => {
+    const intervalId = setInterval(() => {
         counter--;
         if (counter < 1) {
             clearInterval(intervalId);
             Router.go('./no-choise');
+            
+            if(userChoise == "" || opponentChoise == ""){
+                clearInterval(intervalId);
+                Router.go('./no-choise');
+            }
         };
-    }, 1000);*/
+    }, 1000);
 
         const paper = this.querySelector('.paper') as any;
         const paperComponentImg = paper.shadowRoot.querySelector('.paper-img') as any;

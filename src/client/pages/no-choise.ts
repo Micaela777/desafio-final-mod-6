@@ -18,6 +18,14 @@ class NoChoise extends HTMLElement{
 
             Router.go('./') 
           })
+
+          const cs = state.getState()
+          const roomId = cs.rtdbRoomId
+          const userId = cs.userId
+
+          state.changePlayersStartFalseStatus(roomId, userId).then((res) => {
+            //console.log(res)
+          })
       };
  
       render(){
