@@ -33,7 +33,7 @@ class Playing extends HTMLElement{
 
         const removePaperClick = () => {
 
-            state.setPlayerChoise("papel", roomId, userId).then((res) => {
+            state.setPlayersChoise("papel", roomId, userId).then((res) => {
                 console.log(res, "primer res")
                 console.log(`${res.message} eligio papel`)
 
@@ -67,7 +67,7 @@ class Playing extends HTMLElement{
 
         const removeRockClick = () => {
 
-            state.setPlayerChoise("piedra", roomId, userId).then((res) => {
+            state.setPlayersChoise("piedra", roomId, userId).then((res) => {
                 console.log(res)
                 console.log(`${res.message} eligio piedra`)
                 
@@ -101,7 +101,7 @@ class Playing extends HTMLElement{
 
         const removeScissorsClick = () => {
 
-            state.setPlayerChoise("tijeras", roomId, userId).then((res) => {
+            state.setPlayersChoise("tijeras", roomId, userId).then((res) => {
                 console.log(res)
                 console.log(`${res.message} eligio tijera`)
 

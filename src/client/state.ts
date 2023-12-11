@@ -309,7 +309,7 @@ const state = {
         });
     },
 
-    setPlayerChoise(move: Jugada, roomId, userId){
+    setPlayersChoise(move: Jugada, roomId, userId){
 
         return fetch(API_BASE_URL + "/rooms/" + roomId + "/" + userId + "/play",  {
             method: "PATCH",
@@ -342,6 +342,23 @@ const state = {
 
             this.setState(cs)
         })
+    },
+
+    setPlayersNoChoise(roomId){
+
+        return fetch(API_BASE_URL + "/rooms/" + roomId + "/nochoise",  {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ choise: "" }),
+        })
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            console.log(data);
+            return data;
+        });
     },
 
     getPlayersChoises(){

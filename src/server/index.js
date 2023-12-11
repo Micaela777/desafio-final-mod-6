@@ -207,22 +207,22 @@ app.patch("/rooms/:rtdbLongId/:userId/start", (req, res) => {
         }
     });
 });
-/*app.patch("/rooms/:rtdbLongId/playerOne/choise", (req, res) => {
-  const rtdbLongId = req.params.rtdbLongId
-  const userStatus = req.body.choise
-
-  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerOne")
-  rtdbReference.update({
-    choise: userStatus,
-  }).then(() => {
+app.patch("/rooms/:rtdbLongId/nochoise", (req, res) => {
+    const rtdbLongId = req.params.rtdbLongId;
+    const userChoise = req.body.choise;
+    const playerOne = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerOne");
+    playerOne.update({
+        choise: userChoise,
+    });
+    const playerTwo = db_1.rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerTwo");
+    playerTwo.update({
+        choise: userChoise,
+    });
     res.json({
-      message: "ok"
-    })
-  })
-})
-
-
-app.patch("/rooms/:rtdbLongId/playerTwo/choise", (req, res) => {
+        message: "ok"
+    });
+});
+/*app.patch("/rooms/:rtdbLongId/playerTwo/choise", (req, res) => {
   const rtdbLongId = req.params.rtdbLongId
   const userStatus = req.body.choise
 

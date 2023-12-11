@@ -5,6 +5,10 @@ class NoChoise extends HTMLElement{
     connectedCallback(){
           this.render();
 
+          const cs = state.getState()
+          const roomId = cs.rtdbRoomId
+          const userId = cs.userId
+
           const returnButton = this.querySelector('.return-button')
           returnButton.addEventListener('click', (e) => {
               e.preventDefault()
@@ -19,12 +23,11 @@ class NoChoise extends HTMLElement{
             Router.go('./') 
           })
 
-          const cs = state.getState()
-          const roomId = cs.rtdbRoomId
-          const userId = cs.userId
-
           state.changePlayersStartFalseStatus(roomId, userId).then((res) => {
             //console.log(res)
+            state.setPlayersNoChoise(roomId).then((res) => {
+                //console.log(res)
+              })
           })
       };
  
