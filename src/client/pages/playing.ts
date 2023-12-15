@@ -8,8 +8,8 @@ class Playing extends HTMLElement{
     const cs = state.getState()
         const roomId = cs.rtdbRoomId;
         const userId = cs.userId;
-        const userChoise = cs.userChoise;
-        const opponentChoise = cs.opponentChoise;
+        const userChoise = cs.choise;
+        const opponentChoise = cs.opponentChoise;   
 
     let counter = 5;
 
@@ -17,19 +17,18 @@ class Playing extends HTMLElement{
         counter--;
         if (counter < 1) {
             clearInterval(intervalId);
-            Router.go('./no-choise');
-            
-            if(userChoise == "" || opponentChoise == ""){
-                clearInterval(intervalId);
-                Router.go('./no-choise');
+            state.getPlayersChoises()
+
+            if(userChoise == "" || opponentChoise ==""){
+                Router.go("./no-choise")
             }
         };
     }, 1000);
 
         const paper = this.querySelector('.paper') as any;
         const paperComponentImg = paper.shadowRoot.querySelector('.paper-img') as any;
-        paperComponentImg.style.height = '292px';
-        paperComponentImg.style.width = '116px';
+        paperComponentImg.style.height = '282px';
+        paperComponentImg.style.width = '106px';
 
         const removePaperClick = () => {
 
@@ -62,8 +61,8 @@ class Playing extends HTMLElement{
 
         const rock = this.querySelector('.rock') as any;
         const rockComponentImg = rock.shadowRoot.querySelector('.rock-img') as any;
-        rockComponentImg.style.height = '281px';
-        rockComponentImg.style.width = '96px';
+        rockComponentImg.style.height = '271px';
+        rockComponentImg.style.width = '86px';
 
         const removeRockClick = () => {
 
@@ -96,8 +95,8 @@ class Playing extends HTMLElement{
 
         const scissors = this.querySelector('.scissors') as any;
         const scissorsComponentImg = scissors.shadowRoot.querySelector('.scissors-img') as any;
-        scissorsComponentImg.style.height = '281px';
-        scissorsComponentImg.style.width = '96px';
+        scissorsComponentImg.style.height = '271px';
+        scissorsComponentImg.style.width = '86px';
 
         const removeScissorsClick = () => {
 
@@ -126,8 +125,6 @@ class Playing extends HTMLElement{
             paper.style.transform = 'unset';
         }
         scissorsComponentImg.addEventListener('click', removeScissorsClick);
-
-        state.getPlayersChoises()
     };
 
     render(){

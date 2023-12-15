@@ -234,7 +234,7 @@ app.patch("/rooms/:rtdbLongId/:userId/start", (req, res) => {
 })
 
 
-app.patch("/rooms/:rtdbLongId/nochoise", (req, res) => {
+/*app.patch("/rooms/:rtdbLongId/nochoise", (req, res) => {
   const rtdbLongId = req.params.rtdbLongId
   const userChoise = req.body.choise
 
@@ -253,7 +253,7 @@ app.patch("/rooms/:rtdbLongId/nochoise", (req, res) => {
     message: "ok"
   })
   
-})
+})*/
 
 
 /*app.patch("/rooms/:rtdbLongId/playerTwo/choise", (req, res) => {
@@ -339,6 +339,41 @@ app.get("/rooms/:rtdbLongId/:userId/getchoise", (req, res) => {
     } else if (opponent == userId){
       res.json({
         message: "playerTwo"
+      })
+    }
+  })
+})
+
+
+app.patch("/rooms/:rtdbLongId/:userId/nochoise", (req, res) => {
+  const rtdbLongId = req.params.rtdbLongId
+  const userId = req.params.userId
+  const userStatus = req.body.choise
+
+  const rtdbReference = rtdb.ref("rooms/" + rtdbLongId + "/currentGame")
+  rtdbReference.get().then((snap) => {
+    const value = snap.val()
+    const user = value.playerOne.id
+    const opponent = value.playerTwo.id 
+
+    if(userId == user){
+      const playerOne = rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerOne")
+      playerOne.update({
+        choise: userStatus,
+      }).then(() => {
+        res.json({
+          message: "playerOne"
+        })
+      })
+
+    } else if (userId == opponent){
+      const playerTwo = rtdb.ref("rooms/" + rtdbLongId + "/currentGame" + "/playerTwo")
+      playerTwo.update({
+        choise: userStatus,
+      }).then(() => {
+        res.json({
+          message: "playerTwo"
+        })
       })
     }
   })

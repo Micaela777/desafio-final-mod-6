@@ -344,7 +344,24 @@ const state = {
         })
     },
 
-    setPlayersNoChoise(roomId){
+    setPlayersNoChoise(roomId, userId){
+
+        return fetch(API_BASE_URL + "/rooms/" + roomId + "/" + userId + "/nochoise",  {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ choise: "" }),
+        })
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            console.log(data);
+            return data;
+        });
+    },
+
+    /*setPlayersNoChoise(roomId){
 
         return fetch(API_BASE_URL + "/rooms/" + roomId + "/nochoise",  {
             method: "PATCH",
@@ -359,6 +376,24 @@ const state = {
             console.log(data);
             return data;
         });
+    },*/
+
+    setStateNoChoise(){
+
+        const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
+        rtdbRef.on("value", (snapshot) => {
+
+            const cs = state.getState()
+
+            const value = snapshot.val()
+            const playerOneChoise = value.currentGame.playerOne.choise
+            const playerTwoChoise= value.currentGame.playerTwo.choise
+
+            cs.choise = playerOneChoise
+            cs.opponentChoise = playerTwoChoise
+
+            this.setState(cs)
+        })
     },
 
     getPlayersChoises(){

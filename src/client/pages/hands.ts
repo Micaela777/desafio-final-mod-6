@@ -8,35 +8,35 @@ class Hands extends HTMLElement{
  
         const topPaper = this.querySelector('.top-paper') as any;
         const topPaperComponentImg = topPaper.shadowRoot.querySelector('.paper-img') as any;
-        topPaperComponentImg.style.height = '320px';
-        topPaperComponentImg.style.width = '130px';
+        topPaperComponentImg.style.height = '310px';
+        topPaperComponentImg.style.width = '120px';
 
         const topRock = this.querySelector('.top-rock') as any;
         const topRockComponentImg = topRock.shadowRoot.querySelector('.rock-img') as any;
-        topRockComponentImg.style.height = '320px';
-        topRockComponentImg.style.width = '105px';
+        topRockComponentImg.style.height = '310px';
+        topRockComponentImg.style.width = '95px';
 
         const topScissors = this.querySelector('.top-scissors') as any;
         const topScissorsComponentImg = topScissors.shadowRoot.querySelector('.scissors-img') as any;
-        topScissorsComponentImg.style.height = '320px';
-        topScissorsComponentImg.style.width = '105px';
+        topScissorsComponentImg.style.height = '310px';
+        topScissorsComponentImg.style.width = '95px';
 
         //--------------------------------------------------------------
 
         const bottomPaper = this.querySelector('.bottom-paper') as any;
         const bottomPaperComponentImg = bottomPaper.shadowRoot.querySelector('.paper-img') as any;
-        bottomPaperComponentImg.style.height = '330px';
-        bottomPaperComponentImg.style.width = '130px'; 
+        bottomPaperComponentImg.style.height = '310px';
+        bottomPaperComponentImg.style.width = '120px'; 
 
         const bottomRock = this.querySelector('.bottom-rock') as any;
         const bottomRockComponentImg = bottomRock.shadowRoot.querySelector('.rock-img') as any;
-        bottomRockComponentImg.style.height = '320px';
-        bottomRockComponentImg.style.width = '105px';
+        bottomRockComponentImg.style.height = '310px';
+        bottomRockComponentImg.style.width = '95px';
 
         const bottomScissors = this.querySelector('.bottom-scissors') as any;
         const bottomScissorsComponentImg = bottomScissors.shadowRoot.querySelector('.scissors-img') as any;
-        bottomScissorsComponentImg.style.height = '320px';
-        bottomScissorsComponentImg.style.width = '105px';
+        bottomScissorsComponentImg.style.height = '310px';
+        bottomScissorsComponentImg.style.width = '95px';
 
 
         const cs = state.getState();
