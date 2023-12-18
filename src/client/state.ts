@@ -15,6 +15,7 @@ const state = {
         opponentName:"",
         opponentScore: 0,
         opponentChoise: "",
+        result: "",
         roomId: "",
         rtdbRoomId: "",
         dataFromDb: [],
@@ -341,6 +342,7 @@ const state = {
             cs.opponentChoise = playerTwoChoise
 
             this.setState(cs)
+            this.whoWins(playerOneChoise, playerTwoChoise)
         })
     },
 
@@ -359,41 +361,6 @@ const state = {
             console.log(data);
             return data;
         });
-    },
-
-    /*setPlayersNoChoise(roomId){
-
-        return fetch(API_BASE_URL + "/rooms/" + roomId + "/nochoise",  {
-            method: "PATCH",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify({ choise: "" }),
-        })
-        .then((res) => {
-            return res.json();
-        }).then((data) => {
-            console.log(data);
-            return data;
-        });
-    },*/
-
-    setStateNoChoise(){
-
-        const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
-        rtdbRef.on("value", (snapshot) => {
-
-            const cs = state.getState()
-
-            const value = snapshot.val()
-            const playerOneChoise = value.currentGame.playerOne.choise
-            const playerTwoChoise= value.currentGame.playerTwo.choise
-
-            cs.choise = playerOneChoise
-            cs.opponentChoise = playerTwoChoise
-
-            this.setState(cs)
-        })
     },
 
     getPlayersChoises(){
@@ -423,6 +390,71 @@ const state = {
             console.log(data);
             return data;
         });
+    },
+
+    whoWins(playerOne, playerTwo){
+        
+        const jugadasGanadas = [
+            playerOne == "piedra" && playerTwo == "tijeras",
+            playerOne == "papel" && playerTwo == "piedra",
+            playerOne == "tijeras" && playerTwo == "papel",
+        ];
+        if (jugadasGanadas.includes(true)) {
+            return this.pushToHistory("win");
+        };
+
+        const jugadasPerdidas = [
+            playerOne == "tijeras" && playerTwo == "piedra",
+            playerOne == "piedra" && playerTwo == "papel",
+            playerOne == "papel" && playerTwo == "tijeras",
+        ];
+        if (jugadasPerdidas.includes(true)) {
+            return this.pushToHistory("lose");
+        };
+
+        const jugadasEmpatadas = [
+            playerOne == "tijeras" && playerTwo == "tijeras",
+            playerOne == "piedra" && playerTwo == "piedra",
+            playerOne == "papel" && playerTwo == "papel",
+        ];
+        if (jugadasEmpatadas.includes(true)) {
+            return this.pushToHistory("tie");
+        };
+        
+    },
+
+    pushToHistory(result){
+
+        const cs = this.getState()
+        const playerOneScore = cs.score
+        const playerTwoScore = cs.opponentScore
+
+        if(result == "win"){
+            this.setState({
+                ...cs,
+                score: playerOneScore + 1,
+                opponentScore: playerTwoScore,
+                result: "win"
+            })
+        }
+
+        if(result == "lose"){
+            this.setState({
+                ...cs,
+                score: playerOneScore,
+                opponentScore: playerTwoScore + 1,
+                result: "lose"
+            })
+        }
+
+        if(result == "tie"){
+            this.setState({
+                ...cs,
+                score: playerOneScore,
+                opponentScore: playerTwoScore,
+                result: "tie"
+            })
+        }
     },
 
     listenDatabase() {

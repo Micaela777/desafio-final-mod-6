@@ -82,6 +82,10 @@ class Hands extends HTMLElement{
                 topScissors.style.display = "inherit"
             }
         }
+
+        setTimeout(() => {
+            Router.go("./results")
+        }, 3000);
        })
     };
 

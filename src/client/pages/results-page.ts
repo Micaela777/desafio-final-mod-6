@@ -4,11 +4,15 @@ import { Router } from "@vaadin/router";
 class Results extends HTMLElement{
     connectedCallback(){
           this.render();
+          const cs = state.getState()
+          const roomId = cs.rtdbRoomId
+          const userId = cs.userId
 
           const playAgainButton = this.querySelector('.play-again-button')
           playAgainButton.addEventListener('click', (e) => {
               e.preventDefault();
-              Router.go('/play');
+
+              Router.go('./instructions');
           });
 
           const leaveButton = this.querySelector('.leave-button')
@@ -17,16 +21,30 @@ class Results extends HTMLElement{
               Router.go('/');
           });
 
+          state.changePlayersStartFalseStatus(roomId, userId).then((res) => {
+            console.log(res)
+            state.setPlayersNoChoise(roomId, userId).then((res) => {
+                console.log(res)
+              })
+          })
+
       };
   
       render(){
+
+        const cs = state.getState()
+        const name = cs.name
+        const opponentName = cs.opponentName
+        const score = cs.score
+        const opponentScore = cs.opponentScore
+
           this.innerHTML = `
               <div class="results-section">
                   <custom-win-img></custom-win-img>
                   <div class="score-container">
                       <h2 class="score-title">Puntaje</h2>
-                      <h4 class="opponent-score">Maguis: 0</h4>
-                      <h4 class="my-score"><span class="my-name">Mica:</span> 0</h4>
+                      <h4 class="opponent-score">${opponentName}: ${opponentScore}</h4>
+                      <h4 class="my-score"><span class="my-name">${name}:</span> ${score}</h4>
                   </div>
                   <div class="buttons-conatiner">
                       <custom-choose-option-button class="play-again-button">Volver a jugar</custom-choose-option-button>
