@@ -4,9 +4,14 @@ import { Router } from "@vaadin/router";
 class Results extends HTMLElement{
     connectedCallback(){
           this.render();
+
           const cs = state.getState()
           const roomId = cs.rtdbRoomId
           const userId = cs.userId
+          const result = cs.result
+          const data = cs.dataFromDb
+          const playerOneId = data[0][1].id
+          const playerTwoid = data[1][1].id
 
           const playAgainButton = this.querySelector('.play-again-button')
           playAgainButton.addEventListener('click', (e) => {
@@ -20,6 +25,36 @@ class Results extends HTMLElement{
               e.preventDefault();
               Router.go('/');
           });
+
+
+          const winImg = this.querySelector('.win-img') as any
+          const loseImg = this.querySelector('.lose-img') as any
+          const tieImg = this.querySelector('.tie-img') as any
+          const background = this.querySelector('.results-section') as any
+
+          if(result == "win"){
+            if(userId == playerOneId){
+                winImg.style.display = "inherit"
+                background.style.background = "linear-gradient(#0a1226,92%,#5cc4bb)"
+            }
+            if(userId == playerTwoid){
+                loseImg.style.display = "inherit"
+                background.style.background = "linear-gradient(#120509,92%,#a8454d)"
+            }
+          }
+          if(result == "lose"){
+            if(userId == playerOneId){
+                loseImg.style.display = "inherit"
+            }
+            if(userId == playerTwoid){
+                winImg.style.display = "inherit"
+            }
+          }
+          if(result == "tie"){
+            tieImg.style.display = "inherit"
+            background.style.background = "linear-gradient(#0c071a,92%,#954cbc)"
+          }
+
 
           state.changePlayersStartFalseStatus(roomId, userId).then((res) => {
             console.log(res)
@@ -40,7 +75,9 @@ class Results extends HTMLElement{
 
           this.innerHTML = `
               <div class="results-section">
-                  <custom-win-img></custom-win-img>
+                  <custom-win-img class="win-img"></custom-win-img>
+                  <custom-lose-img class="lose-img"></custom-lose-img>
+                  <custom-tie-img class="tie-img"></custom-tie-img>
                   <div class="score-container">
                       <h2 class="score-title">Puntaje</h2>
                       <h4 class="opponent-score">${opponentName}: ${opponentScore}</h4>
@@ -63,7 +100,18 @@ class Results extends HTMLElement{
                 align-items: center;
                 gap: 35px;
                 padding-bottom: 10px;
-                background: linear-gradient( #0a1226, 92%, #5cc4bb );
+            }
+
+            .win-img{
+                display: none;
+            }
+
+            .lose-img{
+                display: none;
+            }
+
+            .tie-img{
+                display: none;
             }
 
             .score-container{

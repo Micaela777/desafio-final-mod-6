@@ -342,7 +342,6 @@ const state = {
             cs.opponentChoise = playerTwoChoise
 
             this.setState(cs)
-            this.whoWins(playerOneChoise, playerTwoChoise)
         })
     },
 
@@ -392,34 +391,44 @@ const state = {
         });
     },
 
-    whoWins(playerOne, playerTwo){
+    whoWins(){
         
-        const jugadasGanadas = [
-            playerOne == "piedra" && playerTwo == "tijeras",
-            playerOne == "papel" && playerTwo == "piedra",
-            playerOne == "tijeras" && playerTwo == "papel",
-        ];
-        if (jugadasGanadas.includes(true)) {
-            return this.pushToHistory("win");
-        };
 
-        const jugadasPerdidas = [
-            playerOne == "tijeras" && playerTwo == "piedra",
-            playerOne == "piedra" && playerTwo == "papel",
-            playerOne == "papel" && playerTwo == "tijeras",
-        ];
-        if (jugadasPerdidas.includes(true)) {
-            return this.pushToHistory("lose");
-        };
+        const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
+        rtdbRef.on("value", (snapshot) => {
 
-        const jugadasEmpatadas = [
-            playerOne == "tijeras" && playerTwo == "tijeras",
-            playerOne == "piedra" && playerTwo == "piedra",
-            playerOne == "papel" && playerTwo == "papel",
-        ];
-        if (jugadasEmpatadas.includes(true)) {
-            return this.pushToHistory("tie");
-        };
+            const value = snapshot.val()
+            const playerOneChoise = value.currentGame.playerOne.choise
+            const playerTwoChoise = value.currentGame.playerTwo.choise
+
+            const jugadasGanadas = [
+                playerOneChoise == "piedra" && playerTwoChoise == "tijeras",
+                playerOneChoise == "papel" && playerTwoChoise == "piedra",
+                playerOneChoise == "tijeras" && playerTwoChoise == "papel",
+            ];
+            if (jugadasGanadas.includes(true)) {
+                return this.pushToHistory("win");
+            };
+    
+            const jugadasPerdidas = [
+                playerOneChoise == "tijeras" && playerTwoChoise == "piedra",
+                playerOneChoise == "piedra" && playerTwoChoise == "papel",
+                playerOneChoise == "papel" && playerTwoChoise == "tijeras",
+            ];
+            if (jugadasPerdidas.includes(true)) {
+                return this.pushToHistory("lose");
+            };
+    
+            const jugadasEmpatadas = [
+                playerOneChoise == "tijeras" && playerTwoChoise == "tijeras",
+                playerOneChoise == "piedra" && playerTwoChoise == "piedra",
+                playerOneChoise == "papel" && playerTwoChoise == "papel",
+            ];
+            if (jugadasEmpatadas.includes(true)) {
+                return this.pushToHistory("tie");
+            };
+
+        })
         
     },
 

@@ -83,6 +83,8 @@ class Hands extends HTMLElement{
             }
         }
 
+        state.whoWins()
+
         setTimeout(() => {
             Router.go("./results")
         }, 3000);
