@@ -14,7 +14,7 @@ class PreGameOptions extends HTMLElement{
                 const cs = state.getState()
                 cs.rtdbRoomId = res.roomLongId
 
-                console.log(cs.userId)
+                //console.log(cs.userId)
 
                 Router.go('./new-game');
             })
