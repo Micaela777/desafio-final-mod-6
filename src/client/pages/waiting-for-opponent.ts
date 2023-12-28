@@ -12,7 +12,7 @@ class WaitingForOpponent extends HTMLElement{
         const rtdbId = currentState.rtdbRoomId
 
         state.changePlayerOneOnlineTrue(rtdbId).then((res) => {
-            console.log(res)
+            //console.log(res)
         })
 
         state.setOnline()

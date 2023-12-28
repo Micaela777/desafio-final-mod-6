@@ -9,10 +9,10 @@ class Instructions extends HTMLElement{
         const rtdbId = currentGame.rtdbRoomId;
 
         state.changePlayerOneOnlineFalse(rtdbId).then((res) => {
-            console.log(res)
+            //console.log(res)
         })
         state.changePlayerTwoOnlineFalse(rtdbId).then((res) => {
-            console.log(res)
+            //console.log(res)
         })
 
         const button = this.querySelector('.play-button')
@@ -24,7 +24,7 @@ class Instructions extends HTMLElement{
             const userId = currentGame.userId
 
             state.changePlayersStartTrueStatus(rtdbId, userId).then((res) => {
-                console.log(res)
+                //console.log(res)
             })
 
             Router.go('./play')

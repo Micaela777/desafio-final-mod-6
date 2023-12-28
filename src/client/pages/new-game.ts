@@ -13,11 +13,6 @@ class NewChatroom extends HTMLElement{
         const idRoomReference = this.querySelector(".id") as any
         idRoomReference.textContent = `${roomId}`;
 
-        const rtdbId = currentState.rtdbRoomId
-        const userId = currentState.userId
-
-        //console.log(rtdbId, userId)
-
         const enterTheRoomButton = this.querySelector('.continue-button')
         enterTheRoomButton.addEventListener('click', (e) => {
             e.preventDefault();

@@ -9,19 +9,20 @@ export function initHeaderComponent() {
         render() {
             var shadow = this.attachShadow({ mode: 'open' });
 
-            const dataFromState = state.getState();
-            const name = dataFromState.name;
-            const score = dataFromState.score;
-            const opponentName = dataFromState.opponentName;
-            const opponentScore = dataFromState.opponentScore;
-            const roomId = dataFromState.roomId;
+            const cs = state.getState();
+            const roomId = cs.roomId
+            const data = cs.dataFromDb
+            const playerOneName = data[0][1].name
+            const playerTwoName = data[1][1].name
+            const playerOneScore = data[0][1].score
+            const playerTwoScore = data[1][1].score
 
             const div = document.createElement('div');
             div.className = "header-section";
             div.innerHTML = `
                 <div class="names-container">
-                    <h3 class="opponent-name">${opponentName}: ${opponentScore}</h3>
-                    <h3 class="my-name">${name}: ${score}</h3>
+                    <h3 class="opponent-name">${playerTwoName}: <span class="opponent">${playerTwoScore}</span></h3>
+                    <h3 class="my-name">${playerOneName}: <span class="player">${playerOneScore}</span></h3>
                 </div>
                 <div class="room-id-container">
                     <h3 class="room-text">Sala:</h3>
@@ -40,7 +41,8 @@ export function initHeaderComponent() {
                 }
 
                 .opponent-name,
-                .room-text{
+                .room-text,
+                .my-name{
                     margin: 0px;
                     font-size: 24px;
                     font-weight: 400;
@@ -48,11 +50,8 @@ export function initHeaderComponent() {
                     color: #ffffff;
                 }
 
-                .my-name{
-                    margin: 0px;
-                    font-size: 24px;
-                    font-weight: 400;
-                    font-family: 'Roboto', sans-serif;
+                .opponent,
+                .player{
                     color: #da70db;
                 }
 

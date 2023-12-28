@@ -6,7 +6,6 @@ const API_BASE_URL = "http://localhost:3000"
 type Jugada = "piedra" | "papel" | "tijeras";
 
 const state = {
-
     data: {
         userId: "",
         name:"",
@@ -26,6 +25,16 @@ const state = {
         return this.data;
     },
 
+    
+    /*init() {
+        const localData = JSON.parse(localStorage.getItem("saved-play"));
+        if (!localData) {
+            return;
+        } else {
+            this.setState(localData);
+        };
+    },*/
+
     auth(userName){
 
         const cs = this.getState()
@@ -41,7 +50,7 @@ const state = {
         }).then((data) => {
             cs.userId = data.id
             this.setState(cs)
-            console.log(cs.userId)
+            //console.log(cs.userId)
             return data
         });
     },
@@ -59,9 +68,9 @@ const state = {
                 return res.json()
             }).then((data) => {
                 cs.roomId = data.id
-                console.log(data)
+                //console.log(data)
                 this.setState(cs)
-                console.log(cs.roomId)
+                //console.log(cs.roomId)
                 return data
             });
     },
@@ -74,7 +83,7 @@ const state = {
             return res.json();
         }).then((data) => {
             cs.rtdbRoomId = data.rtdbRoomId;
-            console.log(data);
+            //console.log(data);
             this.setState(cs);
             return data;
         });
@@ -84,7 +93,7 @@ const state = {
         const cs = this.getState();
         cs.roomId = roomId;
         this.setState(cs);
-        console.log(cs.roomId)
+        //console.log(cs.roomId)
     },
 
     setNewUserAndFullRoom(rtdbId, userId){
@@ -100,9 +109,7 @@ const state = {
         .then((res) => {
             return res.json();
         }).then((data) => {
-            
-            console.log(data);
-
+            //console.log(data);
             return data;
         });
     },
@@ -118,12 +125,11 @@ const state = {
           
             cs.dataFromDb = userDataArr
 
-            console.log(cs.dataFromDb, "cuando guardo la rtdb data")
+            //console.log(cs.dataFromDb, "cuando guardo la rtdb data")
             
             this.setState(cs)
             this.getOpponentName()
         })
-        
     },
 
     getOpponentName(){
@@ -134,11 +140,11 @@ const state = {
             if(i[1].name != cs.name){
                 cs.opponentName = i[1].name
             }
-            console.log(i[1].name)
+            //console.log(i[1].name)
         })
 
-        console.log(nameFromDb, "la supuesta data que deberia aprecer")
-        console.log(cs, "data del state completo")
+        //console.log(nameFromDb, "la supuesta data que deberia aprecer")
+        //console.log(cs, "data del state completo")
     },
 
     setName(name: string){
@@ -150,12 +156,11 @@ const state = {
             if(i[1].name != cs.opponentName){
                 cs.name = i[1].name
             }
-            console.log(i[1].name)
+            //console.log(i[1].name)
         })
 
         this.setState(cs)
-
-        console.log(cs.name)
+        //console.log(cs.name)
     },
 
     changePlayerOneOnlineTrue(rtdbId){
@@ -171,9 +176,7 @@ const state = {
         .then((res) => {
             return res.json();
         }).then((data) => {
-            
-            console.log(data);
-
+            //console.log(data);
             return data;
         });
     },
@@ -191,9 +194,7 @@ const state = {
         .then((res) => {
             return res.json();
         }).then((data) => {
-            
-            console.log(data);
-
+            //console.log(data);
             return data;
         });
     },
@@ -211,9 +212,7 @@ const state = {
         .then((res) => {
             return res.json();
         }).then((data) => {
-            
-            console.log(data);
-
+            //console.log(data);
             return data;
         });
     },
@@ -231,9 +230,7 @@ const state = {
         .then((res) => {
             return res.json();
         }).then((data) => {
-            
-            console.log(data);
-
+            //console.log(data);
             return data;
         });
     },
@@ -246,7 +243,7 @@ const state = {
             const playerOne = value.currentGame.playerOne.online
             const playerTwo = value.currentGame.playerTwo.online
 
-            console.log(playerOne, playerTwo)
+            //console.log(playerOne, playerTwo)
 
             if(playerOne == "true" && playerTwo == "true"){
                 Router.go('./lobby')
@@ -267,9 +264,7 @@ const state = {
         .then((res) => {
             return res.json();
         }).then((data) => {
-            
-            console.log(data);
-
+            //console.log(data);
             return data;
         });
     },
@@ -282,7 +277,7 @@ const state = {
             const playerOne = value.currentGame.playerOne.start
             const playerTwo = value.currentGame.playerTwo.start
 
-            console.log(playerOne, playerTwo )
+            //console.log(playerOne, playerTwo )
 
             if(playerOne == "true" && playerTwo == "true"){
                 Router.go('./playing')
@@ -303,15 +298,12 @@ const state = {
         .then((res) => {
             return res.json();
         }).then((data) => {
-            
-            console.log(data);
-
+            //console.log(data);
             return data;
         });
     },
 
     setPlayersChoise(move: Jugada, roomId, userId){
-
         return fetch(API_BASE_URL + "/rooms/" + roomId + "/" + userId + "/play",  {
             method: "PATCH",
             headers: {
@@ -322,13 +314,12 @@ const state = {
         .then((res) => {
             return res.json();
         }).then((data) => {
-            console.log(data);
+            //console.log(data);
             return data;
         });
     },
 
     setStateChoise(){
-
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
         rtdbRef.on("value", (snapshot) => {
 
@@ -336,7 +327,7 @@ const state = {
 
             const value = snapshot.val()
             const playerOneChoise = value.currentGame.playerOne.choise
-            const playerTwoChoise= value.currentGame.playerTwo.choise
+            const playerTwoChoise = value.currentGame.playerTwo.choise
 
             cs.choise = playerOneChoise
             cs.opponentChoise = playerTwoChoise
@@ -346,7 +337,6 @@ const state = {
     },
 
     setPlayersNoChoise(roomId, userId){
-
         return fetch(API_BASE_URL + "/rooms/" + roomId + "/" + userId + "/nochoise",  {
             method: "PATCH",
             headers: {
@@ -357,7 +347,7 @@ const state = {
         .then((res) => {
             return res.json();
         }).then((data) => {
-            console.log(data);
+            //console.log(data);
             return data;
         });
     },
@@ -386,14 +376,12 @@ const state = {
         .then((res) => {
             return res.json();
         }).then((data) => {
-            console.log(data);
+            //console.log(data);
             return data;
         });
     },
 
     whoWins(){
-        
-
         const rtdbRef = rtdb.ref(`/rooms/${this.data.rtdbRoomId}`)
         rtdbRef.on("value", (snapshot) => {
 
@@ -427,14 +415,12 @@ const state = {
             if (jugadasEmpatadas.includes(true)) {
                 return this.pushToHistory("tie");
             };
-
         })
-        
     },
 
     pushToHistory(result){
-
         const cs = this.getState()
+
         const playerOneScore = cs.score
         const playerTwoScore = cs.opponentScore
 
@@ -466,14 +452,33 @@ const state = {
         }
     },
 
+    setRtdbScore(roomId, userId, score, rivalScore){
+        const cs = this.getState()
+
+        return fetch(API_BASE_URL + "/rooms/" + roomId + "/" + userId + "/score",  {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ score: score, rivalScore: rivalScore}),
+        })
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            //console.log(data);
+            return data;
+        });
+    },
+
     listenDatabase() {
-        
         const rtdbRef = rtdb.ref(`/rooms/${this.data.roomId}`);
     
         rtdbRef.on("value", (snapshot) => {
           const currentState = this.getState();
+
           const value = snapshot.val();
           currentState.rtdbRoomId = value.currentGame;
+
           this.setState(currentState);
         });
     },
@@ -483,6 +488,7 @@ const state = {
         for (const cb of this.listeners) {
             cb();
         }
+        //localStorage.setItem("saved-play", JSON.stringify(newState));
     },
 
     subscribe(callback: (any) => any) {

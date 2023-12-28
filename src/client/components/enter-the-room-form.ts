@@ -18,9 +18,6 @@ export function initEnterTheRoomFormComponent() {
                 const targetRoomId = target.roomid.value;
 
                 state.getUsersData()
-                const currentState = state.getState();
-
-                const rtdbId = currentState.rtdbRoomId
 
                 state.existingRoom(targetRoomId);
 
@@ -36,7 +33,7 @@ export function initEnterTheRoomFormComponent() {
                         state.setNewUserAndFullRoom(rtdbId, userId).then((res) => {
                            
                             state.changePlayerTwoOnlineTrue(rtdbId).then((res) => {
-                                console.log(res)
+                                //console.log(res)
                             })
 
                             if(res.message == "usuario conectado"){

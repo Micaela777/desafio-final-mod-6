@@ -3,12 +3,6 @@ import { Router } from '@vaadin/router';
 class EnterTheRoom extends HTMLElement{
   connectedCallback(){
         this.render();
-
-        /*const button = this.querySelector('.choose-cat-button')
-        button.addEventListener('click', (e) => {
-            e.preventDefault()
-            Router.go('./play-page')
-        }) */
     };
 
     render(){

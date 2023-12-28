@@ -24,10 +24,7 @@ class NoChoise extends HTMLElement{
           })
 
           state.changePlayersStartFalseStatus(roomId, userId).then((res) => {
-            console.log(res)
-            /*state.setPlayersNoChoise(roomId, userId).then((res) => {
-                console.log(res)
-              })*/
+            //console.log(res)
           })
       };
  

@@ -37,6 +37,7 @@ import { initLoseImageComponent } from "./components/lose-img";
 
 (function () {
 
+    //state.init()
     initMainTitleComponent();
     initHomeSmallTextComponent();
     initHomeStartButtonComponent();

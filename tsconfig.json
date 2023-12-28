@@ -6,6 +6,4 @@
         "strictNullChecks": false,
         "module": "CommonJS"
     },
-
-   
 }

@@ -16,7 +16,7 @@ export function initAuthFormComponent() {
                 e.preventDefault();
                 const target = e.target as any;
                 const targetName = target.name.value;
-                console.log(targetName)
+                //console.log(targetName)
 
                 state.setName(targetName);
 
@@ -25,7 +25,7 @@ export function initAuthFormComponent() {
                 }
 
                 state.auth(userName).then((res) => {
-                    console.log(res)
+                    //console.log(res)
                     Router.go("./pre-game-options")
                 })
             })

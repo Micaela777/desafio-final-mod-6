@@ -6,7 +6,6 @@ class Play extends HTMLElement{
     this.render()
 
     state.setStart()
-
     };
 
     render(){

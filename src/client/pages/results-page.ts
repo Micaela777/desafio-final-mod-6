@@ -10,6 +10,8 @@ class Results extends HTMLElement{
           const userId = cs.userId
           const result = cs.result
           const data = cs.dataFromDb
+          const score = cs.score
+          const opponentScore = cs.opponentScore
           const playerOneId = data[0][1].id
           const playerTwoid = data[1][1].id
 
@@ -45,9 +47,11 @@ class Results extends HTMLElement{
           if(result == "lose"){
             if(userId == playerOneId){
                 loseImg.style.display = "inherit"
+                background.style.background = "linear-gradient(#120509,92%,#a8454d)"
             }
             if(userId == playerTwoid){
                 winImg.style.display = "inherit"
+                background.style.background = "linear-gradient(#0a1226,92%,#5cc4bb)"
             }
           }
           if(result == "tie"){
@@ -55,11 +59,13 @@ class Results extends HTMLElement{
             background.style.background = "linear-gradient(#0c071a,92%,#954cbc)"
           }
 
-
           state.changePlayersStartFalseStatus(roomId, userId).then((res) => {
-            console.log(res)
+            //console.log(res)
             state.setPlayersNoChoise(roomId, userId).then((res) => {
-                console.log(res)
+                //console.log(res)
+                state.setRtdbScore(roomId, userId, score, opponentScore).then((res) => {
+                    //console.log(res)
+                })
               })
           })
 
@@ -68,10 +74,11 @@ class Results extends HTMLElement{
       render(){
 
         const cs = state.getState()
-        const name = cs.name
-        const opponentName = cs.opponentName
-        const score = cs.score
-        const opponentScore = cs.opponentScore
+        const data = cs.dataFromDb
+        const playerOneName = data[0][1].name
+        const playerTwoName = data[1][1].name
+        const playerOneScore = data[0][1].score
+        const playerTwoScore = data[1][1].score
 
           this.innerHTML = `
               <div class="results-section">
@@ -80,8 +87,8 @@ class Results extends HTMLElement{
                   <custom-tie-img class="tie-img"></custom-tie-img>
                   <div class="score-container">
                       <h2 class="score-title">Puntaje</h2>
-                      <h4 class="opponent-score">${opponentName}: ${opponentScore}</h4>
-                      <h4 class="my-score"><span class="my-name">${name}:</span> ${score}</h4>
+                      <h4 class="opponent-score"><span class="opponent-name">${playerTwoName}:</span> ${playerTwoScore}</h4>
+                      <h4 class="my-score"><span class="my-name">${playerOneName}:</span> ${playerOneScore}</h4>
                   </div>
                   <div class="buttons-conatiner">
                       <custom-choose-option-button class="play-again-button">Volver a jugar</custom-choose-option-button>
@@ -140,7 +147,8 @@ class Results extends HTMLElement{
                 font-family: 'Roboto', sans-serif;
             }
 
-            .my-name{
+            .my-name,
+            .opponent-name{
                 margin: 0px;
                 font-family: 'Roboto', sans-serif;
                 color: #be5abf;
