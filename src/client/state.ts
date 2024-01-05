@@ -1,7 +1,7 @@
 import { Router } from "@vaadin/router";
 import { rtdb } from "./rtdb";
 
-const API_BASE_URL = "http://localhost:3000"
+const API_BASE_URL = "https://ppt-online.onrender.com"
 
 type Jugada = "piedra" | "papel" | "tijeras";
 
